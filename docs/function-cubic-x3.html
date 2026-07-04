@@ -8,64 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background-color: #0a0a0a; color: #e5e5e5; }
-        .sidebar { background-color: #111111; }
-        .nav-active { background-color: #1f1f1f; border-left: 5px solid #b91c1c; color: #f87171; }
-        .nav-item:hover { background-color: #1f1f1f; }
-        .top-bar { background-color: #2a1515; border-bottom: 1px solid #3f1a1a; }
-        .content-card { background-color: #2a1515; border: 1px solid #3f1a1a; padding: 1.5rem; border-radius: 1rem; }
-        .section-header {
-            background-color: #1a0d0d;
-            margin: -1.5rem -1.5rem 0;
-            padding: 0.875rem 1.5rem;
-            border-bottom: 2px solid #5c1818;
-            border-radius: 1rem 1rem 0 0;
-        }
-        .section-heading { color: #991b1b; font-weight: 700; text-align: center; margin: 0; }
-        .section-body { padding-top: 1.25rem; }
-        .fact-label, .field-label, .meta-label {
-            color: #d4a853; font-size: 0.95rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.06em;
-        }
-        .fact-value { color: #f4f4f5; font-size: 1rem; margin-top: 0.35rem; }
-        .fact-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
-        .fact-pair > div { text-align: center; }
-        .graph-facts-row { display: flex; flex-direction: column; gap: 1.5rem; }
-        @media (min-width: 768px) { .graph-facts-row { flex-direction: row; align-items: flex-start; } }
-        .graph-wrap-sm { aspect-ratio: 1 / 1; width: 100%; }
-        .graph-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-        @media (max-width: 900px) { .graph-trio { grid-template-columns: 1fr; } }
-        .deriv-col { display: flex; flex-direction: column; gap: 0.75rem; }
-        .deriv-title { color: #f4f4f5; font-size: 1.05rem; text-align: center; }
-        .sign-line-wrap { position: relative; margin: 1.5rem 0.5rem 1rem; padding: 0 1.25rem; }
-        .sign-line-axis { height: 2px; background: #71717a; position: relative; }
-        .sign-line-axis::before, .sign-line-axis::after {
-            content: ''; position: absolute; top: 50%; transform: translateY(-50%);
-            border: 5px solid transparent;
-        }
-        .sign-line-axis::before { left: -14px; border-right-color: #71717a; }
-        .sign-line-axis::after { right: -14px; border-left-color: #71717a; }
-        .sign-line-point {
-            position: absolute; top: 50%; transform: translate(-50%, -50%);
-            width: 12px; height: 12px; border-radius: 50%;
-            border: 2px solid #e5e5e5; background: #2a1515;
-        }
-        .sign-line-sign {
-            position: absolute; transform: translateX(-50%);
-            font-weight: 700; font-size: 1.125rem; color: #e5e5e5;
-        }
-        .sign-line-sign.above { top: -1.6rem; }
-        .sign-line-sign.below { bottom: -1.6rem; top: auto; }
-        .sign-line-number {
-            position: absolute; bottom: 100%; transform: translateX(-50%);
-            margin-bottom: 6px; font-size: 0.8rem; color: #e5e5e5; font-weight: 600;
-        }
-        .chart-analysis { font-size: 0.875rem; color: #d4d4d8; line-height: 1.6; }
-        .behavior-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; }
-        @media (max-width: 640px) { .behavior-grid { grid-template-columns: 1fr; } }
-        .limit-subheading { color: #d4a853; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; text-align: center; }
-    </style>
+    <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
     <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
@@ -81,39 +24,44 @@
         </div>
     </div>
 
-    <div class="flex">
-        <div class="sidebar w-72 min-h-[calc(100vh-81px)] border-r border-zinc-800 p-5">
-            <div class="space-y-1 text-sm">
+    <div class="page-layout flex">
+        <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <aside id="sidebar" class="sidebar">
+            <button type="button" id="sidebar-collapse" class="sidebar-toggle sidebar-collapse-btn" aria-label="Close navigation" title="Close navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <nav class="sidebar-nav space-y-1 text-sm">
                 <a href="index.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Home</a>
                 <a href="courses.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Courses</a>
                 <a href="zoo.html" class="nav-item nav-active flex items-center gap-x-3 px-4 py-3 rounded-2xl">Function Zoo</a>
                 <a href="visualizers.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Visualizers</a>
                 <a href="profile.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">My Profile</a>
-            </div>
-        </div>
+            </nav>
+        </aside>
 
-        <div class="flex-1 p-8">
+        <main class="main-content flex-1 p-8">
             <div class="w-full max-w-4xl mx-auto space-y-8">
 
                 <header class="text-center">
                     <a href="zoo.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Function Zoo</a>
-                    <h1 class="text-2xl font-bold tracking-wide text-[#991b1b] mb-4">THE CUBIC FUNCTION</h1>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">THE CUBIC FUNCTION</h1>
                     <div id="header-expr" class="text-3xl text-white"></div>
                 </header>
 
-                <!-- Graph + Quick Facts -->
+                <!-- Overview: graph + facts -->
                 <section class="content-card">
                     <div class="section-header">
                         <h2 class="section-heading text-xl">Overview</h2>
                     </div>
                     <div class="section-body graph-facts-row">
-                        <div class="w-full md:w-2/5 shrink-0">
-                            <div class="graph-wrap-sm max-w-[14rem] mx-auto overflow-hidden rounded-xl border border-[#3f1a1a]">
-                                <div id="graph-f-main" class="desmos-graph w-full h-full min-h-[8rem]"></div>
+                        <div class="w-full md:w-1/2 shrink-0">
+                            <div class="graph-wrap-sm max-w-[22rem] mx-auto overflow-hidden rounded-xl border border-[#523030]">
+                                <div id="graph-f-main" class="desmos-graph w-full h-full min-h-[12rem]"></div>
                             </div>
                         </div>
-                        <div class="w-full md:w-3/5 flex-1">
-                            <h3 class="section-heading text-base mb-4">Quick Facts</h3>
+                        <div class="w-full md:w-1/2 flex-1">
                             <div class="fact-pair">
                                 <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
                                 <div><p class="fact-label">Range</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
@@ -135,7 +83,7 @@
                         <h2 class="section-heading text-xl">Description &amp; Behavior</h2>
                     </div>
                     <div class="section-body">
-                        <p class="text-zinc-200 text-lg leading-relaxed text-center mb-6">
+                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">
                             The cubic function is our first example of a point of inflection. This point of inflection happens to also be a critical point, though that is not necessarily always the case. A function like <span data-katex="f(x) = x(x-1)(x-3)"></span> has a point of inflection which is not a critical point. This example is important because we have a critical point where the function is increasing at that critical point.
                         </p>
                         <div class="behavior-grid text-sm text-zinc-300">
@@ -189,16 +137,24 @@
                             <!-- f(x) -->
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f(x) = x^3"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#3f1a1a]">
+                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#523030]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
-                                <p class="chart-analysis">The original cubic passes through the origin and increases across its entire domain.</p>
+                                <div class="sign-line-wrap">
+                                    <div class="sign-line-axis">
+                                        <span class="sign-line-sign below" style="left: 25%;">−</span>
+                                        <span class="sign-line-sign above" style="left: 75%;">+</span>
+                                        <span class="sign-line-number" style="left: 50%;">0</span>
+                                        <span class="sign-line-point" style="left: 50%;"></span>
+                                    </div>
+                                </div>
+                                <p class="chart-analysis">The original cubic passes through the origin. <span data-katex="f(x) < 0"></span> for <span data-katex="x < 0"></span> and <span data-katex="f(x) > 0"></span> for <span data-katex="x > 0"></span>.</p>
                             </div>
 
                             <!-- f'(x) -->
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = 3x^2"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#3f1a1a]">
+                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#523030]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -219,7 +175,7 @@
                             <!-- f''(x) -->
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f''(x) = 6x"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#3f1a1a]">
+                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#523030]">
                                     <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -259,16 +215,14 @@
                 </section>
 
             </div>
-        </div>
+        </main>
     </div>
 
+    <script src="js/site.js"></script>
     <script>
         const GRAPH_COLOR = '#b91c1c';
 
-        function renderAllKatex() {
-            document.querySelectorAll('[data-katex]').forEach(el => {
-                katex.render(el.getAttribute('data-katex'), el, { throwOnError: false });
-            });
+        function renderHeaderKatex() {
             katex.render('f(x) = x^3', document.getElementById('header-expr'), { throwOnError: false, displayMode: true });
         }
 
@@ -294,7 +248,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderAllKatex();
+            renderHeaderKatex();
             initGraph('graph-f-main', 'y = x^3');
             initGraph('graph-f', 'y = x^3');
             initGraph('graph-fp', 'y = 3x^2');

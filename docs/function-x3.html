@@ -8,34 +8,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <link rel="stylesheet" href="css/site.css">
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background-color: #0a0a0a; color: #e5e5e5; }
-        .sidebar { background-color: #111111; }
-        .nav-active { background-color: #1f1f1f; border-left: 5px solid #b91c1c; color: #f87171; }
-        .nav-item:hover { background-color: #1f1f1f; }
-        .top-bar { background-color: #2a1515; border-bottom: 1px solid #3f1a1a; }
-        .content-card {
-            background-color: #2a1515;
-            border: 1px solid #3f1a1a;
-        }
-        .section-heading {
-            color: #f87171;
-            border-bottom: 1px solid #3f1a1a;
-            padding-bottom: 0.5rem;
-        }
-        .fact-label { color: #a1a1aa; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .fact-value { color: #f4f4f5; font-size: 1rem; margin-top: 0.25rem; }
-        .graph-wrap { aspect-ratio: 1 / 1; width: 100%; }
         .graph-wrap-wide { aspect-ratio: 4 / 3; width: 100%; }
-        .desmos-graph { width: 100%; height: 100%; }
         .sign-chart { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
         .sign-chart th, .sign-chart td {
-            border: 1px solid #3f1a1a;
+            border: 1px solid #523030;
             padding: 0.5rem 0.75rem;
             text-align: center;
         }
-        .sign-chart th { background-color: #3f1a1a; color: #f87171; font-weight: 600; }
-        .sign-chart td { background-color: #1f1010; }
+        .sign-chart th { background-color: #2d1a1a; color: #c45050; font-weight: 600; }
+        .sign-chart td { background-color: #3a2222; }
     </style>
 </head>
 <body>
@@ -52,18 +35,24 @@
         </div>
     </div>
 
-    <div class="flex">
-        <div class="sidebar w-72 min-h-[calc(100vh-81px)] border-r border-zinc-800 p-5">
-            <div class="space-y-1 text-sm">
+    <div class="page-layout flex">
+        <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <aside id="sidebar" class="sidebar">
+            <button type="button" id="sidebar-collapse" class="sidebar-toggle sidebar-collapse-btn" aria-label="Close navigation" title="Close navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <nav class="sidebar-nav space-y-1 text-sm">
                 <a href="index.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Home</a>
                 <a href="courses.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Courses</a>
                 <a href="zoo.html" class="nav-item nav-active flex items-center gap-x-3 px-4 py-3 rounded-2xl">Function Zoo</a>
                 <a href="visualizers.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Visualizers</a>
                 <a href="profile.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">My Profile</a>
-            </div>
-        </div>
+            </nav>
+        </aside>
 
-        <div class="flex-1 p-8">
+        <main class="main-content flex-1 p-8">
             <div class="w-full max-w-4xl mx-auto space-y-8">
 
                 <!-- Header -->
@@ -195,16 +184,14 @@
                 </section>
 
             </div>
-        </div>
+        </main>
     </div>
 
+    <script src="js/site.js"></script>
     <script>
         const GRAPH_COLOR = '#b91c1c';
 
-        function renderAllKatex() {
-            document.querySelectorAll('[data-katex]').forEach(el => {
-                katex.render(el.getAttribute('data-katex'), el, { throwOnError: false });
-            });
+        function renderHeaderKatex() {
             katex.render('f(x) = x^3', document.getElementById('header-expr'), { throwOnError: false, displayMode: true });
         }
 
@@ -229,7 +216,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderAllKatex();
+            renderHeaderKatex();
             initGraph('graph-f', 'y = x^3');
             initGraph('graph-fp', 'y = 3x^2');
             initGraph('graph-fpp', 'y = 6x');
