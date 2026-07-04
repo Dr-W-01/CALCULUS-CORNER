@@ -148,14 +148,18 @@
             card.className = 'zoo-card rounded-2xl p-5 block';
 
             card.innerHTML = `
-                <h2 class="text-lg font-bold tracking-wide text-[#b91c1c] mb-2 text-center card-title"></h2>
-                <div class="katex-expr text-xl text-white mb-4"></div>
-                <div class="graph-wrap overflow-hidden rounded-xl border border-[#523030] bg-[#523030] mb-3">
-                    <div id="calculator-${fn.id}" class="desmos-graph"></div>
+                <div class="zoo-card-header">
+                    <h2 class="section-heading text-lg card-title"></h2>
                 </div>
-                <p class="field-label text-center mb-1">Domain</p>
-                <div class="katex-domain text-lg text-zinc-200 mb-4"></div>
-                <p class="text-zinc-200 text-xl leading-relaxed text-center card-description"></p>
+                <div class="zoo-card-body">
+                    <div class="katex-expr text-xl text-white mb-4"></div>
+                    <div class="graph-wrap overflow-hidden rounded-xl border border-[#523030] bg-[#523030] mb-3">
+                        <div id="calculator-${fn.id}" class="desmos-graph"></div>
+                    </div>
+                    <p class="field-label text-center mb-1">Domain</p>
+                    <div class="katex-domain text-lg text-zinc-200 mb-4"></div>
+                    <p class="text-zinc-200 text-xl leading-relaxed text-center card-description"></p>
+                </div>
             `;
 
             card.querySelector('.card-title').textContent = fn.name.toUpperCase();

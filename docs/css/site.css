@@ -1,12 +1,15 @@
 /* Calculus Corner — shared site styles */
 :root {
-    --cc-content-bg: #3a2222;
+    /* Lighter red body */
+    --cc-content-bg: #3e2424;
     --cc-content-border: #523030;
-    --cc-section-header-bg: #2d1a1a;
-    --cc-section-header-border: #6b3a3a;
+    /* Darker red header */
+    --cc-section-header-bg: #1a0f0f;
+    --cc-section-header-border: #5c3030;
     --cc-section-heading: #c45050;
     --cc-content-hover-bg: #4d3030;
     --cc-content-hover-border: #8b4040;
+    --cc-card-header-bg: #1a0f0f;
 }
 
 body {
@@ -89,22 +92,30 @@ body.sidebar-collapsed .sidebar-expand-btn {
     display: flex;
 }
 
-/* Content cards — lightened dark reds */
+/* Content cards — darker header + lighter body */
 .content-card,
-.dashboard-card,
-.zoo-card,
 .content-box {
+    background-color: var(--cc-content-bg);
+    border: 1px solid var(--cc-content-border);
+    padding: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.dashboard-card,
+.zoo-card {
     background-color: var(--cc-content-bg);
     border: 1px solid var(--cc-content-border);
     transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.content-card {
-    padding: 1.5rem;
-    border-radius: 1rem;
+.content-card .section-body,
+.content-box .section-body {
+    background-color: var(--cc-content-bg);
+    padding: 1.25rem 1.5rem 1.5rem;
 }
 
-.content-card:hover,
 .dashboard-card:hover,
 .zoo-card:hover {
     background-color: var(--cc-content-hover-bg);
@@ -116,12 +127,21 @@ body.sidebar-collapsed .sidebar-expand-btn {
     transform: translateY(-2px);
 }
 
-/* Section headers */
-.section-header {
+/* Section headers — darker red band */
+.section-header,
+.zoo-card-header {
     background-color: var(--cc-section-header-bg);
-    margin: -1.5rem -1.5rem 0;
     padding: 0.875rem 1.5rem;
     border-bottom: 2px solid var(--cc-section-header-border);
+}
+
+.content-card .section-header {
+    margin: 0;
+    border-radius: 0;
+}
+
+.zoo-card-header {
+    margin: -1.25rem -1.25rem 1rem;
     border-radius: 1rem 1rem 0 0;
 }
 
@@ -133,7 +153,11 @@ body.sidebar-collapsed .sidebar-expand-btn {
 }
 
 .section-body {
-    padding-top: 1.25rem;
+    padding-top: 0;
+}
+
+.zoo-card-body {
+    padding-top: 0;
 }
 
 /* Labels & facts */
@@ -260,8 +284,13 @@ body.sidebar-collapsed .sidebar-expand-btn {
     background: var(--cc-content-bg);
 }
 
+/* Filled = x-intercept (value is zero); open = undefined */
 .sign-line-point.filled {
     background: #e5e5e5;
+}
+
+.sign-line-point.open {
+    background: var(--cc-content-bg);
 }
 
 .sign-line-sign {
