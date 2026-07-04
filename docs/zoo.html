@@ -133,7 +133,7 @@
             const grid = document.getElementById('zoo-grid');
 
             try {
-                const response = await fetch('../data/functions.json');
+                const response = await fetch('data/functions.json');
                 if (!response.ok) throw new Error('Failed to load functions');
                 const functions = await response.json();
 
