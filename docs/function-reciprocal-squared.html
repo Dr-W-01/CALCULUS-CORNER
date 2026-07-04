@@ -78,7 +78,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The even version of the reciprocal has both one-sided limits at 0 approaching +∞ — infinite discontinuity with the same behavior on both sides.</p>
+                        <p class="behavior-intro mb-6">The even version of the reciprocal has both one-sided limits at 0 approaching +∞ — infinite discontinuity with the same behavior on both sides.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
                             <div><span class="meta-label">Discontinuities</span><br>Infinite discontinuity at x = 0</div>
                             <div><span class="meta-label">Non-differentiability</span><br>None on domain</div>
@@ -104,7 +104,7 @@
                                 <span data-katex="\lim_{x \to \infty} \frac{1}{x^2} = 0"></span>
                                 <span data-katex="\lim_{x \to -\infty} \frac{1}{x^2} = 0"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">Since the limit as x approaches ±∞ is 0, the function has a horizontal asymptote y = 0.</p>
+                            <p class="limit-blurb mt-3 text-center">Since the limit as x approaches ±∞ is 0, the function has a horizontal asymptote y = 0.</p>
                         </div>                        <div>
                             <p class="limit-subheading">Limit at a Point</p>
                             <div class="space-y-2 text-center text-lg text-zinc-200">
@@ -112,11 +112,11 @@
                                 <div data-katex="\lim_{x \to 0^-} \frac{1}{x^2} = +\infty"></div>
                                 <div data-katex="f(0) \text{ is undefined (DNE)}"></div>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">Both one-sided limits are +∞ and f(0) is undefined. This is an infinite discontinuity at x = 0 (even multiplicity in the denominator).</p>
+                            <p class="limit-blurb mt-3 text-center">Both one-sided limits are +∞ and f(0) is undefined. This is an infinite discontinuity at x = 0 (even multiplicity in the denominator).</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
                             <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \frac{1}{x^2} = \frac{1}{a^2} \text{ for } a \neq 0"></div>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous on its domain, but has an infinite discontinuity at x = 0.</p>
+                        </div>                        <p class="continuity-statement text-center mt-4">This function is continuous on its domain, but has an infinite discontinuity at x = 0.</p>
                     </div>
                 </section>
 
@@ -137,7 +137,7 @@
                                         <span class="sign-line-point open" style="left: 50%;"></span>
                                     </div>
                                 </div>
-<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(-\infty, 0) \cup (0, \infty)"></span>. f(x) is not defined at x = <span data-katex="0"></span>.</p>
+<div class="chart-analysis"><p>f(x) is above the x-axis on the interval <span data-katex="(-\infty, 0) \cup (0, \infty)"></span></p><p>f(x) is not defined at x = <span data-katex="0"></span></p></div>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = -\frac{2}{x^3}"></div>
@@ -178,7 +178,10 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">No critical points exist on the domain. f' is positive on (-∞, 0) and negative on (0, ∞), matching the even symmetry. Both sides of x = 0 blow up to +∞ because of the x² factor in the denominator.</p>
+                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <p class="derivatives-summary-text">No critical points exist on the domain. f' is positive on (-∞, 0) and negative on (0, ∞), matching the even symmetry. Both sides of x = 0 blow up to +∞ because of the x² factor in the denominator.</p>
+                        </div>
                     </div>
                 </section>
 

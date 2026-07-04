@@ -78,7 +78,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The square root function is an important example of an absolute minimum that is not a local minimum. At x = 0 we have an endpoint discontinuity: the left-hand limit does not exist.</p>
+                        <p class="behavior-intro mb-6">The square root function is an important example of an absolute minimum that is not a local minimum. At x = 0 we have an endpoint discontinuity: the left-hand limit does not exist.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
                             <div><span class="meta-label">Discontinuities</span><br>Endpoint discontinuity at x = 0</div>
                             <div><span class="meta-label">Non-differentiability</span><br>Not differentiable at x = 0 (vertical tangent behavior at endpoint)</div>
@@ -103,7 +103,7 @@
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
                                 <span data-katex="\lim_{x \to \infty} \sqrt{x} = \infty"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The function grows without bound, so there is no horizontal asymptote.</p>
+                            <p class="limit-blurb mt-3 text-center">The function grows without bound, so there is no horizontal asymptote.</p>
                         </div>                        <div>
                             <p class="limit-subheading">Limit at a Point</p>
                             <div class="space-y-2 text-center text-lg text-zinc-200">
@@ -111,11 +111,11 @@
                                 <div data-katex="\lim_{x \to 0^-} \sqrt{x} \text{ does not exist}"></div>
                                 <div data-katex="f(0) = 0"></div>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The right-hand limit exists and equals f(0), but the left-hand limit does not exist because the domain excludes negative x. This is an endpoint discontinuity at x = 0.</p>
+                            <p class="limit-blurb mt-3 text-center">The right-hand limit exists and equals f(0), but the left-hand limit does not exist because the domain excludes negative x. This is an endpoint discontinuity at x = 0.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
                             <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \sqrt{x} = \sqrt{a} \text{ for } a > 0"></div>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous on its domain [0, ∞), with an endpoint discontinuity at x = 0.</p>
+                        </div>                        <p class="continuity-statement text-center mt-4">This function is continuous on its domain [0, ∞), with an endpoint discontinuity at x = 0.</p>
                     </div>
                 </section>
 
@@ -131,9 +131,10 @@
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
                                         <span class="sign-line-sign above" style="left: 50%;">+</span>
+
                                     </div>
                                 </div>
-<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(0, \infty)"></span>. f(x) has intercepts <span data-katex="(0, 0)"></span>.</p>
+<div class="chart-analysis"><p>f(x) is above the x-axis on the interval <span data-katex="(0, \infty)"></span></p><p>f(x) has intercepts <span data-katex="(0, 0)"></span></p></div>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = \frac{1}{2\sqrt{x}}"></div>
@@ -143,6 +144,7 @@
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
                                         <span class="sign-line-sign above" style="left: 50%;">+</span>
+
                                     </div>
                                 </div>
 <div class="chart-analysis">
@@ -159,6 +161,7 @@
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
                                         <span class="sign-line-sign below" style="left: 50%;">−</span>
+
                                     </div>
                                 </div>
 <div class="chart-analysis">
@@ -168,7 +171,10 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">The derivative is undefined at x = 0 because the domain has an endpoint there. On (0, ∞), f' > 0 so the function increases, while f'' < 0 shows it is concave down.</p>
+                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <p class="derivatives-summary-text">The derivative is undefined at x = 0 because the domain has an endpoint there. On (0, ∞), f' > 0 so the function increases, while f'' < 0 shows it is concave down.</p>
+                        </div>
                     </div>
                 </section>
 

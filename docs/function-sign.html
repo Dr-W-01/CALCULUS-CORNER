@@ -78,7 +78,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">An extremely important function with a jump discontinuity at x = 0 and two distinct horizontal asymptotes.</p>
+                        <p class="behavior-intro mb-6">An extremely important function with a jump discontinuity at x = 0 and two distinct horizontal asymptotes.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
                             <div><span class="meta-label">Discontinuities</span><br>Jump discontinuity at x = 0</div>
                             <div><span class="meta-label">Non-differentiability</span><br>None on domain</div>
@@ -104,7 +104,7 @@
                                 <span data-katex="\lim_{x \to \infty} \frac{|x|}{x} = 1"></span>
                                 <span data-katex="\lim_{x \to -\infty} \frac{|x|}{x} = -1"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The function approaches y = 1 as x → ∞ and y = −1 as x → −∞, so it has two horizontal asymptotes.</p>
+                            <p class="limit-blurb mt-3 text-center">The function approaches y = 1 as x → ∞ and y = −1 as x → −∞, so it has two horizontal asymptotes.</p>
                         </div>                        <div>
                             <p class="limit-subheading">Limit at a Point</p>
                             <div class="space-y-2 text-center text-lg text-zinc-200">
@@ -112,11 +112,11 @@
                                 <div data-katex="\lim_{x \to 0^-} \frac{|x|}{x} = -1"></div>
                                 <div data-katex="f(0) \text{ is undefined (DNE)}"></div>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The left- and right-hand limits exist but are unequal, and f(0) is undefined. This is a jump discontinuity at x = 0.</p>
+                            <p class="limit-blurb mt-3 text-center">The left- and right-hand limits exist but are unequal, and f(0) is undefined. This is a jump discontinuity at x = 0.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
                             <div class="text-center text-lg text-zinc-200" data-katex="f(x) = 1 \text{ for } x > 0; \; f(x) = -1 \text{ for } x < 0"></div>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous on its domain, but has a jump discontinuity at x = 0.</p>
+                        </div>                        <p class="continuity-statement text-center mt-4">This function is continuous on its domain, but has a jump discontinuity at x = 0.</p>
                     </div>
                 </section>
 
@@ -137,7 +137,7 @@
                                         <span class="sign-line-point open" style="left: 50%;"></span>
                                     </div>
                                 </div>
-<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(0, \infty)"></span>. f(x) is below the x-axis on the interval <span data-katex="(-\infty, 0)"></span>. f(x) is not defined at x = <span data-katex="0"></span>.</p>
+<div class="chart-analysis"><p>f(x) is above the x-axis on the interval <span data-katex="(0, \infty)"></span></p><p>f(x) is below the x-axis on the interval <span data-katex="(-\infty, 0)"></span></p><p>f(x) is not defined at x = <span data-katex="0"></span></p></div>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = 0"></div>
@@ -178,7 +178,10 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">On each interval of the domain, f'(x) = 0, so every point except x = 0 is a critical point on a flat branch. The jump at x = 0 is a discontinuity, not a point of differentiability on the domain.</p>
+                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <p class="derivatives-summary-text">On each interval of the domain, f'(x) = 0, so every point except x = 0 is a critical point on a flat branch. The jump at x = 0 is a discontinuity, not a point of differentiability on the domain.</p>
+                        </div>
                     </div>
                 </section>
 

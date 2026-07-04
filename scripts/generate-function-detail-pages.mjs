@@ -42,25 +42,28 @@ const SIDEBAR = `    <div class="page-layout flex">
 
 function signChartHtml(chart) {
   if (!chart || chart.na) {
-    return `                                <p class="chart-analysis text-zinc-500 text-sm">Sign chart not applicable.</p>`;
+    return `                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>`;
   }
+  const renderPoints = (points) => (points || []).map(p => {
+    const cls = p.kind === 'filled' ? 'sign-line-point filled' : 'sign-line-point open';
+    const num = p.label ? `                                        <span class="sign-line-number" style="left: ${p.pos};">${p.label}</span>\n` : '';
+    return `${num}                                        <span class="${cls}" style="left: ${p.pos};"></span>`;
+  }).join('\n');
   if (chart.uniform) {
     const vert = chart.uniform === '−' || chart.uniform === '-' ? 'below' : 'above';
     const val = chart.uniform === '-' ? '−' : chart.uniform;
+    const pts = renderPoints(chart.points);
     return `                                <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
                                         <span class="sign-line-sign ${vert}" style="left: 50%;">${val}</span>
+${pts}
                                     </div>
                                 </div>`;
   }
   const signs = chart.segments.map(s =>
     `                                        <span class="sign-line-sign ${s.vert || 'above'}" style="left: ${s.pos};">${s.val}</span>`
   ).join('\n');
-  const pts = (chart.points || []).map(p => {
-    const cls = p.kind === 'filled' ? 'sign-line-point filled' : 'sign-line-point open';
-    const num = p.label ? `                                        <span class="sign-line-number" style="left: ${p.pos};">${p.label}</span>\n` : '';
-    return `${num}                                        <span class="${cls}" style="left: ${p.pos};"></span>`;
-  }).join('\n');
+  const pts = renderPoints(chart.points);
   return `                                <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
 ${signs}
@@ -95,7 +98,7 @@ function limitsHtml(fn) {
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
 ${fn.endBehaviours.map(e => `                                <span data-katex="${e}"></span>`).join('\n')}
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">${fn.endBehaviourBlurb}</p>
+                            <p class="limit-blurb mt-3 text-center">${fn.endBehaviourBlurb}</p>
                         </div>`;
 
   if (fn.limitAtPoint) {
@@ -104,7 +107,7 @@ ${fn.endBehaviours.map(e => `                                <span data-katex="$
                             <div class="space-y-2 text-center text-lg text-zinc-200">
 ${fn.limitAtPoint.map(l => `                                <div data-katex="${l}"></div>`).join('\n')}
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">${fn.limitAtPointBlurb}</p>
+                            <p class="limit-blurb mt-3 text-center">${fn.limitAtPointBlurb}</p>
                         </div>`;
   }
 
@@ -115,7 +118,7 @@ ${fn.limitAtPoint.map(l => `                                <div data-katex="${l
                         </div>`;
   }
 
-  html += `                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">${fn.continuityStatement}</p>`;
+  html += `                        <p class="continuity-statement text-center mt-4">${fn.continuityStatement || 'Continuity information is not applicable for this expression.'}</p>`;
   return html;
 }
 
@@ -125,21 +128,21 @@ function valHtml(value, katex = false) {
 
 function fSignAnalysisHtml(sign) {
   if (!sign) return '<p class="chart-analysis">Sign analysis not applicable.</p>';
-  const parts = [];
+  const lines = [];
   (sign.above || []).forEach(iv => {
-    parts.push(`f(x) is above the x-axis on the interval ${valHtml(iv, true)}`);
+    lines.push(`f(x) is above the x-axis on the interval ${valHtml(iv, true)}`);
   });
   (sign.below || []).forEach(iv => {
-    parts.push(`f(x) is below the x-axis on the interval ${valHtml(iv, true)}`);
+    lines.push(`f(x) is below the x-axis on the interval ${valHtml(iv, true)}`);
   });
   (sign.intercepts || []).forEach(pt => {
-    parts.push(`f(x) has intercepts ${valHtml(pt, true)}`);
+    lines.push(`f(x) has intercepts ${valHtml(pt, true)}`);
   });
   (sign.undefinedAt || []).forEach(x => {
-    parts.push(`f(x) is not defined at x = ${valHtml(x, true)}`);
+    lines.push(`f(x) is not defined at x = ${valHtml(x, true)}`);
   });
-  if (!parts.length) return '<p class="chart-analysis">No sign information available.</p>';
-  return `<p class="chart-analysis">${parts.join('. ')}.</p>`;
+  if (!lines.length) return '<p class="chart-analysis">No sign information available.</p>';
+  return `<div class="chart-analysis">${lines.map(line => `<p>${line}</p>`).join('')}</div>`;
 }
 
 function fpAnalysisHtml(info) {
@@ -169,7 +172,10 @@ function renderPage(fn) {
   }).join('\n');
 
   const blurb = fn.derivativesBlurb
-    ? `                        <p class="derivatives-blurb">${fn.derivativesBlurb}</p>`
+    ? `                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <p class="derivatives-summary-text">${fn.derivativesBlurb}</p>
+                        </div>`
     : '';
 
   return `<!DOCTYPE html>
@@ -214,7 +220,7 @@ ${factsHtml}
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">${fn.intro}</p>
+                        <p class="behavior-intro mb-6">${fn.intro}</p>
                         <div class="behavior-grid text-sm text-zinc-300">
 ${behaviorHtml}
                         </div>

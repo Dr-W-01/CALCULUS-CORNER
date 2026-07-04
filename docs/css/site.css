@@ -328,7 +328,6 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     max-width: 36rem;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
 }
 
 .fact-pair {
@@ -473,26 +472,49 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     font-weight: 600;
 }
 
-.chart-analysis {
-    font-size: 0.875rem;
-    color: #d4d4d8;
-    line-height: 1.6;
-    text-align: left;
-}
-
-.derivatives-blurb {
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--cc-content-border);
-    font-size: 0.95rem;
-    color: #d4d4d8;
-    line-height: 1.7;
+/* Readable body text — matches Description & Behaviour intro size */
+.behavior-intro,
+.chart-analysis,
+.chart-analysis p,
+.limit-blurb,
+.continuity-statement,
+.derivatives-summary-text {
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: #e4e4e7;
     text-align: left;
 }
 
 .behavior-intro {
-    text-align: left;
     text-indent: 1.5rem;
+}
+
+.limit-blurb,
+.continuity-statement {
+    text-align: center;
+}
+
+.chart-analysis p + p {
+    margin-top: 0.35rem;
+}
+
+.derivatives-summary {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--cc-content-border);
+}
+
+.derivatives-summary-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #d4a853;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.derivatives-summary-text {
+    margin: 0;
 }
 
 .behavior-grid {

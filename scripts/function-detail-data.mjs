@@ -1,22 +1,29 @@
 /** @typedef {{ uniform?: string, na?: boolean, segments?: object[], points?: object[] }} Chart */
 
-const U = (v) => ({ uniform: v });
+const U = (v, points = []) => ({ uniform: v, points });
 const NA = () => ({ na: true });
-const S3 = (l, r, label = '0', kind = 'filled') => ({
+/** f(x) sign chart: filled circle only at x-intercepts */
+const F3 = (l, r, { intercept = false, hole = false } = {}) => ({
   segments: [
     { pos: '25%', val: l, vert: l === '−' ? 'below' : 'above' },
     { pos: '75%', val: r },
   ],
-  points: [{ pos: '50%', label, kind }],
+  points: intercept ? [{ pos: '50%', label: '0', kind: 'filled' }]
+    : hole ? [{ pos: '50%', label: '0', kind: 'open' }]
+    : [],
 });
-const HOLE = (l, r) => S3(l, r, '0', 'open');
-const DNE3 = (l, r) => ({
+/** f'(x) or f''(x): filled at zeros, open where undefined */
+const D3 = (l, r, { zero = false, dne = false } = {}) => ({
   segments: [
     { pos: '25%', val: l, vert: l === '−' ? 'below' : 'above' },
     { pos: '75%', val: r },
   ],
-  points: [{ pos: '50%', label: '0', kind: 'open' }],
+  points: dne ? [{ pos: '50%', label: '0', kind: 'open' }]
+    : zero ? [{ pos: '50%', label: '0', kind: 'filled' }]
+    : [],
 });
+const HOLE = (l, r) => F3(l, r, { hole: true });
+const DNE3 = (l, r) => D3(l, r, { dne: true });
 
 const holeGraph = (expr, point) => ({
   latex: expr,
@@ -66,7 +73,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} x = a',
     continuityStatement: 'This function is therefore continuous at all real numbers.',
     derivTitles: ['f(x) = x', "f'(x) = 1", "f''(x) = 0"],
-    fChart: S3('−', '+'), fpChart: U('+'), fppChart: U('0'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: U('+'), fppChart: U('0'),
     fSign: { above: ['(0, \\infty)'], below: ['(-\\infty, 0)'], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'None', increasing: '(-\\infty, \\infty)', increasingKatex: true, decreasing: 'None' },
     fppInfo: { concaveUp: 'None', concaveDown: 'None', inflection: 'None' },
@@ -85,7 +92,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} x^2 = a^2',
     continuityStatement: 'This function is therefore continuous at all real numbers.',
     derivTitles: ['f(x) = x^2', "f'(x) = 2x", "f''(x) = 2"],
-    fChart: S3('−', '+'), fpChart: S3('−', '+'), fppChart: U('+'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: D3('−', '+', { zero: true }), fppChart: U('+'),
     fSign: { above: ['(-\\infty, 0) \\cup (0, \\infty)'], below: [], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = 0', criticalKatex: true, increasing: '(0, \\infty)', increasingKatex: true, decreasing: '(-\\infty, 0)', decreasingKatex: true },
     fppInfo: { concaveUp: '(-\\infty, \\infty)', concaveUpKatex: true, concaveDown: 'None', inflection: 'None' },
@@ -104,7 +111,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} x^3 = a^3',
     continuityStatement: 'This function is therefore continuous at all real numbers.',
     derivTitles: ['f(x) = x^3', "f'(x) = 3x^2", "f''(x) = 6x"],
-    fChart: S3('−', '+'), fpChart: U('+'), fppChart: S3('−', '+'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: U('+', [{ pos: '50%', label: '0', kind: 'filled' }]), fppChart: D3('−', '+', { zero: true }),
     fSign: { above: ['(0, \\infty)'], below: ['(-\\infty, 0)'], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = 0 (neither max nor min — increasing through the point)', criticalKatex: false, increasing: '(-\\infty, \\infty)', increasingKatex: true, decreasing: 'None' },
     fppInfo: { concaveUp: '(0, \\infty)', concaveUpKatex: true, concaveDown: '(-\\infty, 0)', concaveDownKatex: true, inflection: '(0, 0)', inflectionKatex: true },
@@ -145,7 +152,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\sqrt[3]{x} = \\sqrt[3]{a}',
     continuityStatement: 'This function is continuous at all real numbers.',
     derivTitles: ['f(x) = \\sqrt[3]{x}', "f'(x) = \\frac{1}{3x^{2/3}}", "f''(x) = -\\frac{2}{9x^{5/3}}"],
-    fChart: S3('−', '+'), fpChart: DNE3('+', '+'), fppChart: DNE3('+', '−'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: DNE3('+', '+'), fppChart: DNE3('+', '−'),
     fSign: { above: ['(0, \\infty)'], below: ['(-\\infty, 0)'], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = 0 (vertical tangent)', criticalKatex: true, increasing: '(-\\infty, 0) \\cup (0, \\infty)', increasingKatex: true, decreasing: 'None' },
     fppInfo: { concaveUp: '(-\\infty, 0)', concaveUpKatex: true, concaveDown: '(0, \\infty)', concaveDownKatex: true, inflection: '(0, 0)', inflectionKatex: true },
@@ -164,7 +171,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\sqrt[3]{x^2} = \\sqrt[3]{a^2}',
     continuityStatement: 'This function is continuous at all real numbers.',
     derivTitles: ['f(x) = \\sqrt[3]{x^2}', "f'(x) = \\frac{2}{3x^{1/3}}", "f''(x) = -\\frac{2}{9x^{4/3}}"],
-    fChart: S3('−', '+'), fpChart: S3('−', '+'), fppChart: S3('+', '−'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: DNE3('−', '+'), fppChart: DNE3('+', '−'),
     fSign: { above: ['(-\\infty, 0) \\cup (0, \\infty)'], below: [], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = 0 (cusp, local min)', criticalKatex: true, increasing: '(0, \\infty)', increasingKatex: true, decreasing: '(-\\infty, 0)', decreasingKatex: true },
     fppInfo: { concaveUp: '(-\\infty, 0)', concaveUpKatex: true, concaveDown: '(0, \\infty)', concaveDownKatex: true, inflection: '(0, 0)', inflectionKatex: true },
@@ -185,7 +192,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\frac{x}{x} = 1 \\text{ for } a \\neq 0',
     continuityStatement: 'This function is continuous on its domain, but has a removable discontinuity at x = 0.',
     derivTitles: ['f(x) = \\frac{x}{x}', "f'(x) = 0", "f''(x) = 0"],
-    fChart: U('+'), fpChart: DNE3('0', '0'), fppChart: DNE3('0', '0'),
+    fChart: U('+', [{ pos: '50%', label: '0', kind: 'open' }]), fpChart: DNE3('0', '0'), fppChart: DNE3('0', '0'),
     fSign: { above: ['(-\\infty, 0) \\cup (0, \\infty)'], below: [], intercepts: [], undefinedAt: ['0'] },
     fpInfo: { criticalPoints: 'All real numbers except 0', increasing: 'None', decreasing: 'None' },
     fppInfo: { concaveUp: 'None', concaveDown: 'None', inflection: 'None' },
@@ -206,7 +213,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\frac{x^2}{x} = a \\text{ for } a \\neq 0',
     continuityStatement: 'This function is continuous on its domain, but has a removable discontinuity at x = 0.',
     derivTitles: ['f(x) = \\frac{x^2}{x}', "f'(x) = 1", "f''(x) = 0"],
-    fChart: S3('−', '+'), fpChart: DNE3('+', '+'), fppChart: DNE3('0', '0'),
+    fChart: HOLE('−', '+'), fpChart: DNE3('+', '+'), fppChart: DNE3('0', '0'),
     fSign: { above: ['(0, \\infty)'], below: ['(-\\infty, 0)'], intercepts: [], undefinedAt: ['0'] },
     fpInfo: { criticalPoints: 'None', increasing: '(-\\infty, 0) \\cup (0, \\infty)', increasingKatex: true, decreasing: 'None' },
     fppInfo: { concaveUp: '(-\\infty, 0) \\cup (0, \\infty)', concaveUpKatex: true, concaveDown: 'None', inflection: 'None' },
@@ -227,7 +234,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\frac{x^3}{x} = a^2 \\text{ for } a \\neq 0',
     continuityStatement: 'This function is continuous on its domain, but has a removable discontinuity at x = 0.',
     derivTitles: ['f(x) = \\frac{x^3}{x}', "f'(x) = 2x", "f''(x) = 2"],
-    fChart: S3('−', '+'), fpChart: S3('−', '+'), fppChart: DNE3('+', '+'),
+    fChart: HOLE('−', '+'), fpChart: DNE3('−', '+'), fppChart: DNE3('+', '+'),
     fSign: { above: ['(-\\infty, 0) \\cup (0, \\infty)'], below: [], intercepts: [], undefinedAt: ['0'] },
     fpInfo: { criticalPoints: 'None', increasing: '(0, \\infty)', increasingKatex: true, decreasing: '(-\\infty, 0)', decreasingKatex: true },
     fppInfo: { concaveUp: '(-\\infty, 0) \\cup (0, \\infty)', concaveUpKatex: true, concaveDown: 'None', inflection: 'None' },
@@ -288,7 +295,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} |x| = |a|',
     continuityStatement: 'This function is continuous at all real numbers.',
     derivTitles: ['f(x) = |x|', "f'(x) = \\begin{cases} -1 & x < 0 \\\\ 1 & x > 0 \\end{cases}", "f''(x) = 0"],
-    fChart: S3('−', '+'), fpChart: DNE3('−', '+'), fppChart: DNE3('0', '0'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: DNE3('−', '+'), fppChart: DNE3('0', '0'),
     fSign: { above: ['(-\\infty, 0) \\cup (0, \\infty)'], below: [], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = 0 (corner, local min)', criticalKatex: true, increasing: '(0, \\infty)', increasingKatex: true, decreasing: '(-\\infty, 0)', decreasingKatex: true },
     fppInfo: { concaveUp: 'None', concaveDown: 'None', inflection: 'None' },
@@ -328,7 +335,7 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\sqrt{x^2} = |a|',
     continuityStatement: 'This function is continuous at all real numbers.',
     derivTitles: ['f(x) = \\sqrt{x^2}', "f'(x) = \\frac{|x|}{x}", "f''(x) = 0"],
-    fChart: S3('−', '+'), fpChart: S3('−', '+'), fppChart: DNE3('0', '0'),
+    fChart: F3('−', '+', { intercept: true }), fpChart: DNE3('−', '+'), fppChart: DNE3('0', '0'),
     fSign: { above: ['(-\\infty, 0) \\cup (0, \\infty)'], below: [], intercepts: ['(0, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = 0', criticalKatex: true, increasing: '(0, \\infty)', increasingKatex: true, decreasing: '(-\\infty, 0)', decreasingKatex: true },
     fppInfo: { concaveUp: 'None', concaveDown: 'None', inflection: 'None' },
@@ -372,7 +379,8 @@ export const FUNCTIONS = [
     generalLimit: '\\lim_{x \\to a} \\sqrt{1 - x^2} = \\sqrt{1 - a^2} \\text{ for } a \\in (-1, 1)',
     continuityStatement: 'This function is continuous on [-1, 1] with endpoint discontinuities at x = ±1.',
     derivTitles: ['f(x) = \\sqrt{1 - x^2}', "f'(x) = -\\frac{x}{\\sqrt{1 - x^2}}", "f''(x) = -\\frac{1}{(1 - x^2)^{3/2}}"],
-    fChart: U('+'), fpChart: { segments: [{ pos: '20%', val: '−', vert: 'below' }, { pos: '50%', val: '+', vert: 'above' }, { pos: '80%', val: '−', vert: 'below' }], points: [{ pos: '20%', label: '−1', kind: 'filled' }, { pos: '50%', label: '0', kind: 'filled' }, { pos: '80%', label: '1', kind: 'filled' }] },
+    fChart: { segments: [{ pos: '50%', val: '+', vert: 'above' }], points: [{ pos: '20%', label: '−1', kind: 'filled' }, { pos: '80%', label: '1', kind: 'filled' }] },
+    fpChart: { segments: [{ pos: '20%', val: '−', vert: 'below' }, { pos: '50%', val: '+', vert: 'above' }, { pos: '80%', val: '−', vert: 'below' }], points: [{ pos: '20%', label: '−1', kind: 'open' }, { pos: '50%', label: '0', kind: 'filled' }, { pos: '80%', label: '1', kind: 'open' }] },
     fppChart: U('−'),
     fSign: { above: ['(-1, 1)'], below: [], intercepts: ['(-1, 0)', '(1, 0)'], undefinedAt: [] },
     fpInfo: { criticalPoints: 'x = -1, 0, 1', criticalKatex: true, increasing: '(0, 1)', increasingKatex: true, decreasing: '(-1, 0)', decreasingKatex: true },

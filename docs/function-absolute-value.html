@@ -78,7 +78,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The absolute value function has a corner (cusp) at x = 0 where the one-sided derivatives exist but are not equal.</p>
+                        <p class="behavior-intro mb-6">The absolute value function has a corner (cusp) at x = 0 where the one-sided derivatives exist but are not equal.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
                             <div><span class="meta-label">Discontinuities</span><br>None</div>
                             <div><span class="meta-label">Non-differentiability</span><br>Corner (cusp) at x = 0</div>
@@ -104,11 +104,11 @@
                                 <span data-katex="\lim_{x \to \infty} |x| = \infty"></span>
                                 <span data-katex="\lim_{x \to -\infty} |x| = \infty"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">Both end behaviours go to +∞; no horizontal asymptote.</p>
+                            <p class="limit-blurb mt-3 text-center">Both end behaviours go to +∞; no horizontal asymptote.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
                             <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} |x| = |a|"></div>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous at all real numbers.</p>
+                        </div>                        <p class="continuity-statement text-center mt-4">This function is continuous at all real numbers.</p>
                     </div>
                 </section>
 
@@ -129,7 +129,7 @@
                                         <span class="sign-line-point filled" style="left: 50%;"></span>
                                     </div>
                                 </div>
-<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(-\infty, 0) \cup (0, \infty)"></span>. f(x) has intercepts <span data-katex="(0, 0)"></span>.</p>
+<div class="chart-analysis"><p>f(x) is above the x-axis on the interval <span data-katex="(-\infty, 0) \cup (0, \infty)"></span></p><p>f(x) has intercepts <span data-katex="(0, 0)"></span></p></div>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = \begin{cases} -1 & x < 0 \\ 1 & x > 0 \end{cases}"></div>
@@ -170,7 +170,10 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">At x = 0 the left derivative is −1 and the right derivative is +1, so f is not differentiable — a corner-type cusp. The critical point at the origin is a local and absolute minimum.</p>
+                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <p class="derivatives-summary-text">At x = 0 the left derivative is −1 and the right derivative is +1, so f is not differentiable — a corner-type cusp. The critical point at the origin is a local and absolute minimum.</p>
+                        </div>
                     </div>
                 </section>
 

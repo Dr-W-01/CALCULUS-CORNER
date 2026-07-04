@@ -78,7 +78,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">A pathological function defined at exactly one point: f(0) = 0 and nowhere else.</p>
+                        <p class="behavior-intro mb-6">A pathological function defined at exactly one point: f(0) = 0 and nowhere else.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
                             <div><span class="meta-label">Discontinuities</span><br>Endpoint discontinuity</div>
                             <div><span class="meta-label">Non-differentiability</span><br>Derivative undefined (single-point domain)</div>
@@ -103,15 +103,15 @@
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
                                 <span data-katex="\text{Not defined for } x \to \infty"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The domain is a single point, so end behaviour is not applicable.</p>
+                            <p class="limit-blurb mt-3 text-center">The domain is a single point, so end behaviour is not applicable.</p>
                         </div>                        <div>
                             <p class="limit-subheading">Limit at a Point</p>
                             <div class="space-y-2 text-center text-lg text-zinc-200">
                                 <div data-katex="\lim_{x \to 0} f(x) = 0"></div>
                                 <div data-katex="f(0) = 0"></div>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The function is defined only at x = 0. Limits from either side do not apply in the usual sense because the domain has no interval around 0.</p>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">The function is continuous at x = 0 on its domain {0}, with endpoint behavior relative to any larger interval.</p>
+                            <p class="limit-blurb mt-3 text-center">The function is defined only at x = 0. Limits from either side do not apply in the usual sense because the domain has no interval around 0.</p>
+                        </div>                        <p class="continuity-statement text-center mt-4">The function is continuous at x = 0 on its domain {0}, with endpoint behavior relative to any larger interval.</p>
                     </div>
                 </section>
 
@@ -124,15 +124,15 @@
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
-                                <p class="chart-analysis text-zinc-500 text-sm">Sign chart not applicable.</p>
-<p class="chart-analysis">f(x) has intercepts <span data-katex="(0, 0)"></span>.</p>
+                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>
+<div class="chart-analysis"><p>f(x) has intercepts <span data-katex="(0, 0)"></span></p></div>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) \text{ DNE}"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
-                                <p class="chart-analysis text-zinc-500 text-sm">Sign chart not applicable.</p>
+                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>
 <div class="chart-analysis">
                                     <p><strong>Critical points:</strong> <span data-katex="x = 0"></span></p>
                                     <p><strong>Intervals of increase:</strong> None</p>
@@ -144,7 +144,7 @@
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
-                                <p class="chart-analysis text-zinc-500 text-sm">Sign chart not applicable.</p>
+                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>
 <div class="chart-analysis">
                                     <p><strong>Concave up:</strong> None</p>
                                     <p><strong>Concave down:</strong> None</p>
@@ -152,7 +152,10 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">With domain {0}, the sole point is a critical point but there are no intervals of increase or decrease. Derivatives are undefined because there is no open interval containing 0 in the domain.</p>
+                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <p class="derivatives-summary-text">With domain {0}, the sole point is a critical point but there are no intervals of increase or decrease. Derivatives are undefined because there is no open interval containing 0 in the domain.</p>
+                        </div>
                     </div>
                 </section>
 
