@@ -1,0 +1,102 @@
+[
+  {
+    "id": "exp-x",
+    "name": "Exponential Function",
+    "latex": "f(x) = e^x",
+    "category": "Exponential",
+    "domain": "(-\\infty, \\infty)",
+    "description": "The natural exponential function. Always positive, strictly increasing, and concave up.",
+    "graph_expression": "y = e^x",
+    "bounds": { "left": -3, "right": 3, "bottom": -1, "top": 8 }
+  },
+  {
+    "id": "ln-x",
+    "name": "Natural Logarithm",
+    "latex": "f(x) = \\ln(x)",
+    "category": "Logarithmic",
+    "domain": "(0, \\infty)",
+    "description": "The inverse of e^x. Defined only for positive x with a vertical asymptote at x = 0.",
+    "graph_expression": "y = \\ln(x)",
+    "bounds": { "left": -0.5, "right": 5, "bottom": -3, "top": 3 }
+  },
+  {
+    "id": "cos-x",
+    "name": "Cosine Function",
+    "latex": "f(x) = \\cos(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Even periodic function with period 2π. The companion to sine in trigonometry and waves.",
+    "graph_expression": "y = \\cos(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "tan-x",
+    "name": "Tangent Function",
+    "latex": "f(x) = \\tan(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{\\frac{\\pi}{2} + k\\pi\\}",
+    "description": "Odd periodic function with period π and vertical asymptotes where cos(x) = 0.",
+    "graph_expression": "y = \\tan(x)",
+    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "cot-x",
+    "name": "Cotangent Function",
+    "latex": "f(x) = \\cot(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{k\\pi\\}",
+    "description": "Reciprocal of tangent with period π and vertical asymptotes where sin(x) = 0.",
+    "graph_expression": "y = \\cot(x)",
+    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "sec-x",
+    "name": "Secant Function",
+    "latex": "f(x) = \\sec(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{\\frac{\\pi}{2} + k\\pi\\}",
+    "description": "Reciprocal of cosine with period 2π and U-shaped branches between asymptotes.",
+    "graph_expression": "y = \\sec(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "csc-x",
+    "name": "Cosecant Function",
+    "latex": "f(x) = \\csc(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{k\\pi\\}",
+    "description": "Reciprocal of sine with period 2π and vertical asymptotes at multiples of π.",
+    "graph_expression": "y = \\csc(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "arcsin-x",
+    "name": "Arcsine Function",
+    "latex": "f(x) = \\arcsin(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "[-1, 1]",
+    "description": "Inverse of sine restricted to [-π/2, π/2]. Endpoint critical points at x = ±1.",
+    "graph_expression": "y = \\arcsin(x)",
+    "bounds": { "left": -1.5, "right": 1.5, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "arctan-x",
+    "name": "Arctangent Function",
+    "latex": "f(x) = \\arctan(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Inverse of tangent with horizontal asymptotes at y = ±π/2 and an inflection at the origin.",
+    "graph_expression": "y = \\arctan(x)",
+    "bounds": { "left": -5, "right": 5, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "arcsec-x",
+    "name": "Arcsecant Function",
+    "latex": "f(x) = \\arcsec(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "(-\\infty, -1] \\cup [1, \\infty)",
+    "description": "Inverse of secant with two branches and a vertical asymptote at x = 0 in the derivative.",
+    "graph_expression": "y = \\arcsec(x)",
+    "bounds": { "left": -5, "right": 5, "bottom": -1, "top": 4 }
+  }
+]

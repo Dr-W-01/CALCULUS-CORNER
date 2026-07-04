@@ -505,12 +505,13 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 }
 
 .derivatives-summary-heading {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #d4a853;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     margin-bottom: 0.5rem;
-    text-align: left;
+    text-align: center;
 }
 
 .derivatives-summary-text {

@@ -65,7 +65,7 @@
             });
         }
 
-        calculator.setMathBounds({ left: -5, right: 5, bottom: -5, top: 5 });
+        calculator.setMathBounds(fn.bounds || { left: -5, right: 5, bottom: -5, top: 5 });
         calculator.resize();
         return calculator;
     }
@@ -125,23 +125,27 @@
 
     async function loadZoo() {
         try {
-            const [basicRes, exoticRes] = await Promise.all([
+            const [basicRes, intermediateRes, exoticRes] = await Promise.all([
                 fetch('data/functions-v2.json'),
+                fetch('data/functions-intermediate.json'),
                 fetch('data/functions-exotic.json')
             ]);
 
-            if (!basicRes.ok || !exoticRes.ok) {
+            if (!basicRes.ok || !intermediateRes.ok || !exoticRes.ok) {
                 throw new Error('Failed to load function data');
             }
 
             const basicFunctions = (await basicRes.json()).slice(0, BASIC_ZOO_COUNT);
+            const intermediateFunctions = await intermediateRes.json();
             const exoticFunctions = await exoticRes.json();
 
             renderSection('basic-grid', basicFunctions);
+            renderSection('intermediate-grid', intermediateFunctions);
             renderSection('exotic-grid', exoticFunctions);
         } catch (err) {
             const msg = 'Could not load function data.';
             showError('basic-grid', msg);
+            showError('intermediate-grid', msg);
             showError('exotic-grid', msg);
             console.error('Zoo load error:', err);
         }

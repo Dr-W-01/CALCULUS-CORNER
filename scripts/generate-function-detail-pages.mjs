@@ -72,7 +72,10 @@ ${pts}
                                 </div>`;
 }
 
-function factCell(label, value, katex = false) {
+function factCell(label, value, katex = false, suffix = '') {
+  if (katex && suffix) {
+    return `                                <div><p class="fact-label">${label}</p><div class="fact-value"><span data-katex="${value}"></span>${suffix}</div></div>`;
+  }
   if (katex) return `                                <div><p class="fact-label">${label}</p><div class="fact-value" data-katex="${value}"></div></div>`;
   return `                                <div><p class="fact-label">${label}</p><div class="fact-value">${value}</div></div>`;
 }
@@ -85,8 +88,11 @@ function symmetryHtml(sym) {
   return `                                <div class="symmetry-fact" style="grid-column: 1 / -1;"><p class="fact-label">SYMMETRY</p><div class="symmetry-value"><span class="symmetry-type">${sym.type}</span>${extra}<div class="symmetry-formula" data-katex="${sym.formula}"></div></div></div>`;
 }
 
-function behaviorCell(label, value, katex = false, full = false) {
-  const inner = katex ? `<span data-katex="${value}"></span>` : value;
+function behaviorCell(label, value, katex = false, full = false, suffix = '') {
+  let inner;
+  if (katex && suffix) inner = `<span data-katex="${value}"></span>${suffix}`;
+  else if (katex) inner = `<span data-katex="${value}"></span>`;
+  else inner = value;
   const style = full ? ' style="grid-column: 1 / -1;"' : '';
   return `                            <div${style}><span class="meta-label">${label}</span><br>${inner}</div>`;
 }
@@ -122,7 +128,8 @@ ${fn.limitAtPoint.map(l => `                                <div data-katex="${l
   return html;
 }
 
-function valHtml(value, katex = false) {
+function valHtml(value, katex = false, suffix = '') {
+  if (katex && suffix) return `<span data-katex="${value}"></span>${suffix}`;
   return katex ? `<span data-katex="${value}"></span>` : value;
 }
 
@@ -164,8 +171,8 @@ function fppAnalysisHtml(info) {
 }
 
 function renderPage(fn) {
-  const factsHtml = fn.facts.map(([l, v, k]) => factCell(l, v, !!k)).join('\n') + '\n' + symmetryHtml(fn.symmetry);
-  const behaviorHtml = fn.behavior.map(([l, v, k, full]) => behaviorCell(l, v, !!k, !!full)).join('\n');
+  const factsHtml = fn.facts.map(([l, v, k, s]) => factCell(l, v, !!k, s || '')).join('\n') + '\n' + symmetryHtml(fn.symmetry);
+  const behaviorHtml = fn.behavior.map(([l, v, k, full, s]) => behaviorCell(l, v, !!k, !!full, s || '')).join('\n');
   const integralsHtml = fn.integrals.map((tex, i) => {
     const label = i === 0 ? 'Indefinite Integral' : 'Definite Integral (example)';
     return `                        <div><p class="meta-label mb-1">${label}</p><div data-katex="${tex}"></div></div>`;
@@ -173,7 +180,7 @@ function renderPage(fn) {
 
   const blurb = fn.derivativesBlurb
     ? `                        <div class="derivatives-summary">
-                            <h3 class="derivatives-summary-heading">What the Derivatives tell us</h3>
+                            <h3 class="derivatives-summary-heading">What the Derivatives Tell Us</h3>
                             <p class="derivatives-summary-text">${fn.derivativesBlurb}</p>
                         </div>`
     : '';
