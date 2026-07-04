@@ -44,7 +44,6 @@
         <main class="main-content flex-1 p-8">
             <div class="w-full max-w-7xl mx-auto">
 
-                <!-- Page title (only two-color box on this page) -->
                 <header class="page-hero content-card mb-10">
                     <div class="section-header">
                         <h1 class="section-heading text-2xl">Function Zoo</h1>
@@ -54,20 +53,18 @@
                     </div>
                 </header>
 
-                <!-- Basic Zoo: header + grid only (no wrapper box) -->
                 <section class="zoo-page-section">
                     <h2 class="zoo-section-header">Basic Zoo</h2>
                     <p class="zoo-section-subtitle">Fundamental functions every calculus student should know.</p>
-                    <div id="basic-grid" class="zoo-grid">
+                    <div id="basic-grid" class="zoo-grid" aria-label="Basic function cards">
                         <p class="zoo-grid-status">Loading functions…</p>
                     </div>
                 </section>
 
-                <!-- Exotic Zoo: header + grid only (no wrapper box) -->
                 <section class="zoo-page-section">
                     <h2 class="zoo-section-header">Exotic Zoo</h2>
                     <p class="zoo-section-subtitle">Unusual functions with striking graphs and exotic features.</p>
-                    <div id="exotic-grid" class="zoo-grid">
+                    <div id="exotic-grid" class="zoo-grid" aria-label="Exotic function cards">
                         <p class="zoo-grid-status">Loading functions…</p>
                     </div>
                 </section>
@@ -77,139 +74,6 @@
     </div>
 
     <script src="js/site.js"></script>
-    <script>
-        const GRAPH_COLOR = '#b91c1c';
-        const POINT_COLOR = '#f87171';
-        const BASIC_ZOO_COUNT = 20;
-
-        function renderKatex(el, tex) {
-            katex.render(tex, el, { throwOnError: false, displayMode: false });
-        }
-
-        function initDesmosGraph(fn) {
-            const elt = document.getElementById(`calculator-${fn.id}`);
-            if (!elt || typeof Desmos === 'undefined') return;
-
-            const calculator = Desmos.GraphingCalculator(elt, {
-                expressions: false,
-                settingsMenu: false,
-                zoomButtons: false,
-                keypad: false,
-                expressionsTopbar: false,
-                border: false,
-                lockViewport: true,
-                showGrid: true,
-                showXAxis: true,
-                showYAxis: true
-            });
-
-            if (fn.expressions) {
-                fn.expressions.forEach(expr => {
-                    calculator.setExpression({
-                        id: expr.id,
-                        latex: expr.latex,
-                        color: expr.color || GRAPH_COLOR
-                    });
-                });
-            } else if (fn.graph_expression) {
-                calculator.setExpression({
-                    id: `graph-${fn.id}`,
-                    latex: fn.graph_expression,
-                    color: GRAPH_COLOR
-                });
-            }
-
-            if (fn.point) {
-                calculator.setExpression({
-                    id: `point-${fn.id}`,
-                    latex: fn.point.latex,
-                    pointStyle: fn.point.pointStyle,
-                    color: fn.point.color || POINT_COLOR
-                });
-            }
-
-            if (fn.points) {
-                fn.points.forEach((point, pointIndex) => {
-                    calculator.setExpression({
-                        id: point.id || `point-${fn.id}-${pointIndex}`,
-                        latex: point.latex,
-                        pointStyle: point.pointStyle,
-                        color: point.color || POINT_COLOR
-                    });
-                });
-            }
-
-            calculator.setMathBounds({
-                left: -5,
-                right: 5,
-                bottom: -5,
-                top: 5
-            });
-        }
-
-        function detailPageUrl(id) {
-            return `function-${id}.html`;
-        }
-
-        function createFunctionCard(fn) {
-            const card = document.createElement('a');
-            card.href = detailPageUrl(fn.id);
-            card.className = 'zoo-card';
-
-            card.innerHTML = `
-                <h3 class="zoo-card-title card-title"></h3>
-                <div class="katex-expr text-white text-center"></div>
-                <p class="field-label text-center mb-1">Domain</p>
-                <div class="katex-domain text-zinc-200 text-center"></div>
-                <div class="zoo-graph-wrap">
-                    <div id="calculator-${fn.id}" class="desmos-graph"></div>
-                </div>
-                <p class="card-description"></p>
-            `;
-
-            card.querySelector('.card-title').textContent = fn.name.toUpperCase();
-            card.querySelector('.card-description').textContent = fn.description;
-            renderKatex(card.querySelector('.katex-expr'), fn.latex);
-            renderKatex(card.querySelector('.katex-domain'), fn.domain);
-
-            return card;
-        }
-
-        function renderSection(gridId, functions) {
-            const grid = document.getElementById(gridId);
-            grid.innerHTML = '';
-            functions.forEach(fn => {
-                const card = createFunctionCard(fn);
-                grid.appendChild(card);
-                initDesmosGraph(fn);
-            });
-        }
-
-        async function loadZoo() {
-            const basicGrid = document.getElementById('basic-grid');
-            const exoticGrid = document.getElementById('exotic-grid');
-
-            try {
-                const [basicRes, exoticRes] = await Promise.all([
-                    fetch('data/functions-v2.json'),
-                    fetch('data/functions-exotic.json')
-                ]);
-
-                if (!basicRes.ok || !exoticRes.ok) throw new Error('Failed to load functions');
-
-                const basicFunctions = (await basicRes.json()).slice(0, BASIC_ZOO_COUNT);
-                const exoticFunctions = await exoticRes.json();
-
-                renderSection('basic-grid', basicFunctions);
-                renderSection('exotic-grid', exoticFunctions);
-            } catch (err) {
-                const errorMsg = '<p class="zoo-grid-status text-red-400">Could not load function data.</p>';
-                basicGrid.innerHTML = errorMsg;
-                exoticGrid.innerHTML = errorMsg;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadZoo);
-    </script>
+    <script src="js/zoo.js"></script>
 </body>
 </html>
