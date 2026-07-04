@@ -121,7 +121,7 @@
     "graph_expression": "y = \\sqrt{x^2}"
   },
   {
-    "id": "sign-function",
+    "id": "sign",
     "name": "Sign Function",
     "latex": "f(x) = \\frac{|x|}{x}",
     "category": "Piecewise",

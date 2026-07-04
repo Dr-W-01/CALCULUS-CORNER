@@ -1,7 +1,8 @@
 const FunctionDetail = (function () {
     const GRAPH_COLOR = '#b91c1c';
+    const POINT_COLOR = '#f87171';
 
-    function initGraph(elementId, expression, bounds) {
+    function initGraph(elementId, graphDef, bounds) {
         const elt = document.getElementById(elementId);
         if (!elt || typeof Desmos === 'undefined') return;
 
@@ -18,8 +19,35 @@ const FunctionDetail = (function () {
             showYAxis: true
         });
 
-        calculator.setExpression({ id: 'graph', latex: expression, color: GRAPH_COLOR });
+        if (typeof graphDef === 'string') {
+            calculator.setExpression({ id: 'graph', latex: graphDef, color: GRAPH_COLOR });
+        } else if (graphDef) {
+            if (graphDef.latex) {
+                calculator.setExpression({ id: 'graph', latex: graphDef.latex, color: GRAPH_COLOR });
+            }
+            if (graphDef.expressions) {
+                graphDef.expressions.forEach(expr => {
+                    calculator.setExpression({
+                        id: expr.id,
+                        latex: expr.latex,
+                        color: expr.color || GRAPH_COLOR
+                    });
+                });
+            }
+            if (graphDef.points) {
+                graphDef.points.forEach((point, i) => {
+                    calculator.setExpression({
+                        id: point.id || `point-${elementId}-${i}`,
+                        latex: point.latex,
+                        pointStyle: point.pointStyle,
+                        color: point.color || POINT_COLOR
+                    });
+                });
+            }
+        }
+
         calculator.setMathBounds(bounds);
+        requestAnimationFrame(() => calculator.resize());
     }
 
     function init(config) {
@@ -41,7 +69,7 @@ const FunctionDetail = (function () {
                 ['graph-fpp', 2]
             ];
             mapping.forEach(([id, index]) => {
-                if (graphs[index]) initGraph(id, graphs[index], bounds);
+                if (graphs[index] !== undefined) initGraph(id, graphs[index], bounds);
             });
         });
     }
