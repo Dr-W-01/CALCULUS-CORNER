@@ -14,28 +14,43 @@
         .nav-active { background-color: #1f1f1f; border-left: 5px solid #b91c1c; color: #f87171; }
         .nav-item:hover { background-color: #1f1f1f; }
         .top-bar { background-color: #2a1515; border-bottom: 1px solid #3f1a1a; }
-        .content-card {
-            background-color: #2a1515;
-            border: 1px solid #3f1a1a;
-        }
+        .content-card { background-color: #2a1515; border: 1px solid #3f1a1a; }
         .section-heading {
             color: #f87171;
             border-bottom: 1px solid #3f1a1a;
             padding-bottom: 0.5rem;
-        }
-        .fact-label { color: #a1a1aa; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .fact-value { color: #f4f4f5; font-size: 1rem; margin-top: 0.25rem; }
-        .graph-wrap { aspect-ratio: 1 / 1; width: 100%; }
-        .graph-wrap-wide { aspect-ratio: 4 / 3; width: 100%; }
-        .desmos-graph { width: 100%; height: 100%; }
-        .sign-chart { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
-        .sign-chart th, .sign-chart td {
-            border: 1px solid #3f1a1a;
-            padding: 0.5rem 0.75rem;
             text-align: center;
         }
-        .sign-chart th { background-color: #3f1a1a; color: #f87171; font-weight: 600; }
-        .sign-chart td { background-color: #1f1010; }
+        .fact-label, .field-label, .meta-label {
+            color: #d4a853;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .fact-value { color: #f4f4f5; font-size: 1rem; margin-top: 0.25rem; text-align: center; }
+        .graph-wrap-sm { aspect-ratio: 1 / 1; width: 100%; }
+        .graph-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        @media (max-width: 768px) { .graph-trio { grid-template-columns: 1fr; } }
+        .desmos-graph { width: 100%; height: 100%; min-height: 8rem; }
+        .sign-line { position: relative; margin: 2.5rem 0 2rem; padding: 0 0.5rem; }
+        .sign-line-axis { height: 2px; background: #d4a853; position: relative; }
+        .sign-line-point {
+            position: absolute; top: 50%; transform: translate(-50%, -50%);
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 2px solid #d4a853; background: #2a1515;
+        }
+        .sign-line-sign {
+            position: absolute; transform: translateX(-50%);
+            font-weight: 700; font-size: 1.25rem; color: #f4f4f5;
+        }
+        .sign-line-sign.above { top: -2rem; }
+        .sign-line-sign.below { bottom: -2rem; top: auto; }
+        .sign-line-label {
+            position: absolute; top: 1.25rem; transform: translateX(-50%);
+            font-size: 0.8rem; color: #d4a853;
+        }
+        .limit-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+        .limit-subheading { color: #d4a853; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; text-align: center; }
     </style>
 </head>
 <body>
@@ -66,7 +81,6 @@
         <div class="flex-1 p-8">
             <div class="w-full max-w-4xl mx-auto space-y-8">
 
-                <!-- Header -->
                 <header class="text-center">
                     <a href="zoo.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Function Zoo</a>
                     <h1 class="text-2xl font-bold tracking-wide text-[#b91c1c] mb-4">THE CUBIC FUNCTION</h1>
@@ -77,88 +91,141 @@
                 <section class="content-card rounded-2xl p-6">
                     <h2 class="section-heading text-xl font-semibold mb-5">Quick Facts</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
-                        <div><p class="fact-label">Range</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
-                        <div><p class="fact-label">x-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
-                        <div><p class="fact-label">y-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
-                        <div><p class="fact-label">Vertical Asymptotes</p><div class="fact-value">None</div></div>
-                        <div><p class="fact-label">Horizontal Asymptotes</p><div class="fact-value">None</div></div>
-                        <div><p class="fact-label">Continuity</p><div class="fact-value">Continuous on <span data-katex="(-\infty, \infty)"></span></div></div>
-                        <div><p class="fact-label">Differentiability</p><div class="fact-value">Differentiable on <span data-katex="(-\infty, \infty)"></span></div></div>
-                        <div><p class="fact-label">Odd / Even</p><div class="fact-value">Odd <span data-katex="(f(-x) = -f(x))"></span></div></div>
+                        <div class="text-center"><p class="fact-label">Domain</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
+                        <div class="text-center"><p class="fact-label">Range</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
+                        <div class="text-center"><p class="fact-label">x-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
+                        <div class="text-center"><p class="fact-label">y-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
+                        <div class="text-center"><p class="fact-label">Vertical Asymptotes</p><div class="fact-value">None</div></div>
+                        <div class="text-center"><p class="fact-label">Horizontal Asymptotes</p><div class="fact-value">None</div></div>
+                        <div class="text-center"><p class="fact-label">Continuity</p><div class="fact-value">Continuous for all real numbers</div></div>
+                        <div class="text-center"><p class="fact-label">Differentiability</p><div class="fact-value">Differentiable for all real numbers</div></div>
+                        <div class="text-center"><p class="fact-label">Odd / Even</p><div class="fact-value">Odd <span data-katex="(f(-x) = -f(x))"></span></div></div>
                     </div>
                 </section>
 
-                <!-- Main Graph -->
+                <!-- Main Graph (compact) -->
                 <section class="content-card rounded-2xl p-6">
                     <h2 class="section-heading text-xl font-semibold mb-5">Graph of <span data-katex="f(x) = x^3"></span></h2>
-                    <div class="graph-wrap max-w-lg mx-auto overflow-hidden rounded-xl border border-[#3f1a1a]">
-                        <div id="graph-f" class="desmos-graph"></div>
+                    <div class="graph-wrap-sm max-w-[12rem] mx-auto overflow-hidden rounded-xl border border-[#3f1a1a]">
+                        <div id="graph-f-main" class="desmos-graph"></div>
                     </div>
                 </section>
 
-                <!-- Description & Behavior -->
+                <!-- Description & Behavior (includes Key Properties) -->
                 <section class="content-card rounded-2xl p-6">
                     <h2 class="section-heading text-xl font-semibold mb-4">Description &amp; Behavior</h2>
-                    <p class="text-zinc-200 text-lg leading-relaxed">
+                    <p class="text-zinc-200 text-lg leading-relaxed text-center mb-6">
                         The cubic function is our first example of a point of inflection. This point of inflection happens to also be a critical point, though that is not necessarily always the case. A function like <span data-katex="f(x) = x(x-1)(x-3)"></span> has a point of inflection which is not a critical point. This example is important because we have a critical point where the function is increasing at that critical point.
                     </p>
-                    <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 text-base text-zinc-300">
-                        <div><span class="text-zinc-500">Discontinuities:</span> None</div>
-                        <div><span class="text-zinc-500">Absolute Maximum:</span> None</div>
-                        <div><span class="text-zinc-500">Absolute Minimum:</span> None</div>
-                        <div><span class="text-zinc-500">Symmetry:</span> Odd <span data-katex="(f(-x) = -f(x))"></span></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base text-zinc-300 mb-6">
+                        <div class="text-center"><span class="meta-label">Discontinuities</span><br>None</div>
+                        <div class="text-center"><span class="meta-label">Absolute Maximum</span><br>None</div>
+                        <div class="text-center"><span class="meta-label">Absolute Minimum</span><br>None</div>
+                        <div class="text-center"><span class="meta-label">Symmetry</span><br>Odd <span data-katex="(f(-x) = -f(x))"></span></div>
                     </div>
+                    <ul class="space-y-2 text-zinc-200 text-base list-disc list-inside leading-relaxed max-w-2xl mx-auto">
+                        <li><span data-katex="f(x) = x^3"></span> is strictly increasing — the critical point at <span data-katex="x = 0"></span> is not a local extremum.</li>
+                        <li>The origin <span data-katex="(0, 0)"></span> is both a critical point and a point of inflection.</li>
+                        <li><span data-katex="f'(x) = 3x^2 \geq 0"></span> for all <span data-katex="x"></span>, with equality only at <span data-katex="x = 0"></span>.</li>
+                        <li><span data-katex="f''(x)"></span> changes sign at <span data-katex="x = 0"></span>, confirming the inflection point at the origin.</li>
+                        <li>Unlike <span data-katex="f(x) = x^2"></span>, this function has no absolute maximum or minimum.</li>
+                    </ul>
                 </section>
 
                 <!-- Limits -->
                 <section class="content-card rounded-2xl p-6">
-                    <h2 class="section-heading text-xl font-semibold mb-4">Limits</h2>
-                    <div class="space-y-3 text-lg text-zinc-200">
-                        <div data-katex="\lim_{x \to \infty} x^3 = \infty"></div>
-                        <div data-katex="\lim_{x \to -\infty} x^3 = -\infty"></div>
-                        <div data-katex="\lim_{x \to 0} x^3 = 0"></div>
-                        <div data-katex="\lim_{x \to a} x^3 = a^3 \quad \text{for all } a \in \mathbb{R}"></div>
+                    <h2 class="section-heading text-xl font-semibold mb-5">Limits</h2>
+
+                    <div class="mb-4">
+                        <p class="limit-subheading">Limits as x → ±∞</p>
+                        <div class="limit-row justify-center text-lg text-zinc-200">
+                            <span data-katex="\lim_{x \to \infty} x^3 = \infty"></span>
+                            <span class="text-zinc-600">|</span>
+                            <span data-katex="\lim_{x \to -\infty} x^3 = -\infty"></span>
+                        </div>
                     </div>
-                    <p class="text-zinc-400 text-sm mt-4">Since <span data-katex="f(x) = x^3"></span> is a polynomial with no discontinuities, all limits equal the function value at the point of approach.</p>
+
+                    <div class="mb-4">
+                        <p class="limit-subheading">Limit at a point</p>
+                        <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to 0} x^3 = 0"></div>
+                    </div>
+
+                    <div>
+                        <p class="limit-subheading">General limit</p>
+                        <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} x^3 = a^3 \text{ for all real numbers } a"></div>
+                    </div>
+
+                    <p class="text-zinc-400 text-sm mt-4 text-center">Since <span data-katex="f(x) = x^3"></span> is a polynomial with no discontinuities, limits equal the function value at the point of approach.</p>
                 </section>
 
                 <!-- Derivatives -->
                 <section class="content-card rounded-2xl p-6 space-y-6">
                     <h2 class="section-heading text-xl font-semibold">Derivatives</h2>
 
-                    <div>
-                        <h3 class="text-lg font-medium text-white mb-3">First Derivative</h3>
-                        <div class="text-xl mb-4" data-katex="f'(x) = 3x^2"></div>
-                        <div class="graph-wrap-wide max-w-md mx-auto overflow-hidden rounded-xl border border-[#3f1a1a] mb-4">
-                            <div id="graph-fp" class="desmos-graph"></div>
+                    <!-- Three graphs side by side -->
+                    <div class="graph-trio">
+                        <div class="text-center">
+                            <p class="meta-label mb-2">f(x) =</p>
+                            <div class="text-base mb-2" data-katex="x^3"></div>
+                            <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#3f1a1a]">
+                                <div id="graph-f" class="desmos-graph"></div>
+                            </div>
                         </div>
-                        <table class="sign-chart mb-4">
-                            <thead><tr><th><span data-katex="(-\infty, 0)"></span></th><th>0</th><th><span data-katex="(0, \infty)"></span></th></tr></thead>
-                            <tbody><tr><td>+</td><td>0</td><td>+</td></tr></tbody>
-                        </table>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-zinc-300">
-                            <div><span class="text-zinc-500">Critical Points:</span> <span data-katex="x = 0"></span></div>
-                            <div><span class="text-zinc-500">Local Max / Min:</span> None</div>
-                            <div><span class="text-zinc-500">Increasing:</span> <span data-katex="(-\infty, \infty)"></span></div>
-                            <div><span class="text-zinc-500">Decreasing:</span> None</div>
+                        <div class="text-center">
+                            <p class="meta-label mb-2">f'(x) =</p>
+                            <div class="text-base mb-2" data-katex="3x^2"></div>
+                            <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#3f1a1a]">
+                                <div id="graph-fp" class="desmos-graph"></div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="meta-label mb-2">f''(x) =</p>
+                            <div class="text-base mb-2" data-katex="6x"></div>
+                            <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#3f1a1a]">
+                                <div id="graph-fpp" class="desmos-graph"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Sign Charts -->
+                    <div>
+                        <h3 class="meta-label text-center mb-6">Sign Chart of f'(x)</h3>
+                        <div class="sign-line max-w-md mx-auto">
+                            <div class="sign-line-axis">
+                                <span class="sign-line-sign above" style="left: 25%;">+</span>
+                                <span class="sign-line-sign above" style="left: 75%;">+</span>
+                                <span class="sign-line-point" style="left: 50%;"></span>
+                                <span class="sign-line-label" style="left: 50%;">0</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-zinc-500 mt-6 px-1">
+                                <span data-katex="-\infty"></span>
+                                <span data-katex="\infty"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-zinc-300 max-w-lg mx-auto mt-4">
+                            <div class="text-center"><span class="meta-label">Critical Points</span><br><span data-katex="x = 0"></span></div>
+                            <div class="text-center"><span class="meta-label">Increasing</span><br><span data-katex="(-\infty, \infty)"></span></div>
                         </div>
                     </div>
 
                     <div class="border-t border-[#3f1a1a] pt-6">
-                        <h3 class="text-lg font-medium text-white mb-3">Second Derivative</h3>
-                        <div class="text-xl mb-4" data-katex="f''(x) = 6x"></div>
-                        <div class="graph-wrap-wide max-w-md mx-auto overflow-hidden rounded-xl border border-[#3f1a1a] mb-4">
-                            <div id="graph-fpp" class="desmos-graph"></div>
+                        <h3 class="meta-label text-center mb-6">Sign Chart of f''(x)</h3>
+                        <div class="sign-line max-w-md mx-auto">
+                            <div class="sign-line-axis">
+                                <span class="sign-line-sign below" style="left: 25%;">−</span>
+                                <span class="sign-line-sign above" style="left: 75%;">+</span>
+                                <span class="sign-line-point" style="left: 50%;"></span>
+                                <span class="sign-line-label" style="left: 50%;">0</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-zinc-500 mt-6 px-1">
+                                <span data-katex="-\infty"></span>
+                                <span data-katex="\infty"></span>
+                            </div>
                         </div>
-                        <table class="sign-chart mb-4">
-                            <thead><tr><th><span data-katex="(-\infty, 0)"></span></th><th>0</th><th><span data-katex="(0, \infty)"></span></th></tr></thead>
-                            <tbody><tr><td>&minus;</td><td>0</td><td>+</td></tr></tbody>
-                        </table>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-zinc-300">
-                            <div><span class="text-zinc-500">Points of Inflection:</span> <span data-katex="(0, 0)"></span></div>
-                            <div><span class="text-zinc-500">Concave Up:</span> <span data-katex="(0, \infty)"></span></div>
-                            <div><span class="text-zinc-500">Concave Down:</span> <span data-katex="(-\infty, 0)"></span></div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-zinc-300 max-w-lg mx-auto mt-4">
+                            <div class="text-center"><span class="meta-label">Inflection</span><br><span data-katex="(0,0)"></span></div>
+                            <div class="text-center"><span class="meta-label">Concave Up</span><br><span data-katex="(0,\infty)"></span></div>
+                            <div class="text-center"><span class="meta-label">Concave Down</span><br><span data-katex="(-\infty,0)"></span></div>
                         </div>
                     </div>
                 </section>
@@ -166,32 +233,16 @@
                 <!-- Integrals -->
                 <section class="content-card rounded-2xl p-6">
                     <h2 class="section-heading text-xl font-semibold mb-4">Integrals</h2>
-                    <div class="space-y-4 text-lg text-zinc-200">
+                    <div class="space-y-4 text-lg text-zinc-200 text-center">
                         <div>
-                            <p class="text-zinc-500 text-sm uppercase tracking-wider mb-1">Indefinite Integral</p>
+                            <p class="meta-label mb-1">Indefinite Integral</p>
                             <div data-katex="\int x^3 \, dx = \frac{x^4}{4} + C"></div>
                         </div>
                         <div>
-                            <p class="text-zinc-500 text-sm uppercase tracking-wider mb-1">Definite Integral (example)</p>
-                            <div data-katex="\int_0^1 x^3 \, dx = \left[\frac{x^4}{4}\right]_0^1 = \frac{1}{4}"></div>
-                        </div>
-                        <div>
-                            <p class="text-zinc-500 text-sm uppercase tracking-wider mb-1">Area Interpretation</p>
-                            <p class="text-base text-zinc-300">On <span data-katex="[0, \infty)"></span>, the integral accumulates positive area; on <span data-katex="(-\infty, 0]"></span>, it accumulates negative area due to the odd symmetry of <span data-katex="x^3"></span>.</p>
+                            <p class="meta-label mb-1">Definite Integral (example)</p>
+                            <div data-katex="\int_0^1 x^3 \, dx = \frac{1}{4}"></div>
                         </div>
                     </div>
-                </section>
-
-                <!-- Key Properties & Notes -->
-                <section class="content-card rounded-2xl p-6">
-                    <h2 class="section-heading text-xl font-semibold mb-4">Key Properties &amp; Notes</h2>
-                    <ul class="space-y-3 text-zinc-200 text-base list-disc list-inside leading-relaxed">
-                        <li><span data-katex="f(x) = x^3"></span> is strictly increasing on <span data-katex="(-\infty, \infty)"></span> — the critical point at <span data-katex="x = 0"></span> is not a local extremum.</li>
-                        <li>The origin <span data-katex="(0, 0)"></span> is both a critical point and a point of inflection — a hallmark feature of this cubic.</li>
-                        <li><span data-katex="f'(x) = 3x^2 \geq 0"></span> for all <span data-katex="x"></span>, with equality only at <span data-katex="x = 0"></span>.</li>
-                        <li><span data-katex="f''(x)"></span> changes sign at <span data-katex="x = 0"></span>, confirming the inflection point at the origin.</li>
-                        <li>Unlike <span data-katex="f(x) = x^2"></span>, this function has no absolute maximum or minimum.</li>
-                    </ul>
                 </section>
 
             </div>
@@ -215,10 +266,11 @@
             const calculator = Desmos.GraphingCalculator(elt, {
                 expressions: false,
                 settingsMenu: false,
-                zoomButtons: true,
+                zoomButtons: false,
                 keypad: false,
                 expressionsTopbar: false,
                 border: false,
+                lockViewport: true,
                 showGrid: true,
                 showXAxis: true,
                 showYAxis: true
@@ -230,6 +282,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAllKatex();
+            initGraph('graph-f-main', 'y = x^3');
             initGraph('graph-f', 'y = x^3');
             initGraph('graph-fp', 'y = 3x^2');
             initGraph('graph-fpp', 'y = 6x');

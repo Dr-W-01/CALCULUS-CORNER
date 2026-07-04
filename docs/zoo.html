@@ -28,6 +28,13 @@
             color: #f87171;
             border-bottom: 1px solid #3f1a1a;
             padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        .field-label {
+            color: #d4a853;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         .graph-wrap {
             aspect-ratio: 1 / 1;
@@ -166,9 +173,13 @@
             });
         }
 
+        function detailPageUrl(id) {
+            return `function-${id}.html`;
+        }
+
         function createFunctionCard(fn) {
             const card = document.createElement('a');
-            card.href = `function.html?id=${encodeURIComponent(fn.id)}`;
+            card.href = detailPageUrl(fn.id);
             card.className = 'zoo-card rounded-2xl p-5 block';
 
             card.innerHTML = `
@@ -177,6 +188,7 @@
                 <div class="graph-wrap overflow-hidden rounded-xl border border-[#3f1a1a] bg-[#3f1a1a] mb-3">
                     <div id="calculator-${fn.id}" class="desmos-graph"></div>
                 </div>
+                <p class="field-label text-center mb-1">Domain</p>
                 <div class="katex-domain text-lg text-zinc-200 mb-4"></div>
                 <p class="text-zinc-200 text-xl leading-relaxed text-center card-description"></p>
             `;
@@ -184,7 +196,7 @@
             card.querySelector('.card-title').textContent = fn.name.toUpperCase();
             card.querySelector('.card-description').textContent = fn.description;
             renderKatex(card.querySelector('.katex-expr'), fn.latex);
-            renderKatex(card.querySelector('.katex-domain'), `\\textbf{Domain: } ${fn.domain}`);
+            renderKatex(card.querySelector('.katex-domain'), fn.domain);
 
             return card;
         }
