@@ -9,17 +9,18 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background-color: #0a0a0a; color: #e5e5e5; }
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: #2a1515; color: #e5e5e5; }
         .sidebar { background-color: #111111; }
         .nav-active { background-color: #1f1f1f; border-left: 5px solid #b91c1c; color: #f87171; }
         .nav-item:hover { background-color: #1f1f1f; }
         .top-bar { background-color: #2a1515; border-bottom: 1px solid #3f1a1a; }
         .zoo-card {
-            background-color: #111111;
-            border: 1px solid #27272a;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            background-color: #2a1515;
+            border: 1px solid #3f1a1a;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
         }
         .zoo-card:hover {
+            background-color: #4a2020;
             border-color: #7f1d1d;
             transform: translateY(-2px);
         }
@@ -153,7 +154,7 @@
             card.innerHTML = `
                 <h2 class="text-lg font-bold tracking-wide text-[#b91c1c] mb-2 card-title"></h2>
                 <div class="katex-expr text-xl text-white mb-4"></div>
-                <div class="graph-wrap overflow-hidden rounded-xl border border-zinc-800 bg-[#0a0a0a] mb-3">
+                <div class="graph-wrap overflow-hidden rounded-xl border border-[#3f1a1a] bg-[#3f1a1a] mb-3">
                     <div id="calculator-${fn.id}" class="desmos-graph"></div>
                 </div>
                 <div class="katex-domain text-lg text-zinc-200 mb-3"></div>
