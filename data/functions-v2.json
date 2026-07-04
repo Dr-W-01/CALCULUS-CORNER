@@ -1,0 +1,182 @@
+[
+  {
+    "id": "const-1",
+    "name": "Constant Function",
+    "latex": "f(x) = 1",
+    "category": "Constant",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Outputs the value 1 for every real input. Appears as a horizontal line.",
+    "graph_expression": "y = 1"
+  },
+  {
+    "id": "linear-x",
+    "name": "Linear Function",
+    "latex": "f(x) = x",
+    "category": "Linear",
+    "domain": "(-\\infty, \\infty)",
+    "description": "The identity function. Passes through the origin with slope 1.",
+    "graph_expression": "y = x"
+  },
+  {
+    "id": "quadratic-x2",
+    "name": "Parabola",
+    "latex": "f(x) = x^2",
+    "category": "Quadratic",
+    "domain": "(-\\infty, \\infty)",
+    "description": "A quadratic function that opens upwards with a minimum at the origin.",
+    "graph_expression": "y = x^2"
+  },
+  {
+    "id": "cubic-x3",
+    "name": "Cubic Function",
+    "latex": "f(x) = x^3",
+    "category": "Cubic",
+    "domain": "(-\\infty, \\infty)",
+    "description": "An odd function that is strictly increasing with an inflection point at the origin.",
+    "graph_expression": "y = x^3"
+  },
+  {
+    "id": "sqrt-x",
+    "name": "Square Root",
+    "latex": "f(x) = \\sqrt{x}",
+    "category": "Root",
+    "domain": "[0, \\infty)",
+    "description": "Defined only for non-negative x. Starts at the origin.",
+    "graph_expression": "y = \\sqrt{x}"
+  },
+  {
+    "id": "cbrt-x",
+    "name": "Cube Root",
+    "latex": "f(x) = \\sqrt[3]{x}",
+    "category": "Root",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Defined for all real numbers. Odd function with an inflection point at the origin.",
+    "graph_expression": "y = x^{1/3}"
+  },
+  {
+    "id": "cbrt-x2",
+    "name": "Cube Root Squared",
+    "latex": "f(x) = \\sqrt[3]{x^2}",
+    "category": "Root",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Even function version of the cube root.",
+    "graph_expression": "y = x^{2/3}"
+  },
+  {
+    "id": "x-over-x",
+    "name": "x/x with Hole",
+    "latex": "f(x) = \\frac{x}{x}",
+    "category": "Rational",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Same as the constant function 1, except undefined at x = 0 (hole).",
+    "graph_expression": "y = x/x"
+  },
+  {
+    "id": "x2-over-x",
+    "name": "x²/x with Hole",
+    "latex": "f(x) = \\frac{x^2}{x}",
+    "category": "Rational",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Simplifies to x except for a hole at x = 0.",
+    "graph_expression": "y = x^2/x"
+  },
+  {
+    "id": "x3-over-x",
+    "name": "x³/x with Hole",
+    "latex": "f(x) = \\frac{x^3}{x}",
+    "category": "Rational",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Simplifies to x² except for a hole at x = 0.",
+    "graph_expression": "y = x^3/x"
+  },
+  {
+    "id": "reciprocal",
+    "name": "Reciprocal Function",
+    "latex": "f(x) = \\frac{1}{x}",
+    "category": "Rational",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Hyperbola with vertical and horizontal asymptotes.",
+    "graph_expression": "y = 1/x"
+  },
+  {
+    "id": "reciprocal-squared",
+    "name": "Reciprocal Squared",
+    "latex": "f(x) = \\frac{1}{x^2}",
+    "category": "Rational",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Even function version of the reciprocal with a vertical asymptote at x = 0.",
+    "graph_expression": "y = 1/x^2"
+  },
+  {
+    "id": "absolute-value",
+    "name": "Absolute Value",
+    "latex": "f(x) = |x|",
+    "category": "Absolute Value",
+    "domain": "(-\\infty, \\infty)",
+    "description": "V-shaped graph. Not differentiable at x = 0.",
+    "graph_expression": "y = |x|"
+  },
+  {
+    "id": "sign-function",
+    "name": "Sign Function",
+    "latex": "f(x) = \\frac{|x|}{x}",
+    "category": "Piecewise",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Returns 1 for positive x and -1 for negative x. Undefined at zero.",
+    "graph_expression": "y = |x|/x"
+  },
+  {
+    "id": "sqrt-x-squared",
+    "name": "Algebraic Absolute Value",
+    "latex": "f(x) = \\sqrt{x^2}",
+    "category": "Absolute Value",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Algebraic form of |x| using square root.",
+    "graph_expression": "y = \\sqrt{x^2}"
+  },
+  {
+    "id": "sqrt-x-squared-restricted",
+    "name": "Restricted Domain Linear",
+    "latex": "f(x) = (\\sqrt{x})^2",
+    "category": "Root",
+    "domain": "[0, \\infty)",
+    "description": "Linear function restricted to non-negative domain.",
+    "graph_expression": "y = (\\sqrt{x})^2"
+  },
+  {
+    "id": "semicircle",
+    "name": "Upper Semicircle",
+    "latex": "f(x) = \\sqrt{1 - x^2}",
+    "category": "Root",
+    "domain": "[-1, 1]",
+    "description": "Upper half of the unit circle.",
+    "graph_expression": "y = \\sqrt{1 - x^2}"
+  },
+  {
+    "id": "sine",
+    "name": "Sine Function",
+    "latex": "f(x) = \\sin(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Periodic function with period 2π. Fundamental in trigonometry and waves.",
+    "graph_expression": "y = \\sin(x)"
+  },
+  {
+    "id": "point-at-zero",
+    "name": "The Point Function",
+    "latex": "f(x) = \\sqrt{x} \\cdot \\sqrt{-x}",
+    "category": "Special",
+    "domain": "\\{0\\}",
+    "description": "Only defined at x = 0 where f(0) = 0. A single point function.",
+    "graph_expression": "y = \\sqrt{x} * \\sqrt{-x}"
+  },
+  {
+    "id": "empty-function",
+    "name": "Empty Function",
+    "latex": "f(x) = \\frac{\\sqrt{x}}{\\sqrt{-x}}",
+    "category": "Special",
+    "domain": "\\emptyset",
+    "description": "A function with an empty domain. Not defined anywhere.",
+    "graph_expression": "y = \\sqrt{x} / \\sqrt{-x}"
+  }
+]

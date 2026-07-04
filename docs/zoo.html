@@ -133,14 +133,14 @@
             const grid = document.getElementById('zoo-grid');
 
             try {
-                const response = await fetch('data/functions.json');
+                const response = await fetch('data/functions-v2.json');
                 if (!response.ok) throw new Error('Failed to load functions');
                 const functions = await response.json();
 
                 grid.innerHTML = '';
                 functions.forEach(fn => grid.appendChild(createFunctionCard(fn)));
             } catch (err) {
-                grid.innerHTML = '<p class="text-red-400 text-sm col-span-full">Could not load function data. Serve this site over HTTP to fetch functions.json.</p>';
+                grid.innerHTML = '<p class="text-red-400 text-sm col-span-full">Could not load function data from data/functions-v2.json.</p>';
             }
         }
 
