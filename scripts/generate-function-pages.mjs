@@ -10,7 +10,7 @@ const TOP_BAR = `    <div class="top-bar px-8 py-5 flex items-center justify-bet
             <div class="w-9 h-9 bg-[#b91c1c] rounded-2xl flex items-center justify-center">
                 <span class="font-bold text-white text-2xl tracking-tighter">CC</span>
             </div>
-            <span class="font-semibold text-3xl tracking-tighter">Calculus Corner</span>
+            <span class="font-semibold text-3xl tracking-tighter">Dr. W's Calculus Corner</span>
         </div>
         <div class="flex items-center gap-x-4">
             <input type="text" placeholder="Search..." class="bg-[#111111] border border-zinc-800 rounded-3xl px-5 py-2 text-sm w-80 focus:outline-none focus:border-zinc-600">
@@ -309,7 +309,7 @@ ${inner}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${fn.pageTitle} • Calculus Corner</title>
+    <title>${fn.pageTitle} • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>

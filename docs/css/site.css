@@ -1,15 +1,17 @@
-/* Calculus Corner — shared site styles */
+/* Dr. W's Calculus Corner — shared site styles */
 :root {
-    /* Lighter red body */
-    --cc-content-bg: #3e2424;
+    /* Two-color content box: lighter header, darker body */
+    --cc-header-bg: #3e2424;
+    --cc-header-border: #523030;
+    --cc-body-bg: #1a0f0f;
+    --cc-body-border: #5c3030;
     --cc-content-border: #523030;
-    /* Darker red header */
-    --cc-section-header-bg: #1a0f0f;
-    --cc-section-header-border: #5c3030;
     --cc-section-heading: #c45050;
-    --cc-content-hover-bg: #4d3030;
-    --cc-content-hover-border: #8b4040;
-    --cc-card-header-bg: #1a0f0f;
+    --cc-content-hover-bg: #261616;
+    --cc-content-hover-border: #6b3a3a;
+
+    /* Sidebar reopen button clearance when collapsed */
+    --cc-sidebar-expand-offset: 3.75rem;
 }
 
 body {
@@ -18,10 +20,19 @@ body {
     color: #e5e5e5;
 }
 
-/* Top bar — unchanged dark red */
+/* Top bar */
 .top-bar {
     background-color: #2a1515;
     border-bottom: 1px solid #3f1a1a;
+}
+
+/* Main content — extra left padding when sidebar is collapsed */
+.main-content {
+    transition: padding-left 0.25s ease;
+}
+
+body.sidebar-collapsed .main-content {
+    padding-left: var(--cc-sidebar-expand-offset) !important;
 }
 
 /* Sidebar */
@@ -92,10 +103,11 @@ body.sidebar-collapsed .sidebar-expand-btn {
     display: flex;
 }
 
-/* Content cards — darker header + lighter body */
+/* Two-color content boxes: lighter header + darker body */
 .content-card,
-.content-box {
-    background-color: var(--cc-content-bg);
+.content-box,
+.page-hero {
+    background-color: var(--cc-body-bg);
     border: 1px solid var(--cc-content-border);
     padding: 0;
     border-radius: 1rem;
@@ -103,46 +115,29 @@ body.sidebar-collapsed .sidebar-expand-btn {
     transition: border-color 0.2s ease;
 }
 
-.dashboard-card,
-.zoo-card {
-    background-color: var(--cc-content-bg);
-    border: 1px solid var(--cc-content-border);
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+.section-header,
+.zoo-card-header {
+    background-color: var(--cc-header-bg);
+    padding: 0.875rem 1.5rem;
+    border-bottom: 2px solid var(--cc-header-border);
 }
 
-.content-card .section-body,
-.content-box .section-body {
-    background-color: var(--cc-content-bg);
+.section-body,
+.zoo-card-body {
+    background-color: var(--cc-body-bg);
     padding: 1.25rem 1.5rem 1.5rem;
 }
 
-.dashboard-card:hover,
-.zoo-card:hover {
-    background-color: var(--cc-content-hover-bg);
-    border-color: var(--cc-content-hover-border);
+.page-hero .section-body {
+    text-align: center;
 }
 
-.dashboard-card:hover,
-.zoo-card:hover {
-    transform: translateY(-2px);
-}
-
-/* Section headers — darker red band */
-.section-header,
-.zoo-card-header {
-    background-color: var(--cc-section-header-bg);
-    padding: 0.875rem 1.5rem;
-    border-bottom: 2px solid var(--cc-section-header-border);
-}
-
-.content-card .section-header {
-    margin: 0;
-    border-radius: 0;
-}
-
-.zoo-card-header {
-    margin: -1.25rem -1.25rem 1rem;
-    border-radius: 1rem 1rem 0 0;
+.page-hero .section-body p {
+    color: #d4d4d8;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 42rem;
+    margin: 0 auto;
 }
 
 .section-heading {
@@ -152,12 +147,31 @@ body.sidebar-collapsed .sidebar-expand-btn {
     margin: 0;
 }
 
-.section-body {
-    padding-top: 0;
+/* Zoo / dashboard cards */
+.zoo-card,
+.dashboard-card {
+    background-color: var(--cc-body-bg);
+    border: 1px solid var(--cc-content-border);
+    overflow: hidden;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.zoo-card-body {
-    padding-top: 0;
+.zoo-card:hover,
+.dashboard-card:hover {
+    background-color: var(--cc-content-hover-bg);
+    border-color: var(--cc-content-hover-border);
+    transform: translateY(-2px);
+}
+
+.zoo-card .zoo-card-body {
+    padding: 1.25rem;
+}
+
+/* Fully responsive function grid — auto columns, no hardcoded count */
+.zoo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+    gap: 1.25rem;
 }
 
 /* Labels & facts */
@@ -281,16 +295,15 @@ body.sidebar-collapsed .sidebar-expand-btn {
     height: 12px;
     border-radius: 50%;
     border: 2px solid #e5e5e5;
-    background: var(--cc-content-bg);
+    background: var(--cc-body-bg);
 }
 
-/* Filled = x-intercept (value is zero); open = undefined */
 .sign-line-point.filled {
     background: #e5e5e5;
 }
 
 .sign-line-point.open {
-    background: var(--cc-content-bg);
+    background: var(--cc-body-bg);
 }
 
 .sign-line-sign {
@@ -327,7 +340,6 @@ body.sidebar-collapsed .sidebar-expand-btn {
     text-align: left;
 }
 
-/* Description & Behavior */
 .behavior-intro {
     text-align: left;
     text-indent: 1.5rem;
