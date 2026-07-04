@@ -78,7 +78,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The cubic function is our first example of a point of inflection. This point of inflection happens to also be a critical point, though that is not necessarily always the case. A function like <span data-katex="f(x) = x(x-1)(x-3)"></span> has a point of inflection which is not a critical point. This example is important because we have a critical point where the function is increasing at that critical point.</p>
+                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The cubic function is our first example of a point of inflection. This point of inflection happens to also be a critical point, though that is not necessarily always the case.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
                             <div><span class="meta-label">Discontinuities</span><br>None</div>
                             <div><span class="meta-label">Non-differentiability</span><br>None</div>
@@ -129,7 +129,7 @@
                                         <span class="sign-line-point filled" style="left: 50%;"></span>
                                     </div>
                                 </div>
-<p class="chart-analysis">The original cubic passes through the origin. <span data-katex="f(x) < 0"></span> for <span data-katex="x < 0"></span> and <span data-katex="f(x) > 0"></span> for <span data-katex="x > 0"></span>.</p>
+<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(0, \infty)"></span>. f(x) is below the x-axis on the interval <span data-katex="(-\infty, 0)"></span>. f(x) has intercepts <span data-katex="(0, 0)"></span>.</p>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = 3x^2"></div>
@@ -141,7 +141,11 @@
                                         <span class="sign-line-sign above" style="left: 50%;">+</span>
                                     </div>
                                 </div>
-<div class="chart-analysis"><p><strong>Intervals of increase:</strong> <span data-katex="(-\infty, \infty)"></span></p><p><strong>Intervals of decrease:</strong> None</p><p><strong>Critical point at</strong> <span data-katex="x = 0"></span>: neither a relative max nor min — the function is increasing through the critical point.</p></div>
+<div class="chart-analysis">
+                                    <p><strong>Critical points:</strong> x = 0 (neither max nor min — increasing through the point)</p>
+                                    <p><strong>Intervals of increase:</strong> <span data-katex="(-\infty, \infty)"></span></p>
+                                    <p><strong>Intervals of decrease:</strong> None</p>
+                                </div>
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f''(x) = 6x"></div>
@@ -156,9 +160,14 @@
                                         <span class="sign-line-point filled" style="left: 50%;"></span>
                                     </div>
                                 </div>
-<div class="chart-analysis"><p><strong>Concave down:</strong> <span data-katex="(-\infty, 0)"></span></p><p><strong>Concave up:</strong> <span data-katex="(0, \infty)"></span></p><p><strong>Inflection point:</strong> <span data-katex="(0, 0)"></span></p></div>
+<div class="chart-analysis">
+                                    <p><strong>Concave up:</strong> <span data-katex="(0, \infty)"></span></p>
+                                    <p><strong>Concave down:</strong> <span data-katex="(-\infty, 0)"></span></p>
+                                    <p><strong>Inflection points:</strong> <span data-katex="(0, 0)"></span></p>
+                                </div>
                             </div>
                         </div>
+                        <p class="derivatives-blurb">At x = 0, f'(x) = 0 but the function is increasing on both sides — a critical point that is neither a max nor a min. The second derivative changes sign at the origin, giving an inflection point at (0, 0).</p>
                     </div>
                 </section>
 

@@ -10,8 +10,10 @@
     --cc-content-hover-bg: #382222;
     --cc-content-hover-border: #7a4545;
 
-    /* Sidebar reopen button clearance when collapsed */
-    --cc-sidebar-expand-offset: 3.75rem;
+    /* Sidebar width and toggle placement */
+    --cc-sidebar-width: 18rem;
+    --cc-sidebar-toggle-size: 2rem;
+    --cc-sidebar-toggle-gap: 0.75rem;
 }
 
 body {
@@ -32,7 +34,7 @@ body {
 }
 
 body.sidebar-collapsed .main-content {
-    padding-left: var(--cc-sidebar-expand-offset) !important;
+    padding-left: calc(var(--cc-sidebar-toggle-gap) + var(--cc-sidebar-toggle-size) + 1rem) !important;
 }
 
 /* Sidebar */
@@ -86,15 +88,20 @@ body.sidebar-collapsed .sidebar {
     color: #f87171;
 }
 
-/* Sticky floating sidebar toggle — stays visible while scrolling */
+/* Sticky sidebar toggle — right edge of nav when open, left margin when collapsed */
 .sidebar-toggle-float {
     position: fixed;
-    left: 0.75rem;
+    left: calc(var(--cc-sidebar-width) - var(--cc-sidebar-toggle-size) / 2);
     top: calc(81px + 1rem);
-    z-index: 50;
+    z-index: 51;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    transition: left 0.25s ease;
+}
+
+body.sidebar-collapsed .sidebar-toggle-float {
+    left: var(--cc-sidebar-toggle-gap);
 }
 
 .sidebar-toggle-float .sidebar-toggle {
@@ -470,6 +477,16 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     font-size: 0.875rem;
     color: #d4d4d8;
     line-height: 1.6;
+    text-align: left;
+}
+
+.derivatives-blurb {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--cc-content-border);
+    font-size: 0.95rem;
+    color: #d4d4d8;
+    line-height: 1.7;
     text-align: left;
 }
 

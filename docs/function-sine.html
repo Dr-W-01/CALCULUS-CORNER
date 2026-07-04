@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>f(x) = \sqrt{x} • Dr. W's Calculus Corner</title>
+    <title>f(x) = \sin(x) • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -47,7 +47,7 @@
             <div class="w-full max-w-4xl mx-auto space-y-8">
                 <header class="text-center">
                     <a href="zoo.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Function Zoo</a>
-                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">THE SQUARE ROOT FUNCTION</h1>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">THE SINE FUNCTION</h1>
                     <div id="header-expr" class="text-3xl text-white"></div>
                 </header>
 
@@ -61,15 +61,15 @@
                         </div>
                         <div class="w-full md:w-1/2 flex-1">
                             <div class="fact-pair">
-                                <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="[0, \infty)"></div></div>
-                                <div><p class="fact-label">Range</p><div class="fact-value" data-katex="[0, \infty)"></div></div>
-                                <div><p class="fact-label">x-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
+                                <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
+                                <div><p class="fact-label">Range</p><div class="fact-value" data-katex="[-1, 1]"></div></div>
+                                <div><p class="fact-label">x-intercepts</p><div class="fact-value" data-katex="(n\pi, 0) for integers n"></div></div>
                                 <div><p class="fact-label">y-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
                                 <div><p class="fact-label">Vertical Asymptotes</p><div class="fact-value">None</div></div>
                                 <div><p class="fact-label">Horizontal Asymptotes</p><div class="fact-value">None</div></div>
-                                <div><p class="fact-label">Continuity</p><div class="fact-value">Endpoint discontinuity at x = 0</div></div>
-                                <div><p class="fact-label">Differentiability</p><div class="fact-value">Not differentiable at x = 0</div></div>
-                                <div class="symmetry-fact" style="grid-column: 1 / -1;"><p class="fact-label">SYMMETRY</p><div class="symmetry-value"><span class="symmetry-type">None</span></div></div>
+                                <div><p class="fact-label">Continuity</p><div class="fact-value">Continuous for all real numbers</div></div>
+                                <div><p class="fact-label">Differentiability</p><div class="fact-value">Differentiable for all real numbers</div></div>
+                                <div class="symmetry-fact" style="grid-column: 1 / -1;"><p class="fact-label">SYMMETRY</p><div class="symmetry-value"><span class="symmetry-type">Odd</span> <span class="text-zinc-400 text-sm">(2π periodic)</span><div class="symmetry-formula" data-katex="f(-x) = -f(x)"></div></div></div>
                             </div>
                         </div>
                     </div>
@@ -78,19 +78,19 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The square root function is an important example of an absolute minimum that is not a local minimum. At x = 0 we have an endpoint discontinuity: the left-hand limit does not exist.</p>
+                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The sine function is our first example with infinitely many discrete critical points and infinitely many inflection points.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
-                            <div><span class="meta-label">Discontinuities</span><br>Endpoint discontinuity at x = 0</div>
-                            <div><span class="meta-label">Non-differentiability</span><br>Not differentiable at x = 0 (vertical tangent behavior at endpoint)</div>
-                            <div><span class="meta-label">Absolute Maximum</span><br>None</div>
-                            <div><span class="meta-label">Absolute Minimum</span><br>f(0) = 0</div>
-                            <div><span class="meta-label">Relative Maximum</span><br>None</div>
-                            <div><span class="meta-label">Relative Minimum</span><br>None</div>
-                            <div><span class="meta-label">Increasing</span><br><span data-katex="(0, \infty)"></span></div>
-                            <div><span class="meta-label">Decreasing</span><br>None</div>
-                            <div><span class="meta-label">Concave Up</span><br>None</div>
-                            <div><span class="meta-label">Concave Down</span><br><span data-katex="(0, \infty)"></span></div>
-                            <div style="grid-column: 1 / -1;"><span class="meta-label">Inflection Points</span><br>None</div>
+                            <div><span class="meta-label">Discontinuities</span><br>None</div>
+                            <div><span class="meta-label">Non-differentiability</span><br>None</div>
+                            <div><span class="meta-label">Absolute Maximum</span><br><span data-katex="f(\frac{\pi}{2} + 2k\pi) = 1"></span></div>
+                            <div><span class="meta-label">Absolute Minimum</span><br><span data-katex="f(\frac{3\pi}{2} + 2k\pi) = -1"></span></div>
+                            <div><span class="meta-label">Relative Maximum</span><br><span data-katex="1 at \frac{\pi}{2} + 2k\pi"></span></div>
+                            <div><span class="meta-label">Relative Minimum</span><br><span data-katex="-1 at \frac{3\pi}{2} + 2k\pi"></span></div>
+                            <div><span class="meta-label">Increasing</span><br><span data-katex="(-\frac{\pi}{2} + 2k\pi, \frac{\pi}{2} + 2k\pi)"></span></div>
+                            <div><span class="meta-label">Decreasing</span><br><span data-katex="(\frac{\pi}{2} + 2k\pi, \frac{3\pi}{2} + 2k\pi)"></span></div>
+                            <div><span class="meta-label">Concave Up</span><br><span data-katex="(\pi + 2k\pi, 2\pi + 2k\pi)"></span></div>
+                            <div><span class="meta-label">Concave Down</span><br><span data-katex="(2k\pi, \pi + 2k\pi)"></span></div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Inflection Points</span><br><span data-katex="(k\pi, 0) for integers k"></span></div>
                         </div>
                     </div>
                 </section>
@@ -101,21 +101,14 @@
                         <div>
                             <p class="limit-subheading">End Behaviours</p>
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
-                                <span data-katex="\lim_{x \to \infty} \sqrt{x} = \infty"></span>
+                                <span data-katex="\lim_{x \to \infty} \sin(x) \text{ DNE (oscillates)}"></span>
+                                <span data-katex="\lim_{x \to -\infty} \sin(x) \text{ DNE (oscillates)}"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The function grows without bound, so there is no horizontal asymptote.</p>
-                        </div>                        <div>
-                            <p class="limit-subheading">Limit at a Point</p>
-                            <div class="space-y-2 text-center text-lg text-zinc-200">
-                                <div data-katex="\lim_{x \to 0^+} \sqrt{x} = 0"></div>
-                                <div data-katex="\lim_{x \to 0^-} \sqrt{x} \text{ does not exist}"></div>
-                                <div data-katex="f(0) = 0"></div>
-                            </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The right-hand limit exists and equals f(0), but the left-hand limit does not exist because the domain excludes negative x. This is an endpoint discontinuity at x = 0.</p>
+                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">Sine oscillates between −1 and 1, so there is no horizontal asymptote and no limit at ±∞.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
-                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \sqrt{x} = \sqrt{a} \text{ for } a > 0"></div>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous on its domain [0, ∞), with an endpoint discontinuity at x = 0.</p>
+                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \sin(x) = \sin(a)"></div>
+                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous at all real numbers.</p>
                     </div>
                 </section>
 
@@ -124,59 +117,80 @@
                     <div class="section-body">
                         <div class="graph-trio">
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f(x) = \sqrt{x}"></div>
+                                <div class="deriv-title" data-katex="f(x) = \sin(x)"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
+                                        <span class="sign-line-sign below" style="left: 20%;">−</span>
                                         <span class="sign-line-sign above" style="left: 50%;">+</span>
+                                        <span class="sign-line-sign below" style="left: 80%;">−</span>
+                                        <span class="sign-line-number" style="left: 20%;">-π/2</span>
+                                        <span class="sign-line-point filled" style="left: 20%;"></span>
+                                        <span class="sign-line-number" style="left: 50%;">π/2</span>
+                                        <span class="sign-line-point filled" style="left: 50%;"></span>
+                                        <span class="sign-line-number" style="left: 80%;">3π/2</span>
+                                        <span class="sign-line-point filled" style="left: 80%;"></span>
                                     </div>
                                 </div>
-<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(0, \infty)"></span>. f(x) has intercepts <span data-katex="(0, 0)"></span>.</p>
+<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(0, \pi)"></span>. f(x) is below the x-axis on the interval <span data-katex="(-\frac{\pi}{2}, 0) \cup (\pi, \frac{3\pi}{2})"></span>. f(x) has intercepts <span data-katex="(0, 0)"></span>. f(x) has intercepts <span data-katex="(\pi, 0)"></span>.</p>
                             </div>
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f'(x) = \frac{1}{2\sqrt{x}}"></div>
+                                <div class="deriv-title" data-katex="f'(x) = \cos(x)"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
-                                        <span class="sign-line-sign above" style="left: 50%;">+</span>
+                                        <span class="sign-line-sign above" style="left: 20%;">+</span>
+                                        <span class="sign-line-sign below" style="left: 50%;">−</span>
+                                        <span class="sign-line-sign above" style="left: 80%;">+</span>
+                                        <span class="sign-line-number" style="left: 20%;">0</span>
+                                        <span class="sign-line-point filled" style="left: 20%;"></span>
+                                        <span class="sign-line-number" style="left: 50%;">π</span>
+                                        <span class="sign-line-point filled" style="left: 50%;"></span>
+                                        <span class="sign-line-number" style="left: 80%;">2π</span>
+                                        <span class="sign-line-point filled" style="left: 80%;"></span>
                                     </div>
                                 </div>
 <div class="chart-analysis">
-                                    <p><strong>Critical points:</strong> x = 0 (endpoint; f' undefined at 0)</p>
-                                    <p><strong>Intervals of increase:</strong> <span data-katex="(0, \infty)"></span></p>
-                                    <p><strong>Intervals of decrease:</strong> None</p>
+                                    <p><strong>Critical points:</strong> <span data-katex="x = \frac{\pi}{2} + k\pi"></span></p>
+                                    <p><strong>Intervals of increase:</strong> <span data-katex="(-\frac{\pi}{2}, \frac{\pi}{2}) (and every 2\pi shift)"></span></p>
+                                    <p><strong>Intervals of decrease:</strong> <span data-katex="(\frac{\pi}{2}, \frac{3\pi}{2}) (and every 2\pi shift)"></span></p>
                                 </div>
                             </div>
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f''(x) = -\frac{1}{4x^{3/2}}"></div>
+                                <div class="deriv-title" data-katex="f''(x) = -\sin(x)"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
-                                        <span class="sign-line-sign below" style="left: 50%;">−</span>
+                                        <span class="sign-line-sign below" style="left: 35%;">−</span>
+                                        <span class="sign-line-sign above" style="left: 65%;">+</span>
+                                        <span class="sign-line-number" style="left: 35%;">π</span>
+                                        <span class="sign-line-point filled" style="left: 35%;"></span>
+                                        <span class="sign-line-number" style="left: 65%;">2π</span>
+                                        <span class="sign-line-point filled" style="left: 65%;"></span>
                                     </div>
                                 </div>
 <div class="chart-analysis">
-                                    <p><strong>Concave up:</strong> None</p>
-                                    <p><strong>Concave down:</strong> <span data-katex="(0, \infty)"></span></p>
-                                    <p><strong>Inflection points:</strong> None</p>
+                                    <p><strong>Concave up:</strong> <span data-katex="(\pi, 2\pi) (and every 2\pi shift)"></span></p>
+                                    <p><strong>Concave down:</strong> <span data-katex="(0, \pi) (and every 2\pi shift)"></span></p>
+                                    <p><strong>Inflection points:</strong> <span data-katex="(k\pi, 0)"></span></p>
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">The derivative is undefined at x = 0 because the domain has an endpoint there. On (0, ∞), f' > 0 so the function increases, while f'' < 0 shows it is concave down.</p>
+                        <p class="derivatives-blurb">Critical points occur where cos(x) = 0, alternating local maxima and minima at ±1. Inflection points at every kπ come from f'' changing sign. No corners, cusps, or discontinuities — smooth everywhere.</p>
                     </div>
                 </section>
 
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Integrals</h2></div>
                     <div class="section-body space-y-4 text-lg text-zinc-200 text-center">
-                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \sqrt{x} \, dx = \frac{2}{3}x^{3/2} + C"></div></div>
-                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_0^4 \sqrt{x} \, dx = \frac{16}{3}"></div></div>
+                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \sin(x) \, dx = -\cos(x) + C"></div></div>
+                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_0^{\pi} \sin(x) \, dx = 2"></div></div>
                     </div>
                 </section>
             </div>
@@ -187,9 +201,9 @@
     <script src="js/function-detail.js"></script>
     <script>
         FunctionDetail.init({
-            headerKatex: "f(x) = \\sqrt{x}",
-            graphs: [{"latex":"y = \\sqrt{x}","points":[{"id":"ep","latex":"(0, 0)","pointStyle":"POINT","color":"#f87171"}]},"y = \\frac{1}{2\\sqrt{x}}","y = -\\frac{1}{4x^{3/2}}"],
-            bounds: {"left":-1,"right":8,"bottom":-1,"top":4}
+            headerKatex: "f(x) = \\sin(x)",
+            graphs: ["y = \\sin(x)","y = \\cos(x)","y = -\\sin(x)"],
+            bounds: {"left":-7,"right":7,"bottom":-2,"top":2}
         });
     </script>
 </body>

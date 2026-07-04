@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>f(x) = \frac{x}{x} • Dr. W's Calculus Corner</title>
+    <title>f(x) = |x| • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -47,7 +47,7 @@
             <div class="w-full max-w-4xl mx-auto space-y-8">
                 <header class="text-center">
                     <a href="zoo.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Function Zoo</a>
-                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">1 WITH A HOLE AT ZERO</h1>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">THE ABSOLUTE VALUE FUNCTION</h1>
                     <div id="header-expr" class="text-3xl text-white"></div>
                 </header>
 
@@ -61,14 +61,14 @@
                         </div>
                         <div class="w-full md:w-1/2 flex-1">
                             <div class="fact-pair">
-                                <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="(-\infty, 0) \cup (0, \infty)"></div></div>
-                                <div><p class="fact-label">Range</p><div class="fact-value" data-katex="\{1\}"></div></div>
-                                <div><p class="fact-label">x-intercepts</p><div class="fact-value">None</div></div>
-                                <div><p class="fact-label">y-intercepts</p><div class="fact-value">None</div></div>
+                                <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
+                                <div><p class="fact-label">Range</p><div class="fact-value" data-katex="[0, \infty)"></div></div>
+                                <div><p class="fact-label">x-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
+                                <div><p class="fact-label">y-intercepts</p><div class="fact-value" data-katex="(0, 0)"></div></div>
                                 <div><p class="fact-label">Vertical Asymptotes</p><div class="fact-value">None</div></div>
-                                <div><p class="fact-label">Horizontal Asymptotes</p><div class="fact-value" data-katex="y = 1"></div></div>
-                                <div><p class="fact-label">Continuity</p><div class="fact-value">Removable discontinuity at x = 0</div></div>
-                                <div><p class="fact-label">Differentiability</p><div class="fact-value">Differentiable on its domain</div></div>
+                                <div><p class="fact-label">Horizontal Asymptotes</p><div class="fact-value">None</div></div>
+                                <div><p class="fact-label">Continuity</p><div class="fact-value">Continuous for all real numbers</div></div>
+                                <div><p class="fact-label">Differentiability</p><div class="fact-value">Not differentiable at x = 0 (corner/cusp)</div></div>
                                 <div class="symmetry-fact" style="grid-column: 1 / -1;"><p class="fact-label">SYMMETRY</p><div class="symmetry-value"><span class="symmetry-type">Even</span><div class="symmetry-formula" data-katex="f(-x) = f(x)"></div></div></div>
                             </div>
                         </div>
@@ -78,16 +78,16 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
                     <div class="section-body">
-                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">This function looks like the constant function 1, but its domain excludes zero. This is the simplest example of a removable discontinuity.</p>
+                        <p class="behavior-intro text-zinc-200 text-lg leading-relaxed mb-6">The absolute value function has a corner (cusp) at x = 0 where the one-sided derivatives exist but are not equal.</p>
                         <div class="behavior-grid text-sm text-zinc-300">
-                            <div><span class="meta-label">Discontinuities</span><br>Removable discontinuity at x = 0</div>
-                            <div><span class="meta-label">Non-differentiability</span><br>None on domain</div>
-                            <div><span class="meta-label">Absolute Maximum</span><br>1 for all x in the domain</div>
-                            <div><span class="meta-label">Absolute Minimum</span><br>1 for all x in the domain</div>
-                            <div><span class="meta-label">Relative Maximum</span><br>1 for all x in the domain</div>
-                            <div><span class="meta-label">Relative Minimum</span><br>1 for all x in the domain</div>
-                            <div><span class="meta-label">Increasing</span><br>None</div>
-                            <div><span class="meta-label">Decreasing</span><br>None</div>
+                            <div><span class="meta-label">Discontinuities</span><br>None</div>
+                            <div><span class="meta-label">Non-differentiability</span><br>Corner (cusp) at x = 0</div>
+                            <div><span class="meta-label">Absolute Maximum</span><br>None</div>
+                            <div><span class="meta-label">Absolute Minimum</span><br>f(0) = 0</div>
+                            <div><span class="meta-label">Relative Maximum</span><br>None</div>
+                            <div><span class="meta-label">Relative Minimum</span><br>f(0) = 0</div>
+                            <div><span class="meta-label">Increasing</span><br><span data-katex="(0, \infty)"></span></div>
+                            <div><span class="meta-label">Decreasing</span><br><span data-katex="(-\infty, 0)"></span></div>
                             <div><span class="meta-label">Concave Up</span><br>None</div>
                             <div><span class="meta-label">Concave Down</span><br>None</div>
                             <div style="grid-column: 1 / -1;"><span class="meta-label">Inflection Points</span><br>None</div>
@@ -101,22 +101,14 @@
                         <div>
                             <p class="limit-subheading">End Behaviours</p>
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
-                                <span data-katex="\lim_{x \to \infty} \frac{x}{x} = 1"></span>
-                                <span data-katex="\lim_{x \to -\infty} \frac{x}{x} = 1"></span>
+                                <span data-katex="\lim_{x \to \infty} |x| = \infty"></span>
+                                <span data-katex="\lim_{x \to -\infty} |x| = \infty"></span>
                             </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">Since the limit as x approaches ±∞ is 1, the function has a horizontal asymptote y = 1.</p>
-                        </div>                        <div>
-                            <p class="limit-subheading">Limit at a Point</p>
-                            <div class="space-y-2 text-center text-lg text-zinc-200">
-                                <div data-katex="\lim_{x \to 0^+} \frac{x}{x} = 1"></div>
-                                <div data-katex="\lim_{x \to 0^-} \frac{x}{x} = 1"></div>
-                                <div data-katex="f(0) \text{ is undefined (DNE)}"></div>
-                            </div>
-                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">The left- and right-hand limits both equal 1, but f(0) is undefined. This is a removable discontinuity at x = 0.</p>
+                            <p class="limit-blurb text-zinc-300 text-sm mt-3 text-center">Both end behaviours go to +∞; no horizontal asymptote.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
-                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \frac{x}{x} = 1 \text{ for } a \neq 0"></div>
-                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous on its domain, but has a removable discontinuity at x = 0.</p>
+                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} |x| = |a|"></div>
+                        </div>                        <p class="continuity-statement text-zinc-200 text-center text-base mt-4">This function is continuous at all real numbers.</p>
                     </div>
                 </section>
 
@@ -125,34 +117,37 @@
                     <div class="section-body">
                         <div class="graph-trio">
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f(x) = \frac{x}{x}"></div>
+                                <div class="deriv-title" data-katex="f(x) = |x|"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
-                                        <span class="sign-line-sign above" style="left: 50%;">+</span>
+                                        <span class="sign-line-sign below" style="left: 25%;">−</span>
+                                        <span class="sign-line-sign above" style="left: 75%;">+</span>
+                                        <span class="sign-line-number" style="left: 50%;">0</span>
+                                        <span class="sign-line-point filled" style="left: 50%;"></span>
                                     </div>
                                 </div>
-<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(-\infty, 0) \cup (0, \infty)"></span>. f(x) is not defined at x = <span data-katex="0"></span>.</p>
+<p class="chart-analysis">f(x) is above the x-axis on the interval <span data-katex="(-\infty, 0) \cup (0, \infty)"></span>. f(x) has intercepts <span data-katex="(0, 0)"></span>.</p>
                             </div>
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f'(x) = 0"></div>
+                                <div class="deriv-title" data-katex="f'(x) = \begin{cases} -1 & x < 0 \\ 1 & x > 0 \end{cases}"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
                                     <div class="sign-line-axis">
-                                        <span class="sign-line-sign above" style="left: 25%;">0</span>
-                                        <span class="sign-line-sign above" style="left: 75%;">0</span>
+                                        <span class="sign-line-sign below" style="left: 25%;">−</span>
+                                        <span class="sign-line-sign above" style="left: 75%;">+</span>
                                         <span class="sign-line-number" style="left: 50%;">0</span>
                                         <span class="sign-line-point open" style="left: 50%;"></span>
                                     </div>
                                 </div>
 <div class="chart-analysis">
-                                    <p><strong>Critical points:</strong> All real numbers except 0</p>
-                                    <p><strong>Intervals of increase:</strong> None</p>
-                                    <p><strong>Intervals of decrease:</strong> None</p>
+                                    <p><strong>Critical points:</strong> <span data-katex="x = 0 (corner, local min)"></span></p>
+                                    <p><strong>Intervals of increase:</strong> <span data-katex="(0, \infty)"></span></p>
+                                    <p><strong>Intervals of decrease:</strong> <span data-katex="(-\infty, 0)"></span></p>
                                 </div>
                             </div>
                             <div class="deriv-col">
@@ -175,15 +170,15 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="derivatives-blurb">On its domain, f'(x) = 0 everywhere, so every point except x = 0 is a critical point on a flat graph. The hole at x = 0 is a removable discontinuity, not a point of non-differentiability on the domain.</p>
+                        <p class="derivatives-blurb">At x = 0 the left derivative is −1 and the right derivative is +1, so f is not differentiable — a corner-type cusp. The critical point at the origin is a local and absolute minimum.</p>
                     </div>
                 </section>
 
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Integrals</h2></div>
                     <div class="section-body space-y-4 text-lg text-zinc-200 text-center">
-                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \frac{x}{x} \, dx = x + C \text{ on each interval of the domain}"></div></div>
-                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_1^2 \frac{x}{x} \, dx = 1"></div></div>
+                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int |x| \, dx = \frac{x|x|}{2} + C"></div></div>
+                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_{-1}^1 |x| \, dx = 1"></div></div>
                     </div>
                 </section>
             </div>
@@ -194,8 +189,8 @@
     <script src="js/function-detail.js"></script>
     <script>
         FunctionDetail.init({
-            headerKatex: "f(x) = \\frac{x}{x}",
-            graphs: [{"latex":"y = \\frac{x}{x}","points":[{"id":"hole","latex":"(0, 1)","pointStyle":"OPEN","color":"#f87171"}]},"y = 0","y = 0"],
+            headerKatex: "f(x) = |x|",
+            graphs: ["y = \\sqrt{x^2}","y = -1 \\{x < 0\\} + 1 \\{x > 0\\}","y = 0"],
             bounds: {"left":-5,"right":5,"bottom":-5,"top":5}
         });
     </script>

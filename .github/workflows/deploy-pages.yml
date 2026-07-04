@@ -1,8 +1,5 @@
-# Updated July 2026 to fix Node.js 20 deprecation on GitHub-hosted runners.
-# GitHub Actions now runs Node 24; this workflow pins actions to releases that
-# natively support Node 24 (checkout v7, configure-pages v6, deploy-pages v5,
-# upload-pages-artifact v5 — which bundles upload-artifact v7).
-# Deploys the static site from the docs/ folder on pushes to main.
+# Deploy the static site from docs/ on pushes to main.
+# Based on GitHub's official Pages workflow template (build + deploy jobs).
 
 name: Deploy GitHub Pages
 
@@ -21,23 +18,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v6
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
