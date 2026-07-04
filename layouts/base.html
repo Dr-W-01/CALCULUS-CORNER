@@ -22,41 +22,66 @@
             background-color: #4a2020;
             border-color: #7f1d1d;
         }
-        .section-heading {
-            color: #f87171;
-            border-bottom: 1px solid #3f1a1a;
-            padding-bottom: 0.5rem;
-            text-align: center;
+        .section-header {
+            background-color: #1a0d0d;
+            margin: -1.5rem -1.5rem 0;
+            padding: 0.875rem 1.5rem;
+            border-bottom: 2px solid #5c1818;
+            border-radius: 1rem 1rem 0 0;
         }
+        .section-heading {
+            color: #991b1b;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+        }
+        .section-body { padding-top: 1.25rem; }
         .fact-label, .field-label, .meta-label {
             color: #d4a853;
-            font-size: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
-        .fact-value { color: #f4f4f5; font-size: 1rem; margin-top: 0.25rem; }
-        .graph-wrap-sm { aspect-ratio: 1 / 1; width: 100%; max-height: 10rem; }
-        .graph-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        @media (max-width: 768px) { .graph-trio { grid-template-columns: 1fr; } }
-        .sign-line { position: relative; margin: 2rem 0 1.5rem; padding: 0 0.5rem; }
-        .sign-line-axis { height: 2px; background: #d4a853; position: relative; }
-        .sign-line-tick { position: absolute; top: -5px; width: 2px; height: 12px; background: #d4a853; transform: translateX(-50%); }
+        .fact-value { color: #f4f4f5; font-size: 1rem; margin-top: 0.35rem; }
+        .fact-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+        .fact-pair > div { text-align: center; }
+        .graph-facts-row { display: flex; flex-direction: column; gap: 1.5rem; }
+        @media (min-width: 768px) { .graph-facts-row { flex-direction: row; align-items: flex-start; } }
+        .graph-wrap-sm { aspect-ratio: 1 / 1; width: 100%; }
+        .graph-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        @media (max-width: 900px) { .graph-trio { grid-template-columns: 1fr; } }
+        .deriv-col { display: flex; flex-direction: column; gap: 0.75rem; }
+        .deriv-title { color: #f4f4f5; font-size: 1.05rem; text-align: center; }
+        .sign-line-wrap { position: relative; margin: 1.5rem 0.5rem 1rem; padding: 0 1.25rem; }
+        .sign-line-axis {
+            height: 2px; background: #71717a; position: relative;
+        }
+        .sign-line-axis::before, .sign-line-axis::after {
+            content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+            border: 5px solid transparent;
+        }
+        .sign-line-axis::before { left: -14px; border-right-color: #71717a; }
+        .sign-line-axis::after { right: -14px; border-left-color: #71717a; }
         .sign-line-point {
             position: absolute; top: 50%; transform: translate(-50%, -50%);
             width: 12px; height: 12px; border-radius: 50%;
-            border: 2px solid #d4a853; background: #2a1515;
+            border: 2px solid #e5e5e5; background: #2a1515;
         }
-        .sign-line-point.filled { background: #d4a853; }
+        .sign-line-point.filled { background: #e5e5e5; }
         .sign-line-sign {
             position: absolute; transform: translateX(-50%);
-            font-weight: 700; font-size: 1.125rem; color: #f4f4f5;
+            font-weight: 700; font-size: 1.125rem; color: #e5e5e5;
         }
-        .sign-line-sign.above { top: -1.75rem; }
-        .sign-line-sign.below { bottom: -1.75rem; top: auto; }
-        .sign-line-label {
-            position: absolute; top: 1rem; transform: translateX(-50%);
-            font-size: 0.75rem; color: #d4a853;
+        .sign-line-sign.above { top: -1.6rem; }
+        .sign-line-sign.below { bottom: -1.6rem; top: auto; }
+        .sign-line-number {
+            position: absolute; bottom: 100%; transform: translateX(-50%);
+            margin-bottom: 6px; font-size: 0.8rem; color: #e5e5e5; font-weight: 600;
         }
+        .chart-analysis { font-size: 0.875rem; color: #d4d4d8; line-height: 1.6; text-align: left; }
+        .behavior-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; }
+        @media (max-width: 640px) { .behavior-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
