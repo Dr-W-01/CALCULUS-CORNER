@@ -65,7 +65,7 @@
   },
   {
     "id": "x-over-x",
-    "name": "x/x with Hole",
+    "name": "1 with a hole at zero",
     "latex": "f(x) = \\frac{x}{x}",
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
@@ -75,7 +75,7 @@
   },
   {
     "id": "x2-over-x",
-    "name": "x²/x with Hole",
+    "name": "x with a hole at zero",
     "latex": "f(x) = \\frac{x^2}{x}",
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
@@ -85,7 +85,7 @@
   },
   {
     "id": "x3-over-x",
-    "name": "x³/x with Hole",
+    "name": "x² with a hole at zero",
     "latex": "f(x) = \\frac{x^3}{x}",
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
@@ -118,7 +118,7 @@
     "category": "Absolute Value",
     "domain": "(-\\infty, \\infty)",
     "description": "V-shaped graph. Not differentiable at x = 0.",
-    "graph_expression": "y = |x|"
+    "graph_expression": "y = \\sqrt{x^2}"
   },
   {
     "id": "sign-function",
@@ -132,8 +132,8 @@
       { "id": "graph-negative", "latex": "y = -1 \\{x < 0\\}", "color": "#b91c1c" }
     ],
     "points": [
-      { "id": "point-sign-0", "latex": "(0, -1)", "pointStyle": "OPEN", "color": "#f87171" },
-      { "id": "point-sign-1", "latex": "(0, 1)", "pointStyle": "OPEN", "color": "#f87171" }
+      { "id": "point-sign-0", "latex": "(0, 1)", "pointStyle": "OPEN", "color": "#f87171" },
+      { "id": "point-sign-1", "latex": "(0, -1)", "pointStyle": "OPEN", "color": "#f87171" }
     ]
   },
   {
