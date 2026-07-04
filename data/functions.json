@@ -1,0 +1,66 @@
+[
+  {
+    "id": "const-1",
+    "name": "Constant Function",
+    "latex": "f(x) = 1",
+    "category": "Constant",
+    "domain": "(-\\infty, \\infty)",
+    "range": "{1}",
+    "description": "The constant function outputs the value 1 for every real input. It appears as a horizontal line when graphed.",
+    "properties": {
+      "continuous": true,
+      "differentiable": true,
+      "derivative": "0",
+      "second_derivative": "0"
+    },
+    "graph_expression": "y = 1"
+  },
+  {
+    "id": "linear-x",
+    "name": "Linear Function",
+    "latex": "f(x) = x",
+    "category": "Linear",
+    "domain": "(-\\infty, \\infty)",
+    "range": "(-\\infty, \\infty)",
+    "description": "The identity function. It passes through the origin with a slope of 1.",
+    "properties": {
+      "continuous": true,
+      "differentiable": true,
+      "derivative": "1",
+      "second_derivative": "0"
+    },
+    "graph_expression": "y = x"
+  },
+  {
+    "id": "quadratic-x2",
+    "name": "Parabola",
+    "latex": "f(x) = x^2",
+    "category": "Quadratic",
+    "domain": "(-\\infty, \\infty)",
+    "range": "[0, \\infty)",
+    "description": "A quadratic function that opens upwards. It has a minimum at the origin.",
+    "properties": {
+      "continuous": true,
+      "differentiable": true,
+      "derivative": "2x",
+      "second_derivative": "2"
+    },
+    "graph_expression": "y = x^2"
+  },
+  {
+    "id": "cubic-x3",
+    "name": "Cubic Function",
+    "latex": "f(x) = x^3",
+    "category": "Cubic",
+    "domain": "(-\\infty, \\infty)",
+    "range": "(-\\infty, \\infty)",
+    "description": "An odd function that is strictly increasing. It has an inflection point at the origin.",
+    "properties": {
+      "continuous": true,
+      "differentiable": true,
+      "derivative": "3x^2",
+      "second_derivative": "6x"
+    },
+    "graph_expression": "y = x^3"
+  }
+]
