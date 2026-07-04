@@ -42,7 +42,8 @@
     "category": "Root",
     "domain": "[0, \\infty)",
     "description": "Defined only for non-negative x. Starts at the origin.",
-    "graph_expression": "y = \\sqrt{x}"
+    "graph_expression": "y = \\sqrt{x}",
+    "point": { "latex": "(0, 0)", "pointStyle": "POINT", "color": "#f87171" }
   },
   {
     "id": "cbrt-x",
@@ -69,7 +70,8 @@
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Same as the constant function 1, except undefined at x = 0 (hole).",
-    "graph_expression": "y = x/x"
+    "graph_expression": "y = \\frac{x}{x}",
+    "point": { "latex": "(0, 1)", "pointStyle": "OPEN", "color": "#f87171" }
   },
   {
     "id": "x2-over-x",
@@ -78,7 +80,8 @@
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Simplifies to x except for a hole at x = 0.",
-    "graph_expression": "y = x^2/x"
+    "graph_expression": "y = \\frac{x^2}{x}",
+    "point": { "latex": "(0, 0)", "pointStyle": "OPEN", "color": "#f87171" }
   },
   {
     "id": "x3-over-x",
@@ -87,7 +90,8 @@
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Simplifies to x² except for a hole at x = 0.",
-    "graph_expression": "y = x^3/x"
+    "graph_expression": "y = \\frac{x^3}{x}",
+    "point": { "latex": "(0, 0)", "pointStyle": "OPEN", "color": "#f87171" }
   },
   {
     "id": "reciprocal",
@@ -96,7 +100,7 @@
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Hyperbola with vertical and horizontal asymptotes.",
-    "graph_expression": "y = 1/x"
+    "graph_expression": "y = \\frac{1}{x}"
   },
   {
     "id": "reciprocal-squared",
@@ -105,7 +109,7 @@
     "category": "Rational",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Even function version of the reciprocal with a vertical asymptote at x = 0.",
-    "graph_expression": "y = 1/x^2"
+    "graph_expression": "y = \\frac{1}{x^2}"
   },
   {
     "id": "absolute-value",
@@ -123,7 +127,14 @@
     "category": "Piecewise",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Returns 1 for positive x and -1 for negative x. Undefined at zero.",
-    "graph_expression": "y = |x|/x"
+    "expressions": [
+      { "id": "graph-positive", "latex": "y = 1 \\{x > 0\\}", "color": "#b91c1c" },
+      { "id": "graph-negative", "latex": "y = -1 \\{x < 0\\}", "color": "#b91c1c" }
+    ],
+    "points": [
+      { "id": "point-sign-0", "latex": "(0, -1)", "pointStyle": "OPEN", "color": "#f87171" },
+      { "id": "point-sign-1", "latex": "(0, 1)", "pointStyle": "OPEN", "color": "#f87171" }
+    ]
   },
   {
     "id": "sqrt-x-squared",
@@ -141,7 +152,8 @@
     "category": "Root",
     "domain": "[0, \\infty)",
     "description": "Linear function restricted to non-negative domain.",
-    "graph_expression": "y = (\\sqrt{x})^2"
+    "graph_expression": "y = (\\sqrt{x})^2",
+    "point": { "latex": "(0, 0)", "pointStyle": "POINT", "color": "#f87171" }
   },
   {
     "id": "semicircle",
@@ -150,7 +162,11 @@
     "category": "Root",
     "domain": "[-1, 1]",
     "description": "Upper half of the unit circle.",
-    "graph_expression": "y = \\sqrt{1 - x^2}"
+    "graph_expression": "y = \\sqrt{1 - x^2}",
+    "points": [
+      { "id": "point-semi-0", "latex": "(-1, 0)", "pointStyle": "POINT", "color": "#f87171" },
+      { "id": "point-semi-1", "latex": "(1, 0)", "pointStyle": "POINT", "color": "#f87171" }
+    ]
   },
   {
     "id": "sine",
@@ -168,7 +184,8 @@
     "category": "Special",
     "domain": "\\{0\\}",
     "description": "Only defined at x = 0 where f(0) = 0. A single point function.",
-    "graph_expression": "y = \\sqrt{x} * \\sqrt{-x}"
+    "graph_expression": "y = \\sqrt{x} \\cdot \\sqrt{-x}",
+    "point": { "latex": "(0, 0)", "pointStyle": "POINT", "color": "#f87171" }
   },
   {
     "id": "empty-function",
@@ -177,6 +194,6 @@
     "category": "Special",
     "domain": "\\emptyset",
     "description": "A function with an empty domain. Not defined anywhere.",
-    "graph_expression": "y = \\sqrt{x} / \\sqrt{-x}"
+    "graph_expression": "y = \\frac{\\sqrt{x}}{\\sqrt{-x}}"
   }
 ]

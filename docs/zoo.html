@@ -77,11 +77,14 @@
     </div>
 
     <script>
-        function renderKatex(el, tex, displayMode = false) {
-            katex.render(tex, el, { throwOnError: false, displayMode });
+        const GRAPH_COLOR = '#b91c1c';
+        const POINT_COLOR = '#f87171';
+
+        function renderKatex(el, tex) {
+            katex.render(tex, el, { throwOnError: false, displayMode: false });
         }
 
-        function initDesmosGraph(fn) {
+        function initDesmosGraph(fn, index) {
             const elt = document.getElementById(`calculator-${fn.id}`);
             if (!elt || typeof Desmos === 'undefined') return;
 
@@ -98,11 +101,41 @@
                 showYAxis: true
             });
 
-            calculator.setExpression({
-                id: `graph-${fn.id}`,
-                latex: fn.graph_expression,
-                color: '#b91c1c'
-            });
+            if (fn.expressions) {
+                fn.expressions.forEach(expr => {
+                    calculator.setExpression({
+                        id: expr.id,
+                        latex: expr.latex,
+                        color: expr.color || GRAPH_COLOR
+                    });
+                });
+            } else if (fn.graph_expression) {
+                calculator.setExpression({
+                    id: `graph-${fn.id}`,
+                    latex: fn.graph_expression,
+                    color: GRAPH_COLOR
+                });
+            }
+
+            if (fn.point) {
+                calculator.setExpression({
+                    id: `point-${fn.id}`,
+                    latex: fn.point.latex,
+                    pointStyle: fn.point.pointStyle,
+                    color: fn.point.color || POINT_COLOR
+                });
+            }
+
+            if (fn.points) {
+                fn.points.forEach((point, pointIndex) => {
+                    calculator.setExpression({
+                        id: point.id || `point-${fn.id}-${pointIndex}`,
+                        latex: point.latex,
+                        pointStyle: point.pointStyle,
+                        color: point.color || POINT_COLOR
+                    });
+                });
+            }
 
             calculator.setMathBounds({
                 left: -5,
@@ -118,19 +151,19 @@
             card.className = 'zoo-card rounded-2xl p-5 block';
 
             card.innerHTML = `
-                <div class="flex items-center justify-between gap-4 mb-3">
-                    <h2 class="text-xl font-semibold text-[#b91c1c] leading-snug shrink-0">${fn.name}</h2>
-                    <div class="text-right min-w-0">
-                        <div class="katex-domain text-lg text-zinc-100"></div>
-                    </div>
+                <h2 class="text-lg font-bold tracking-wide text-[#b91c1c] mb-2 card-title"></h2>
+                <div class="flex items-center justify-between gap-4 mb-4">
+                    <div class="katex-expr text-xl text-white min-w-0"></div>
+                    <div class="katex-domain text-lg text-zinc-200 text-right shrink-0"></div>
                 </div>
-                <div class="katex-expr text-xl text-white mb-4"></div>
                 <div class="graph-wrap overflow-hidden rounded-xl border border-zinc-800 bg-[#0a0a0a] mb-4">
                     <div id="calculator-${fn.id}" class="desmos-graph"></div>
                 </div>
-                <p class="text-zinc-400 text-base leading-relaxed">${fn.description}</p>
+                <p class="text-zinc-300 text-lg leading-relaxed card-description"></p>
             `;
 
+            card.querySelector('.card-title').textContent = fn.name.toUpperCase();
+            card.querySelector('.card-description').textContent = fn.description;
             renderKatex(card.querySelector('.katex-expr'), fn.latex);
             renderKatex(card.querySelector('.katex-domain'), `\\textbf{Domain: } ${fn.domain}`);
 
@@ -146,10 +179,10 @@
                 const functions = await response.json();
 
                 grid.innerHTML = '';
-                functions.forEach(fn => {
+                functions.forEach((fn, index) => {
                     const card = createFunctionCard(fn);
                     grid.appendChild(card);
-                    initDesmosGraph(fn);
+                    initDesmosGraph(fn, index);
                 });
             } catch (err) {
                 grid.innerHTML = '<p class="text-red-400 text-base col-span-full">Could not load function data from data/functions-v2.json.</p>';
