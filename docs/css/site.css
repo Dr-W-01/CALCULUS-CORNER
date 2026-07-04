@@ -147,12 +147,36 @@ body.sidebar-collapsed .sidebar-expand-btn {
     margin: 0;
 }
 
-/* Zoo / dashboard cards */
+/* Zoo page section headers (not content boxes) */
+.zoo-section-header {
+    color: var(--cc-section-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--cc-header-border);
+}
+
+.zoo-section-subtitle {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 0 0 1.25rem;
+}
+
+.zoo-page-section {
+    margin-bottom: 2.5rem;
+}
+
+/* Zoo function cards — single box, no nested headers */
 .zoo-card,
 .dashboard-card {
     background-color: var(--cc-body-bg);
     border: 1px solid var(--cc-content-border);
-    overflow: hidden;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: block;
     transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -163,15 +187,58 @@ body.sidebar-collapsed .sidebar-expand-btn {
     transform: translateY(-2px);
 }
 
-.zoo-card .zoo-card-body {
-    padding: 1.25rem;
+.zoo-card-title {
+    color: #c45050;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin: 0 0 0.5rem;
 }
 
-/* Fully responsive function grid — auto columns, no hardcoded count */
+.zoo-card .katex-expr {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.zoo-card .katex-domain {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.zoo-card .card-description {
+    color: #d4d4d8;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0.75rem 0 0;
+}
+
+/* Small square Desmos graph in zoo cards */
+.zoo-graph-wrap {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 9rem;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid var(--cc-content-border);
+    background: #261616;
+    pointer-events: none;
+}
+
+/* Responsive function grid — columns adjust to viewport/zoom */
 .zoo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+    gap: 1rem;
+}
+
+.zoo-grid-status {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #71717a;
+    font-size: 0.95rem;
 }
 
 /* Labels & facts */
@@ -224,6 +291,11 @@ body.sidebar-collapsed .sidebar-expand-btn {
     aspect-ratio: 1 / 1;
     width: 100%;
     pointer-events: none;
+}
+
+.zoo-graph-wrap .desmos-graph {
+    width: 100%;
+    height: 100%;
 }
 
 .desmos-graph {

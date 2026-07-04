@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-    <!-- Top Title Bar -->
     <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
         <div class="flex items-center gap-x-3">
             <div class="w-9 h-9 bg-[#b91c1c] rounded-2xl flex items-center justify-center">
@@ -43,8 +42,10 @@
         </aside>
 
         <main class="main-content flex-1 p-8">
-            <div class="w-full max-w-7xl mx-auto space-y-8">
-                <header class="page-hero content-card">
+            <div class="w-full max-w-7xl mx-auto">
+
+                <!-- Page title (only two-color box on this page) -->
+                <header class="page-hero content-card mb-10">
                     <div class="section-header">
                         <h1 class="section-heading text-2xl">Function Zoo</h1>
                     </div>
@@ -53,29 +54,24 @@
                     </div>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header">
-                        <h2 class="section-heading text-xl">Basic Zoo</h2>
-                    </div>
-                    <div class="section-body">
-                        <p class="text-zinc-400 text-base mb-6 text-center">Fundamental functions every calculus student should know.</p>
-                        <div id="basic-grid" class="zoo-grid">
-                            <p class="text-zinc-500 text-base col-span-full">Loading functions…</p>
-                        </div>
+                <!-- Basic Zoo: header + grid only (no wrapper box) -->
+                <section class="zoo-page-section">
+                    <h2 class="zoo-section-header">Basic Zoo</h2>
+                    <p class="zoo-section-subtitle">Fundamental functions every calculus student should know.</p>
+                    <div id="basic-grid" class="zoo-grid">
+                        <p class="zoo-grid-status">Loading functions…</p>
                     </div>
                 </section>
 
-                <section class="content-card">
-                    <div class="section-header">
-                        <h2 class="section-heading text-xl">Exotic Zoo</h2>
-                    </div>
-                    <div class="section-body">
-                        <p class="text-zinc-400 text-base mb-6 text-center">Unusual functions with striking graphs and exotic features.</p>
-                        <div id="exotic-grid" class="zoo-grid">
-                            <p class="text-zinc-500 text-base col-span-full">Loading functions…</p>
-                        </div>
+                <!-- Exotic Zoo: header + grid only (no wrapper box) -->
+                <section class="zoo-page-section">
+                    <h2 class="zoo-section-header">Exotic Zoo</h2>
+                    <p class="zoo-section-subtitle">Unusual functions with striking graphs and exotic features.</p>
+                    <div id="exotic-grid" class="zoo-grid">
+                        <p class="zoo-grid-status">Loading functions…</p>
                     </div>
                 </section>
+
             </div>
         </main>
     </div>
@@ -84,6 +80,7 @@
     <script>
         const GRAPH_COLOR = '#b91c1c';
         const POINT_COLOR = '#f87171';
+        const BASIC_ZOO_COUNT = 20;
 
         function renderKatex(el, tex) {
             katex.render(tex, el, { throwOnError: false, displayMode: false });
@@ -157,21 +154,17 @@
         function createFunctionCard(fn) {
             const card = document.createElement('a');
             card.href = detailPageUrl(fn.id);
-            card.className = 'zoo-card rounded-2xl block';
+            card.className = 'zoo-card';
 
             card.innerHTML = `
-                <div class="zoo-card-header">
-                    <h2 class="section-heading text-lg card-title"></h2>
+                <h3 class="zoo-card-title card-title"></h3>
+                <div class="katex-expr text-white text-center"></div>
+                <p class="field-label text-center mb-1">Domain</p>
+                <div class="katex-domain text-zinc-200 text-center"></div>
+                <div class="zoo-graph-wrap">
+                    <div id="calculator-${fn.id}" class="desmos-graph"></div>
                 </div>
-                <div class="zoo-card-body">
-                    <div class="katex-expr text-xl text-white mb-4"></div>
-                    <div class="graph-wrap overflow-hidden rounded-xl border border-[#523030] bg-[#523030] mb-3">
-                        <div id="calculator-${fn.id}" class="desmos-graph"></div>
-                    </div>
-                    <p class="field-label text-center mb-1">Domain</p>
-                    <div class="katex-domain text-lg text-zinc-200 mb-4"></div>
-                    <p class="text-zinc-200 text-xl leading-relaxed text-center card-description"></p>
-                </div>
+                <p class="card-description"></p>
             `;
 
             card.querySelector('.card-title').textContent = fn.name.toUpperCase();
@@ -204,13 +197,13 @@
 
                 if (!basicRes.ok || !exoticRes.ok) throw new Error('Failed to load functions');
 
-                const basicFunctions = await basicRes.json();
+                const basicFunctions = (await basicRes.json()).slice(0, BASIC_ZOO_COUNT);
                 const exoticFunctions = await exoticRes.json();
 
                 renderSection('basic-grid', basicFunctions);
                 renderSection('exotic-grid', exoticFunctions);
             } catch (err) {
-                const errorMsg = '<p class="text-red-400 text-base col-span-full">Could not load function data.</p>';
+                const errorMsg = '<p class="zoo-grid-status text-red-400">Could not load function data.</p>';
                 basicGrid.innerHTML = errorMsg;
                 exoticGrid.innerHTML = errorMsg;
             }
