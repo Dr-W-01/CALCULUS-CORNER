@@ -1,0 +1,42 @@
+[
+  {
+    "id": "blancmange",
+    "name": "Blancmange Function",
+    "latex": "f(x)=\\sum_{n=0}^{\\infty}\\frac{1-\\cos(2^{n} x)}{2^{n}}",
+    "category": "Exotic",
+    "domain": "(-\\infty, \\infty)",
+    "description": "A continuous everywhere, differentiable almost nowhere function with a fractal-like graph.",
+    "graph_expression": "y = \\sum_{n=0}^{100}\\frac{1-\\cos(2^{n} x)}{2^{n}}"
+  },
+  {
+    "id": "topologist-sine",
+    "name": "Topologist's Sine Curve",
+    "latex": "f(x) = \\sin\\left(\\frac{1}{x}\\right)",
+    "category": "Exotic",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "Oscillates increasingly rapidly as x approaches zero, creating a dramatic singularity.",
+    "graph_expression": "y = \\sin(1/x)"
+  },
+  {
+    "id": "shrinking-topologist-sine",
+    "name": "Shrinking Topologist's Sine Curve",
+    "latex": "f(x) = x\\sin\\left(\\frac{1}{x}\\right)",
+    "category": "Exotic",
+    "domain": "(-\\infty, 0) \\cup (0, \\infty)",
+    "description": "The Topologist's Sine Curve damped by x, approaching zero as x approaches zero.",
+    "graph_expression": "y = x\\sin(1/x)"
+  },
+  {
+    "id": "heartbeat",
+    "name": "Heartbeat Function",
+    "latex": "f(x)=\\sqrt{|x|}+\\sin(\\pi^{3}x)\\sqrt{\\frac{e^{2}-x^{2}}{2}}",
+    "category": "Exotic",
+    "domain": "[-e, e]",
+    "description": "A striking combination of roots and oscillation that resembles a heartbeat on the graph.",
+    "graph_expression": "y = \\sqrt{\\sqrt{x^2}} + \\sin(\\pi^3 x) \\sqrt{(e^2 - x^2)/2}",
+    "points": [
+      { "id": "point-heart-0", "latex": "(-e, \\sqrt{e})", "pointStyle": "POINT", "color": "#f87171" },
+      { "id": "point-heart-1", "latex": "(e, \\sqrt{e})", "pointStyle": "POINT", "color": "#f87171" }
+    ]
+  }
+]
