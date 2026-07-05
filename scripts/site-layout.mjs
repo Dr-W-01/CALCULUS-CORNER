@@ -4,10 +4,10 @@ import { fileURLToPath } from 'url';
 
 const BASE_PATH = join(dirname(fileURLToPath(import.meta.url)), '..', 'layouts', 'base.html');
 
-/** Function Zoo paw print — shared across sidebar nav and home dashboard card. */
+/** Function Zoo bird — shared across sidebar nav and home dashboard card. */
 export function zooIconSvg({ size = 18, strokeWidth = 2, className = '' } = {}) {
   const classAttr = className ? ` class="${className}"` : '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round"${classAttr}><circle cx="11" cy="4" r="2"/><circle cx="4" cy="9" r="2"/><circle cx="18" cy="9" r="2"/><circle cx="7" cy="15" r="2"/><circle cx="15" cy="15" r="2"/><path d="M12 22v-4"/></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round"${classAttr}><path d="M16 7h.01"/><path d="M3 7h3l3-4h4l2 3h3"/><path d="M4 7v9"/><path d="M20 7v9"/><path d="M7 16v5"/><path d="M17 16v5"/></svg>`;
 }
 
 export const ZOO_ICON_DASHBOARD = zooIconSvg({ className: 'w-5 h-5 text-red-400' });
