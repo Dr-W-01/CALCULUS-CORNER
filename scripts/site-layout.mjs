@@ -28,6 +28,24 @@ export const NAV_LINKS = [
   { href: 'profile.html', label: 'My Profile', icon: NAV_ICONS.profile },
 ];
 
+/** Hub page main titles — icon key matches NAV_ICONS, synced into page-hero h1 headings. */
+export const PAGE_TITLES = {
+  'index.html': { iconKey: 'home', title: 'Welcome back', sizeClass: 'text-2xl' },
+  'courses.html': { iconKey: 'courses', title: 'Courses', sizeClass: 'text-xl' },
+  'zoo.html': { iconKey: 'zoo', title: 'Function Zoo', sizeClass: 'text-2xl' },
+  'visualizers.html': { iconKey: 'visualizers', title: 'Visualizers', sizeClass: 'text-2xl' },
+  'profile.html': { iconKey: 'profile', title: 'My Profile', sizeClass: 'text-xl' },
+};
+
+/** Main page title with the same icon used in the sidebar nav. */
+export function renderPageTitle(iconKey, titleText, sizeClass = 'text-2xl') {
+  const icon = NAV_ICONS[iconKey];
+  if (!icon) {
+    throw new Error(`Unknown nav icon key: ${iconKey}`);
+  }
+  return `<h1 class="section-heading page-title-heading ${sizeClass}"><span class="page-title-icon nav-icon" aria-hidden="true">${icon}</span>${titleText}</h1>`;
+}
+
 /** Which nav href should be active for a given docs HTML filename. */
 export function activeNavHref(filename) {
   if (filename === 'index.html') return 'index.html';

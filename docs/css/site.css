@@ -203,6 +203,18 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     margin: 0;
 }
 
+.page-title-heading {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.page-title-heading .page-title-icon {
+    color: #f87171;
+}
+
 /* Zoo page section headers (not content boxes) */
 .zoo-section-header {
     color: var(--cc-section-heading);
