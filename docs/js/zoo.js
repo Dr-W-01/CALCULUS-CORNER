@@ -140,30 +140,37 @@
         }
     }
 
-    async function loadZoo() {
-        try {
-            const [basicRes, intermediateRes, exoticRes] = await Promise.all([
-                fetch('data/functions-v2.json'),
-                fetch('data/functions-intermediate.json'),
-                fetch('data/functions-exotic.json')
-            ]);
+    const ZOO_SECTIONS = [
+        { gridId: 'basic-grid', dataPath: 'data/functions-v2.json', transform: (items) => items.slice(0, BASIC_ZOO_COUNT) },
+        { gridId: 'exotic-grid', dataPath: 'data/functions-exotic.json' },
+        { gridId: 'intermediate-grid', dataPath: 'data/functions-intermediate.json' },
+        { gridId: 'trigonometric-grid', dataPath: 'data/functions-trigonometric.json' },
+        { gridId: 'inverse-trig-grid', dataPath: 'data/functions-inverse-trig.json' },
+        { gridId: 'hyperbolic-grid', dataPath: 'data/functions-hyperbolic.json' },
+    ];
 
-            if (!basicRes.ok || !intermediateRes.ok || !exoticRes.ok) {
+    async function loadZoo() {
+        const msg = 'Could not load function data.';
+
+        try {
+            const responses = await Promise.all(
+                ZOO_SECTIONS.map((section) => fetch(section.dataPath))
+            );
+
+            if (responses.some((res) => !res.ok)) {
                 throw new Error('Failed to load function data');
             }
 
-            const basicFunctions = (await basicRes.json()).slice(0, BASIC_ZOO_COUNT);
-            const intermediateFunctions = await intermediateRes.json();
-            const exoticFunctions = await exoticRes.json();
+            const datasets = await Promise.all(responses.map((res) => res.json()));
 
-            renderSection('basic-grid', basicFunctions);
-            renderSection('exotic-grid', exoticFunctions);
-            renderSection('intermediate-grid', intermediateFunctions);
+            ZOO_SECTIONS.forEach((section, index) => {
+                const functions = section.transform
+                    ? section.transform(datasets[index])
+                    : datasets[index];
+                renderSection(section.gridId, functions);
+            });
         } catch (err) {
-            const msg = 'Could not load function data.';
-            showError('basic-grid', msg);
-            showError('intermediate-grid', msg);
-            showError('exotic-grid', msg);
+            ZOO_SECTIONS.forEach((section) => showError(section.gridId, msg));
             console.error('Zoo load error:', err);
         }
     }

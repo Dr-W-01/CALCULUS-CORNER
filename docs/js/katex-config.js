@@ -7,6 +7,8 @@ window.CCKatex = (function () {
         '\\csch': '\\operatorname{csch}',
         '\\arcsech': '\\operatorname{arcsech}',
         '\\arccsch': '\\operatorname{arccsch}',
+        '\\arccot': '\\operatorname{arccot}',
+        '\\arccsc': '\\operatorname{arccsc}',
     };
 
     function options(overrides = {}) {

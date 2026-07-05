@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sine",
+    "name": "Sine Function",
+    "latex": "f(x) = \\sin(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Odd periodic function with period 2π. Fundamental in trigonometry and waves.",
+    "graph_expression": "y = \\sin(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "cos-x",
+    "name": "Cosine Function",
+    "latex": "f(x) = \\cos(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Even periodic function with period 2π. The companion to sine in trigonometry and waves.",
+    "graph_expression": "y = \\cos(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "tan-x",
+    "name": "Tangent Function",
+    "latex": "f(x) = \\tan(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{\\frac{\\pi}{2} + k\\pi\\}",
+    "description": "Odd periodic function with period π and vertical asymptotes where cos(x) = 0.",
+    "graph_expression": "y = \\tan(x)",
+    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "cot-x",
+    "name": "Cotangent Function",
+    "latex": "f(x) = \\cot(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{k\\pi\\}",
+    "description": "Reciprocal of tangent with period π and vertical asymptotes where sin(x) = 0.",
+    "graph_expression": "y = \\cot(x)",
+    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "sec-x",
+    "name": "Secant Function",
+    "latex": "f(x) = \\sec(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{\\frac{\\pi}{2} + k\\pi\\}",
+    "description": "Reciprocal of cosine with period 2π and U-shaped branches between asymptotes.",
+    "graph_expression": "y = \\sec(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -4, "top": 4 }
+  },
+  {
+    "id": "csc-x",
+    "name": "Cosecant Function",
+    "latex": "f(x) = \\csc(x)",
+    "category": "Trigonometric",
+    "domain": "(-\\infty, \\infty) \\setminus \\{k\\pi\\}",
+    "description": "Reciprocal of sine with period 2π and vertical asymptotes at multiples of π.",
+    "graph_expression": "y = \\csc(x)",
+    "bounds": { "left": -7, "right": 7, "bottom": -4, "top": 4 }
+  }
+]

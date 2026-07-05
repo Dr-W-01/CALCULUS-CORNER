@@ -1,0 +1,62 @@
+[
+  {
+    "id": "arcsin-x",
+    "name": "Arcsine Function",
+    "latex": "f(x) = \\arcsin(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "[-1, 1]",
+    "description": "Inverse of sine restricted to [-π/2, π/2]. Endpoint critical points at x = ±1.",
+    "graph_expression": "y = \\arcsin(x)",
+    "bounds": { "left": -1.5, "right": 1.5, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "arccos-x",
+    "name": "Arccosine Function",
+    "latex": "f(x) = \\arccos(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "[-1, 1]",
+    "description": "Inverse of cosine restricted to [0, π]. Decreasing with endpoint critical points at x = ±1.",
+    "graph_expression": "y = \\arccos(x)",
+    "bounds": { "left": -1.5, "right": 1.5, "bottom": -0.5, "top": 3.5 }
+  },
+  {
+    "id": "arctan-x",
+    "name": "Arctangent Function",
+    "latex": "f(x) = \\arctan(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Inverse of tangent with horizontal asymptotes at y = ±π/2 and an inflection at the origin.",
+    "graph_expression": "y = \\arctan(x)",
+    "bounds": { "left": -5, "right": 5, "bottom": -2, "top": 2 }
+  },
+  {
+    "id": "arccot-x",
+    "name": "Arccotangent Function",
+    "latex": "f(x) = \\operatorname{arccot}(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "(-\\infty, \\infty)",
+    "description": "Inverse of cotangent with horizontal asymptotes at y = 0 and y = π.",
+    "graph_expression": "y = \\operatorname{arccot}(x)",
+    "bounds": { "left": -5, "right": 5, "bottom": -0.5, "top": 3.5 }
+  },
+  {
+    "id": "arcsec-x",
+    "name": "Arcsecant Function",
+    "latex": "f(x) = \\operatorname{arcsec}(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "(-\\infty, -1] \\cup [1, \\infty)",
+    "description": "Inverse of secant with two branches and endpoint critical points at x = ±1.",
+    "graph_expression": "y = \\arcsec(x)",
+    "bounds": { "left": -5, "right": 5, "bottom": -1, "top": 4 }
+  },
+  {
+    "id": "arccsc-x",
+    "name": "Arccosecant Function",
+    "latex": "f(x) = \\operatorname{arccsc}(x)",
+    "category": "Inverse Trigonometric",
+    "domain": "(-\\infty, -1] \\cup [1, \\infty)",
+    "description": "Inverse of cosecant with two branches, decreasing on each interval |x| ≥ 1.",
+    "graph_expression": "y = \\operatorname{arccsc}(x)",
+    "bounds": { "left": -5, "right": 5, "bottom": -2, "top": 2 }
+  }
+]
