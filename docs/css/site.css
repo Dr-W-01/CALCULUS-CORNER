@@ -10,10 +10,11 @@
     --cc-content-hover-bg: #382222;
     --cc-content-hover-border: #7a4545;
 
-    /* Sidebar width and toggle placement */
+    /* Sidebar width, top bar, and toggle placement */
     --cc-sidebar-width: 18rem;
     --cc-sidebar-toggle-size: 2rem;
     --cc-sidebar-toggle-gap: 0.75rem;
+    --cc-top-bar-height: 81px;
 }
 
 body {
@@ -28,25 +29,38 @@ body {
     border-bottom: 1px solid #3f1a1a;
 }
 
+/* Page layout — sidebar sticks; main scrolls independently */
+.page-layout {
+    align-items: flex-start;
+}
+
 /* Main content — extra left padding when sidebar is collapsed */
 .main-content {
     transition: padding-left 0.25s ease;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 body.sidebar-collapsed .main-content {
     padding-left: calc(var(--cc-sidebar-toggle-gap) + var(--cc-sidebar-toggle-size) + 1rem) !important;
 }
 
-/* Sidebar */
+/* Sidebar — sticky while scrolling; unaffected by main/footer content */
 .sidebar {
-    width: 18rem;
-    min-height: calc(100vh - 81px);
+    position: sticky;
+    top: var(--cc-top-bar-height);
+    align-self: flex-start;
+    width: var(--cc-sidebar-width);
+    max-height: calc(100vh - var(--cc-top-bar-height));
     background-color: #111111;
     border-right: 1px solid #27272a;
     padding: 1.25rem;
     flex-shrink: 0;
+    z-index: 40;
     transition: width 0.25s ease, padding 0.25s ease, opacity 0.2s ease;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body.sidebar-collapsed .sidebar {
@@ -780,68 +794,76 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     text-align: center;
 }
 
-/* Site footer — typo report form + external links */
+/* Site footer — compact, main-content only (not a content box) */
 .site-footer {
-    background-color: #111111;
-    border-top: 1px solid #27272a;
-    padding: 2.5rem 2rem 2rem;
-    margin-top: 0.5rem;
+    margin-top: 2.5rem;
+    padding: 0.875rem 0 0.25rem;
+    border-top: 1px solid #1f1f1f;
+    background: transparent;
 }
 
 .site-footer-inner {
-    max-width: 36rem;
-    margin: 0 auto;
+    max-width: 100%;
 }
 
-.site-footer-form-intro {
-    color: #a1a1aa;
-    font-size: 0.9rem;
-    text-align: center;
-    margin: 0 0 1.25rem;
-    line-height: 1.5;
+.site-footer-heading {
+    color: #71717a;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin: 0 0 0.4rem;
 }
 
 .typo-report-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.3rem;
 }
 
-.typo-form-field {
+.typo-form-row {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
     gap: 0.4rem;
 }
 
-.typo-form-label {
-    color: #d4a853;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-}
-
-.typo-optional {
-    color: #71717a;
-    font-weight: 400;
-    font-size: 0.8rem;
-}
-
-.typo-required {
-    color: #f87171;
+.typo-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .typo-form-input,
 .typo-form-textarea {
-    width: 100%;
-    background-color: #1a1010;
-    border: 1px solid var(--cc-content-border);
-    border-radius: 0.625rem;
-    padding: 0.625rem 0.875rem;
-    color: #f4f4f5;
-    font-size: 0.95rem;
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.5rem;
+    color: #e4e4e7;
+    font-size: 0.8rem;
     font-family: inherit;
-    line-height: 1.5;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    line-height: 1.4;
+    transition: border-color 0.15s ease;
+}
+
+.typo-form-input {
+    flex: 0 1 9rem;
+    min-width: 7rem;
+}
+
+.typo-form-textarea {
+    flex: 1 1 14rem;
+    min-width: 10rem;
+    resize: vertical;
+    min-height: 2rem;
+    max-height: 5rem;
 }
 
 .typo-form-input::placeholder,
@@ -852,69 +874,61 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 .typo-form-input:focus,
 .typo-form-textarea:focus {
     outline: none;
-    border-color: #7a4545;
-    box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.2);
-}
-
-.typo-form-textarea {
-    resize: vertical;
-    min-height: 6rem;
+    border-color: #5c3838;
 }
 
 .typo-form-submit {
-    align-self: center;
-    margin-top: 0.25rem;
-    padding: 0.625rem 2rem;
-    background-color: #b91c1c;
-    color: #fff;
-    font-size: 0.9rem;
+    flex: 0 0 auto;
+    align-self: stretch;
+    padding: 0.375rem 0.875rem;
+    background-color: #3f1a1a;
+    color: #fca5a5;
+    font-size: 0.75rem;
     font-weight: 600;
-    border: none;
-    border-radius: 9999px;
+    border: 1px solid #5c3030;
+    border-radius: 0.375rem;
     cursor: pointer;
-    transition: background-color 0.15s ease, opacity 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .typo-form-submit:hover:not(:disabled) {
-    background-color: #991b1b;
+    background-color: #5c2020;
+    border-color: #7a4545;
 }
 
 .typo-form-submit:disabled {
-    opacity: 0.65;
+    opacity: 0.6;
     cursor: wait;
 }
 
+.typo-form-status {
+    font-size: 0.75rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
 .typo-form-success {
-    text-align: center;
     color: #86efac;
-    font-size: 0.9rem;
-    margin: 0.5rem 0 0;
-    line-height: 1.5;
 }
 
 .typo-form-error {
-    text-align: center;
     color: #f87171;
-    font-size: 0.9rem;
-    margin: 0.5rem 0 0;
-    line-height: 1.5;
 }
 
 .site-footer-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem 0.75rem;
-    margin-top: 1.75rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #27272a;
+    gap: 0.35rem 0.6rem;
+    margin-top: 0.65rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid #1a1a1a;
 }
 
 .site-footer-link {
     color: #d4a853;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 500;
     text-decoration: none;
     transition: color 0.15s ease;
 }
@@ -925,6 +939,24 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 }
 
 .site-footer-link-sep {
-    color: #52525b;
+    color: #3f3f46;
+    font-size: 0.75rem;
     user-select: none;
+}
+
+@media (max-width: 640px) {
+    .typo-form-row {
+        flex-direction: column;
+    }
+
+    .typo-form-input,
+    .typo-form-textarea {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .typo-form-submit {
+        align-self: flex-start;
+    }
 }

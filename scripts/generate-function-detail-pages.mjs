@@ -284,10 +284,10 @@ ${integralsHtml}
                     </div>
                 </section>
             </div>
-        </main>
-    </div>
 
 ${SITE_FOOTER}
+        </main>
+    </div>
 
     <script src="js/site.js"></script>
     <script src="js/function-detail.js"></script>

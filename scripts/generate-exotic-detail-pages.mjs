@@ -95,10 +95,10 @@ ${SIDEBAR}
                     </div>
                 </section>
             </div>
-        </main>
-    </div>
 
 ${SITE_FOOTER}
+        </main>
+    </div>
 
     <script src="js/site.js"></script>
     <script src="js/exotic-detail.js"></script>

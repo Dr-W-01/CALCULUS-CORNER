@@ -67,43 +67,32 @@
                     </div>
                 </section>
             </div>
-        </main>
-    </div>
-
-    <footer class="site-footer" id="site-footer">
-        <div class="site-footer-inner">
-            <section class="content-card site-footer-feedback">
-                <div class="section-header">
-                    <h2 class="section-heading text-xl">Report a Typo or Mistake</h2>
-                </div>
-                <div class="section-body">
-                    <p class="site-footer-form-intro">Found an error? Let us know and we&rsquo;ll fix it.</p>
+            <footer class="site-footer" id="site-footer">
+                <div class="site-footer-inner">
                     <form id="typo-report-form" class="typo-report-form" action="https://formspree.io/f/mbdvwjql" method="POST" novalidate>
                         <input type="hidden" name="page_url" id="typo-page-url" value="">
-                        <div class="typo-form-field">
-                            <label for="typo-name" class="typo-form-label">Name <span class="typo-optional">(optional)</span></label>
-                            <input type="text" id="typo-name" name="name" class="typo-form-input" autocomplete="name">
+                        <p class="site-footer-heading">Report a typo or mistake</p>
+                        <div class="typo-form-row">
+                            <label class="typo-sr-only" for="typo-name">Name (optional)</label>
+                            <input type="text" id="typo-name" name="name" class="typo-form-input" autocomplete="name" placeholder="Name (optional)">
+                            <label class="typo-sr-only" for="typo-message">Describe the issue (required)</label>
+                            <textarea id="typo-message" name="message" class="typo-form-textarea" required rows="2" placeholder="Describe the issue…"></textarea>
+                            <button type="submit" class="typo-form-submit">Submit</button>
                         </div>
-                        <div class="typo-form-field">
-                            <label for="typo-message" class="typo-form-label">Describe the issue <span class="typo-required" aria-hidden="true">*</span></label>
-                            <textarea id="typo-message" name="message" class="typo-form-textarea" required rows="4" placeholder="What did you notice? Include the section or equation if you can."></textarea>
-                        </div>
-                        <button type="submit" class="typo-form-submit">Submit</button>
-                        <p id="typo-form-success" class="typo-form-success" hidden role="status">Thank you — your report was sent successfully. We appreciate the help!</p>
-                        <p id="typo-form-error" class="typo-form-error" hidden role="alert">Something went wrong. Please try again in a moment.</p>
+                        <p id="typo-form-success" class="typo-form-status typo-form-success" hidden role="status">Thanks — your report was sent.</p>
+                        <p id="typo-form-error" class="typo-form-status typo-form-error" hidden role="alert">Could not send. Please try again.</p>
                     </form>
+
+                    <nav class="site-footer-links" aria-label="External links">
+                        <a href="https://www.youtube.com/@Dr.W.Mathematics" class="site-footer-link" target="_blank" rel="noopener noreferrer">Dr. W on YouTube</a>
+                        <span class="site-footer-link-sep" aria-hidden="true">&middot;</span>
+                        <a href="https://courses.modernmathacademy.com" class="site-footer-link" target="_blank" rel="noopener noreferrer">Join the Modern Math Academy</a>
+                    </nav>
                 </div>
-            </section>
-
-            <nav class="site-footer-links" aria-label="External links">
-                <a href="https://www.youtube.com/@Dr.W.Mathematics" class="site-footer-link" target="_blank" rel="noopener noreferrer">Dr. W on YouTube</a>
-                <span class="site-footer-link-sep" aria-hidden="true">&middot;</span>
-                <a href="https://courses.modernmathacademy.com" class="site-footer-link" target="_blank" rel="noopener noreferrer">Join the Modern Math Academy</a>
-            </nav>
-        </div>
-    </footer>
-
-    <script src="js/site.js"></script>
+            </footer>
+        </main>
+    </div>
+<script src="js/site.js"></script>
     <script src="js/exotic-detail.js"></script>
     <script>
         ExoticDetail.init({"headerKatex":"g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}","graphExpression":"y=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}","bounds":{"left":-10,"right":10,"bottom":-8.5,"top":8.5},"point":{"latex":"(0, 1.254951)","pointStyle":"OPEN","color":"#f87171"}});
