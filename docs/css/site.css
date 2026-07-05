@@ -477,12 +477,17 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     scroll-margin-top: 5.5rem;
 }
 
+.section-body .zoo-section-nav {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cc-body-border);
+}
+
 .zoo-section-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem 0.65rem;
-    padding: 0.85rem 1rem;
 }
 
 .zoo-section-nav-link {

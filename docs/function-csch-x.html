@@ -128,7 +128,7 @@
                         <div class="graph-trio">
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f(x) = \operatorname{csch}(x)"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div class="graph-wrap-sm graph-wrap-interactive overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -145,7 +145,7 @@
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = -\operatorname{csch}(x)\coth(x)"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div class="graph-wrap-sm graph-wrap-interactive overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -164,7 +164,7 @@
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f''(x) = \operatorname{csch}(x)(\coth^2(x) + \operatorname{csch}^2(x))"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div class="graph-wrap-sm graph-wrap-interactive overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -231,8 +231,7 @@
         FunctionDetail.init({
             headerKatex: "f(x) = \\operatorname{csch}(x)",
             graphs: ["y = \\operatorname{csch}(x)","y = -\\operatorname{csch}(x)\\coth(x)","y = \\operatorname{csch}(x)(\\coth^2(x) + \\operatorname{csch}^2(x))"],
-            bounds: {"left":-4,"right":4,"bottom":-4,"top":4},
-            interactive: true
+            bounds: {"left":-4,"right":4,"bottom":-4,"top":4}
         });
     </script>
 </body>

@@ -119,7 +119,7 @@
                         <div class="graph-trio">
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f(x) = \tanh(x)"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div class="graph-wrap-sm graph-wrap-interactive overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -134,7 +134,7 @@
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f'(x) = \operatorname{sech}^2(x)"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div class="graph-wrap-sm graph-wrap-interactive overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -151,7 +151,7 @@
                             </div>
                             <div class="deriv-col">
                                 <div class="deriv-title" data-katex="f''(x) = -2\operatorname{sech}^2(x)\tanh(x)"></div>
-                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div class="graph-wrap-sm graph-wrap-interactive overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
                                 <div class="sign-line-wrap">
@@ -220,8 +220,7 @@
         FunctionDetail.init({
             headerKatex: "f(x) = \\tanh(x)",
             graphs: ["y = \\tanh(x)","y = \\operatorname{sech}^2(x)","y = -2\\operatorname{sech}^2(x)\\tanh(x)"],
-            bounds: {"left":-5,"right":5,"bottom":-2,"top":2},
-            interactive: true
+            bounds: {"left":-5,"right":5,"bottom":-2,"top":2}
         });
     </script>
 </body>
