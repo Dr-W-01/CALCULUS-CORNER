@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizers • Dr. W's Calculus Corner</title>
+    <title>Taylor Polynomial Approximations • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/site.css">
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 </head>
 <body>
     <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
@@ -41,34 +42,32 @@
         </aside>
 
         <main class="main-content flex-1 p-8">
-            <div class="w-full max-w-7xl mx-auto space-y-8">
-
-                <header class="page-hero content-card">
-                    <div class="section-header">
-                        <h1 class="section-heading text-2xl">Visualizers</h1>
-                    </div>
-                    <div class="section-body">
-                        <p>Interactive graphing tools that bring calculus concepts to life. Open any explorer below to zoom, pan, and adjust parameters in real time.</p>
-                    </div>
+            <div class="w-full max-w-5xl mx-auto space-y-8">
+                <header class="text-center">
+                    <a href="visualizers.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Visualizers</a>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">TAYLOR POLYNOMIAL APPROXIMATIONS</h1>
+                    <p class="visualizer-page-intro">Taylor polynomials approximate a smooth function near a point using derivatives. Here sin(x) is matched by polynomials T₁, T₂, … built from successive derivatives at x = a. Move a and compare the curves: each additional term captures more local behavior, and the approximation tightens near the center of expansion.</p>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header">
-                        <h2 class="section-heading text-xl">Interactive Visual Explorers</h2>
-                    </div>
-                    <div class="section-body">
-                        <div id="visualizers-grid" class="visualizers-grid" aria-label="Visualizer cards">
-                            <p class="visualizers-grid-status">Loading visualizers…</p>
+                <section class="content-card exotic-graph-card">
+                    <div class="section-body exotic-graph-body">
+                        <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
+                        <div class="visualizer-page-graph-wrap">
+                            <div id="visualizer-graph" class="desmos-explorer"></div>
                         </div>
-                        <p class="visualizers-future-note">More interactive explorers will be added throughout the course — check back as new topics are covered.</p>
+                        <p class="visualizer-source text-center mt-3">
+                            <a href="https://www.desmos.com/calculator/561294d70a" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open original on Desmos</a>
+                        </p>
                     </div>
                 </section>
-
             </div>
         </main>
     </div>
 
     <script src="js/site.js"></script>
-    <script src="js/visualizers-index.js"></script>
+    <script src="js/visualizer-detail.js"></script>
+    <script>
+        VisualizerDetail.init({"stateFile":"data/visualizer-states/taylor-polynomials.json","desmosUrl":"https://www.desmos.com/calculator/561294d70a"});
+    </script>
 </body>
 </html>

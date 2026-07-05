@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizers • Dr. W's Calculus Corner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/site.css">
-</head>
-<body>
-    <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
+import { writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { VISUALIZERS } from './visualizer-detail-data.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DOCS = join(__dirname, '..', 'docs');
+
+const TOP_BAR = `    <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
         <a href="index.html" class="site-title-link flex items-center gap-x-3 no-underline text-inherit hover:opacity-90 transition-opacity">
             <div class="w-9 h-9 bg-[#b91c1c] rounded-2xl flex items-center justify-center">
                 <span class="font-bold text-white text-2xl tracking-tighter">CC</span>
@@ -19,9 +17,9 @@
             <input type="text" placeholder="Search..." class="bg-[#111111] border border-zinc-800 rounded-3xl px-5 py-2 text-sm w-80 focus:outline-none focus:border-zinc-600">
             <div class="w-9 h-9 bg-zinc-800 rounded-full flex items-center justify-center text-sm font-medium">EW</div>
         </div>
-    </div>
+    </div>`;
 
-    <div class="page-layout flex">
+const SIDEBAR = `    <div class="page-layout flex">
         <div class="sidebar-toggle-float" aria-hidden="false">
             <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -40,35 +38,60 @@
             </nav>
         </aside>
 
-        <main class="main-content flex-1 p-8">
-            <div class="w-full max-w-7xl mx-auto space-y-8">
+        <main class="main-content flex-1 p-8">`;
 
-                <header class="page-hero content-card">
-                    <div class="section-header">
-                        <h1 class="section-heading text-2xl">Visualizers</h1>
-                    </div>
-                    <div class="section-body">
-                        <p>Interactive graphing tools that bring calculus concepts to life. Open any explorer below to zoom, pan, and adjust parameters in real time.</p>
-                    </div>
+function renderPage(v) {
+  const config = { stateFile: v.stateFile, desmosUrl: v.desmosUrl };
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${v.pageTitle} • Dr. W's Calculus Corner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/site.css">
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+</head>
+<body>
+${TOP_BAR}
+
+${SIDEBAR}
+            <div class="w-full max-w-5xl mx-auto space-y-8">
+                <header class="text-center">
+                    <a href="visualizers.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Visualizers</a>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">${v.heading}</h1>
+                    <p class="visualizer-page-intro">${v.intro}</p>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header">
-                        <h2 class="section-heading text-xl">Interactive Visual Explorers</h2>
-                    </div>
-                    <div class="section-body">
-                        <div id="visualizers-grid" class="visualizers-grid" aria-label="Visualizer cards">
-                            <p class="visualizers-grid-status">Loading visualizers…</p>
+                <section class="content-card exotic-graph-card">
+                    <div class="section-body exotic-graph-body">
+                        <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
+                        <div class="visualizer-page-graph-wrap">
+                            <div id="visualizer-graph" class="desmos-explorer"></div>
                         </div>
-                        <p class="visualizers-future-note">More interactive explorers will be added throughout the course — check back as new topics are covered.</p>
+                        <p class="visualizer-source text-center mt-3">
+                            <a href="${v.desmosUrl}" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open original on Desmos</a>
+                        </p>
                     </div>
                 </section>
-
             </div>
         </main>
     </div>
 
     <script src="js/site.js"></script>
-    <script src="js/visualizers-index.js"></script>
+    <script src="js/visualizer-detail.js"></script>
+    <script>
+        VisualizerDetail.init(${JSON.stringify(config)});
+    </script>
 </body>
-</html>
+</html>`;
+}
+
+for (const v of VISUALIZERS) {
+  const path = join(DOCS, `visualizer-${v.id}.html`);
+  writeFileSync(path, renderPage(v), 'utf8');
+  console.log('Wrote', path);
+}
+
+console.log(`Generated ${VISUALIZERS.length} visualizer detail pages.`);
