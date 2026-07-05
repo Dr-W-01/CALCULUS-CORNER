@@ -29,9 +29,10 @@ body {
     border-bottom: 1px solid #3f1a1a;
 }
 
-/* Page layout — sidebar sticks; main scrolls independently */
+/* Page layout — sidebar column stretches full page height; nav stays sticky */
 .page-layout {
-    align-items: flex-start;
+    align-items: stretch;
+    min-height: calc(100vh - var(--cc-top-bar-height));
 }
 
 /* Main content — extra left padding when sidebar is collapsed */
@@ -46,13 +47,13 @@ body.sidebar-collapsed .main-content {
     padding-left: calc(var(--cc-sidebar-toggle-gap) + var(--cc-sidebar-toggle-size) + 1rem) !important;
 }
 
-/* Sidebar — sticky while scrolling; unaffected by main/footer content */
+/* Sidebar — full-height gray column; links stick at top while scrolling */
 .sidebar {
     position: sticky;
     top: var(--cc-top-bar-height);
-    align-self: flex-start;
+    align-self: stretch;
     width: var(--cc-sidebar-width);
-    max-height: calc(100vh - var(--cc-top-bar-height));
+    min-height: calc(100vh - var(--cc-top-bar-height));
     background-color: #111111;
     border-right: 1px solid #27272a;
     padding: 1.25rem;
@@ -60,7 +61,7 @@ body.sidebar-collapsed .main-content {
     z-index: 40;
     transition: width 0.25s ease, padding 0.25s ease, opacity 0.2s ease;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 body.sidebar-collapsed .sidebar {

@@ -3,7 +3,7 @@ pid: 27620
 cwd: "C:\Users\einsn\Documents\CALCULUS-CORNER"
 command: "npx --yes serve \"C:\\Users\\einsn\\Documents\\CALCULUS-CORNER\\docs\" -l 3456"
 started_at: 2026-07-04T03:32:01.703Z
-running_for_ms: 75565000 
+running_for_ms: 79149999 
 ---
  INFO  Accepting connections at http://localhost:3456
  HTTP  7/3/2026 11:32:16 PM ::1 GET /data/functions.json
