@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { EXOTIC_FUNCTIONS } from './exotic-detail-data.mjs';
-import { loadSiteFooter } from './site-layout.mjs';
+import { loadSiteFooter, renderSidebarShell } from './site-layout.mjs';
 
 const SITE_FOOTER = loadSiteFooter();
 const DESMOS_API = '    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>';
@@ -23,26 +23,7 @@ const TOP_BAR = `    <div class="top-bar px-8 py-5 flex items-center justify-bet
         </div>
     </div>`;
 
-const SIDEBAR = `    <div class="page-layout flex">
-        <div class="sidebar-toggle-float" aria-hidden="false">
-            <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
-            <button type="button" id="sidebar-collapse" class="sidebar-toggle sidebar-collapse-btn" aria-label="Close navigation" title="Close navigation">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-        </div>
-        <aside id="sidebar" class="sidebar">
-            <nav class="sidebar-nav space-y-1 text-sm">
-                <a href="index.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Home</a>
-                <a href="courses.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Courses</a>
-                <a href="zoo.html" class="nav-item nav-active flex items-center gap-x-3 px-4 py-3 rounded-2xl">Function Zoo</a>
-                <a href="visualizers.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Visualizers</a>
-                <a href="profile.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">My Profile</a>
-            </nav>
-        </aside>
-
-        <main class="main-content flex-1 p-8">`;
+const SIDEBAR = renderSidebarShell('zoo.html');
 
 function graphConfig(fn) {
   const config = {

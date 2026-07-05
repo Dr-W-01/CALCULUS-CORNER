@@ -18,13 +18,11 @@ for (const file of readdirSync(DOCS).filter((f) => f.endsWith('.html'))) {
 
   html = html.replace(FOOTER_REGEX, '\n');
 
-  if (!html.includes('id="site-footer"')) {
-    if (!INSERT_BEFORE_MAIN_CLOSE.test(html)) {
-      console.warn('Skipped', file, '(no </main> tag found)');
-      continue;
-    }
-    html = html.replace(INSERT_BEFORE_MAIN_CLOSE, `\n${FOOTER}$1`);
+  if (!INSERT_BEFORE_MAIN_CLOSE.test(html)) {
+    console.warn('Skipped', file, '(no </main> tag found)');
+    continue;
   }
+  html = html.replace(INSERT_BEFORE_MAIN_CLOSE, `\n${FOOTER}$1`);
 
   if (html !== original) {
     writeFileSync(path, html, 'utf8');
