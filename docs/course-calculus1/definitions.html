@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculus I — Definitions • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <link rel="stylesheet" href="../css/site.css">
 </head>
 <body>
@@ -51,39 +53,59 @@
                         <h1 class="section-heading text-xl">CALCULUS I — DEFINITIONS</h1>
                     </div>
                     <div class="section-body">
-                        <p>Expand a term below to read a short reference definition. Full glossary coming soon.</p>
+                        <p>Formal definitions from the course reference sheet, organized by topic. Each entry uses the exact wording from the Key Definitions section.</p>
                     </div>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Definitions</h2></div>
+                <section class="content-card" id="definitions-limits">
+                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">Limits</h2></div>
                     <div class="section-body">
-                        <div class="course-accordion">
-                        <details class="course-accordion-item">
-                            <summary class="course-accordion-trigger">Limit</summary>
-                            <div class="course-accordion-panel">
-                                <p>The value f(x) approaches as x approaches a point a.</p>
-                            </div>
-                        </details>
-                        <details class="course-accordion-item">
-                            <summary class="course-accordion-trigger">Derivative</summary>
-                            <div class="course-accordion-panel">
-                                <p>The instantaneous rate of change of f at x, when the limit exists.</p>
-                            </div>
-                        </details>
-                        <details class="course-accordion-item">
-                            <summary class="course-accordion-trigger">Continuous at a Point</summary>
-                            <div class="course-accordion-panel">
-                                <p>f(a) is defined, the limit exists, and both agree.</p>
-                            </div>
-                        </details>
-                        <details class="course-accordion-item">
-                            <summary class="course-accordion-trigger">Critical Point</summary>
-                            <div class="course-accordion-panel">
-                                <p>A point where f′ is zero or undefined.</p>
-                            </div>
-                        </details>
-                        </div>
+                        <p class="course-topic-placeholder">More definitions will be added here soon.</p>
+                    </div>
+                </section>
+
+                <section class="content-card" id="definitions-derivatives">
+                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">Derivatives</h2></div>
+                    <div class="section-body">
+                        <ol class="course-definitions-list" start="1">
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that the number }c\text{ is a }\underline{\text{critical point of }f}\text{ if }c\text{ is in the domain of }f\text{ and either }f'(c)=0\text{ or }f'(c)\text{ does not exist.}"></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ has an }\underline{\text{absolute maximum}}\text{ at }c\text{ if }f(c)\ge f(x)\text{ for all }x\text{ in the domain of }f."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ has an }\underline{\text{absolute minimum}}\text{ at }c\text{ if }f(c)\le f(x)\text{ for all }x\text{ in the domain of }f."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f(c)\text{ is a }\underline{\text{local maximum of }f}\text{ at }x=c\text{ if there exists an interval }(a,b)\text{ containing }c\text{ such that for all }x\text{ with }a &lt; x &lt; b\text{ and }x\text{ in the domain of }f,\ f(c)\ge f(x)."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f(c)\text{ is a }\underline{\text{local minimum of }f}\text{ at }x=c\text{ if there exists an interval }(a,b)\text{ containing }c\text{ such that for all }x\text{ with }a &lt; x &lt; b\text{ and }x\text{ in the domain of }f,\ f(c)\le f(x)."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ is }\underline{\text{increasing on an interval }(a,b)}\text{ if }f(x_1)&lt;f(x_2)\text{ whenever }a&lt;x_1&lt;x_2&lt;b."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ is }\underline{\text{decreasing on an interval }(a,b)}\text{ if }f(x_1)&gt;f(x_2)\text{ whenever }a&lt;x_1&lt;x_2&lt;b."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that the graph of }f\text{ is }\underline{\text{concave up on }(a,b)}\text{ if the graph of }f(x)\text{ lies above all its tangent lines on }(a,b)."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that the graph of }f\text{ is }\underline{\text{concave down on }(a,b)}\text{ if the graph of }f(x)\text{ lies below all its tangent lines on }(a,b)."></div>
+                            </li>
+                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }(c,f(c))\text{ is a }\underline{\text{point of inflection of }f}\text{ if the concavity of }f\text{ changes at }x=c."></div>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="content-card" id="definitions-integrals">
+                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">Integrals</h2></div>
+                    <div class="section-body">
+                        <p class="course-topic-placeholder">More definitions will be added here soon.</p>
                     </div>
                 </section>
             </div>
@@ -117,6 +139,5 @@
         </main>
     </div>
     <script src="../js/site.js"></script>
-    <script src="../js/course-accordion.js"></script>
 </body>
 </html>

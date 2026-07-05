@@ -2,6 +2,7 @@ import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { COURSES, SECTION_TILES } from './course-data.mjs';
+import { CALCULUS1_DEFINITION_TOPICS } from './calculus1-definitions.mjs';
 import { loadSiteFooter, renderSidebarShell, renderPageTitle, navPrefixForPath } from './site-layout.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -21,13 +22,34 @@ const TOP_BAR = `    <div class="top-bar px-8 py-5 flex items-center justify-bet
         </div>
     </div>`;
 
-function pageShell({ title, activeHref, mainContent, assetPrefix = '', extraScripts = '', navPrefix = '' }) {
+function escapeHtmlAttr(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function pageShell({
+  title,
+  activeHref,
+  mainContent,
+  assetPrefix = '',
+  extraScripts = '',
+  navPrefix = '',
+  includeKatex = false,
+}) {
   const sidebar = renderSidebarShell(activeHref, navPrefix);
   const cssHref = `${assetPrefix}css/site.css`;
   const siteJs = `${assetPrefix}js/site.js`;
   const indexHref = `${assetPrefix}index.html`;
 
   const topBar = TOP_BAR.replace('href="index.html"', `href="${indexHref}"`);
+  const katexHead = includeKatex
+    ? `
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -35,7 +57,7 @@ function pageShell({ title, activeHref, mainContent, assetPrefix = '', extraScri
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} • Dr. W's Calculus Corner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>${katexHead}
     <link rel="stylesheet" href="${cssHref}">
 </head>
 <body>
@@ -139,7 +161,69 @@ ${tiles}
   });
 }
 
+function renderDefinitionTopicBox(topic) {
+  if (topic.placeholder) {
+    return `                <section class="content-card" id="definitions-${topic.id}">
+                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">${topic.title}</h2></div>
+                    <div class="section-body">
+                        <p class="course-topic-placeholder">${topic.placeholder}</p>
+                    </div>
+                </section>`;
+  }
+
+  const items = topic.definitions
+    .map(
+      (katex) => `                            <li class="course-definition-item">
+                                <div class="course-definition-text" data-katex="${escapeHtmlAttr(katex)}"></div>
+                            </li>`,
+    )
+    .join('\n');
+
+  return `                <section class="content-card" id="definitions-${topic.id}">
+                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">${topic.title}</h2></div>
+                    <div class="section-body">
+                        <ol class="course-definitions-list" start="1">
+${items}
+                        </ol>
+                    </div>
+                </section>`;
+}
+
+function renderCalculus1DefinitionsPage(course) {
+  const topicBoxes = CALCULUS1_DEFINITION_TOPICS.map(renderDefinitionTopicBox).join('\n\n');
+
+  const main = `            <div class="page-content-full space-y-8">
+                <p class="text-center mb-0">
+                    <a href="../course-${course.id}.html" class="text-sm text-zinc-500 hover:text-red-400 inline-block">&larr; Back to ${course.title}</a>
+                </p>
+
+                <header class="page-hero content-card">
+                    <div class="section-header">
+                        <h1 class="section-heading text-xl">${course.title.toUpperCase()} — DEFINITIONS</h1>
+                    </div>
+                    <div class="section-body">
+                        <p>Formal definitions from the course reference sheet, organized by topic. Each entry uses the exact wording from the Key Definitions section.</p>
+                    </div>
+                </header>
+
+${topicBoxes}
+            </div>`;
+
+  return pageShell({
+    title: `${course.title} — Definitions`,
+    activeHref: 'courses.html',
+    mainContent: main,
+    assetPrefix: '../',
+    navPrefix: '../',
+    includeKatex: true,
+  });
+}
+
 function renderSectionPage(course, sectionId) {
+  if (course.id === 'calculus1' && sectionId === 'definitions') {
+    return renderCalculus1DefinitionsPage(course);
+  }
+
   const section = SECTION_TILES.find((s) => s.id === sectionId);
   const items = course.accordion[sectionId];
   const accordion = renderAccordionItems(items);

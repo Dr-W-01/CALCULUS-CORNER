@@ -397,6 +397,51 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     margin: 0.85rem 0 0;
 }
 
+/* Course definitions — topic boxes with KaTeX entries */
+.course-topic-heading {
+    color: #d4a853;
+}
+
+.course-topic-placeholder {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+}
+
+.course-definitions-list {
+    list-style: decimal;
+    margin: 0;
+    padding: 0 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
+.course-definitions-list > li::marker {
+    color: #d4a853;
+    font-weight: 700;
+}
+
+.course-definition-item {
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--cc-content-border);
+    border-radius: 0.75rem;
+    background-color: rgb(0 0 0 / 0.12);
+}
+
+.course-definition-text {
+    color: #e4e4e7;
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.course-definition-text .katex {
+    font-size: 1.02em;
+}
+
 /* Hub pages: full-width content area (Courses, Profile, Zoo, Visualizers) */
 .page-content-full {
     width: 100%;
