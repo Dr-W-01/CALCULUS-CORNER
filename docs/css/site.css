@@ -47,21 +47,24 @@ body.sidebar-collapsed .main-content {
     padding-left: calc(var(--cc-sidebar-toggle-gap) + var(--cc-sidebar-toggle-size) + 1rem) !important;
 }
 
-/* Sidebar — full-height gray column; links stick at top while scrolling */
+/* Sidebar — full-height gray column; nav links stick separately while scrolling */
 .sidebar {
-    position: sticky;
-    top: var(--cc-top-bar-height);
     align-self: stretch;
     width: var(--cc-sidebar-width);
     min-height: calc(100vh - var(--cc-top-bar-height));
     background-color: #111111;
     border-right: 1px solid #27272a;
-    padding: 1.25rem;
     flex-shrink: 0;
     z-index: 40;
-    transition: width 0.25s ease, padding 0.25s ease, opacity 0.2s ease;
-    overflow-x: hidden;
-    overflow-y: visible;
+    transition: width 0.25s ease, opacity 0.2s ease;
+    overflow: visible;
+}
+
+.sidebar-nav {
+    position: sticky;
+    top: var(--cc-top-bar-height);
+    padding: 1.25rem;
+    z-index: 41;
 }
 
 body.sidebar-collapsed .sidebar {
