@@ -578,6 +578,15 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     min-height: 11rem;
 }
 
+.zoo-graph-wrap--interactive {
+    pointer-events: auto;
+    cursor: grab;
+}
+
+.zoo-graph-wrap--interactive:active {
+    cursor: grabbing;
+}
+
 /* Responsive grid — auto columns, no fixed count */
 .zoo-grid {
     display: grid;

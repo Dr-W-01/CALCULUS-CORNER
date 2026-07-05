@@ -16,14 +16,15 @@
         const elt = document.getElementById(`calculator-${fn.id}`);
         if (!elt || typeof Desmos === 'undefined') return null;
 
+        const interactive = fn.interactive === true;
         const calculator = Desmos.GraphingCalculator(elt, {
             expressions: false,
             settingsMenu: false,
-            zoomButtons: false,
+            zoomButtons: interactive,
             keypad: false,
             expressionsTopbar: false,
             border: false,
-            lockViewport: true,
+            lockViewport: !interactive,
             showGrid: true,
             showXAxis: true,
             showYAxis: true
@@ -95,6 +96,18 @@
         renderKatex(card.querySelector('.zoo-card-expr'), fn.latex);
         renderKatex(card.querySelector('.zoo-card-domain'), fn.domain);
 
+        if (fn.interactive) {
+            const graphWrap = card.querySelector('.zoo-graph-wrap');
+            graphWrap.classList.add('zoo-graph-wrap--interactive');
+            graphWrap.addEventListener('click', (event) => event.stopPropagation());
+            graphWrap.addEventListener('mousedown', (event) => event.stopPropagation());
+            card.addEventListener('click', (event) => {
+                if (event.target.closest('.zoo-graph-wrap--interactive')) {
+                    event.preventDefault();
+                }
+            });
+        }
+
         return card;
     }
 
@@ -140,8 +153,8 @@
             const exoticFunctions = await exoticRes.json();
 
             renderSection('basic-grid', basicFunctions);
-            renderSection('intermediate-grid', intermediateFunctions);
             renderSection('exotic-grid', exoticFunctions);
+            renderSection('intermediate-grid', intermediateFunctions);
         } catch (err) {
             const msg = 'Could not load function data.';
             showError('basic-grid', msg);
