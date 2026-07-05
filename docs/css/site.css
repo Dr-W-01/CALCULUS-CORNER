@@ -10,6 +10,13 @@
     --cc-content-hover-bg: #382222;
     --cc-content-hover-border: #7a4545;
 
+    /* Interactive card/tile hover — gold text + gold border */
+    --cc-card-hover-bg: rgb(212 168 83 / 0.08);
+    --cc-card-hover-border: #d4a853;
+    --cc-card-hover-shadow: 0 8px 24px rgb(212 168 83 / 0.12);
+    --cc-card-hover-title: #d4a853;
+    --cc-card-hover-inner-border: rgb(212 168 83 / 0.45);
+
     /* Sidebar width, top bar, and toggle placement */
     --cc-sidebar-width: 18rem;
     --cc-sidebar-toggle-size: 2rem;
@@ -242,6 +249,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     border-bottom: 1px solid var(--cc-content-border);
     background-size: cover;
     background-position: center;
+    transition: border-color 0.2s ease;
 }
 
 .course-card-visual--precalculus {
@@ -267,6 +275,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 
 .course-card-desc {
     margin: 0;
+    transition: color 0.2s ease;
 }
 
 /* Course hub — three section tiles (Topics / Definitions / Problems) */
@@ -282,32 +291,12 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     color: inherit;
     padding: 0;
     overflow: hidden;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.course-section-tile:hover {
-    background-color: rgb(212 168 83 / 0.08);
-    border-color: #d4a853;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgb(212 168 83 / 0.12);
-}
-
-.course-section-tile:hover .course-tile-title {
-    color: #d4a853;
-}
-
-.course-section-tile:hover .course-tile-desc {
-    color: #e4e4e7;
 }
 
 .course-tile-visual {
     height: 10rem;
     border-bottom: 1px solid var(--cc-content-border);
     transition: border-color 0.2s ease;
-}
-
-.course-section-tile:hover .course-tile-visual {
-    border-bottom-color: rgb(212 168 83 / 0.45);
 }
 
 .course-tile-visual--topics {
@@ -438,7 +427,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     margin-bottom: 2.5rem;
 }
 
-/* Zoo function cards — single box, no nested headers */
+/* Interactive cards/tiles — shared gold hover (zoo, visualizers, courses, dashboard) */
 .zoo-card,
 .dashboard-card {
     background-color: var(--cc-body-bg);
@@ -446,14 +435,42 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     border-radius: 1rem;
     padding: 1rem;
     display: block;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .zoo-card:hover,
 .dashboard-card:hover {
-    background-color: var(--cc-content-hover-bg);
-    border-color: var(--cc-content-hover-border);
-    transform: translateY(-2px);
+    background-color: var(--cc-card-hover-bg);
+    border-color: var(--cc-card-hover-border);
+    transform: translateY(-3px);
+    box-shadow: var(--cc-card-hover-shadow);
+}
+
+.zoo-card:hover .zoo-card-title,
+.dashboard-card:hover .zoo-card-title,
+.dashboard-card:hover h2,
+.dashboard-card:hover h3 {
+    color: var(--cc-card-hover-title);
+}
+
+.zoo-card:hover .zoo-card-desc,
+.zoo-card:hover .course-card-desc,
+.zoo-card:hover .course-tile-desc,
+.zoo-card:hover .visualizer-card-desc,
+.dashboard-card:hover .zoo-card-desc {
+    color: #e4e4e7;
+}
+
+.zoo-card:hover .zoo-graph-wrap,
+.zoo-card:hover .visualizer-card-preview {
+    border-color: var(--cc-card-hover-inner-border);
+}
+
+.zoo-card:hover .course-card-visual,
+.zoo-card:hover .course-tile-visual {
+    border-bottom-color: var(--cc-card-hover-inner-border);
 }
 
 .zoo-card-title {
@@ -463,6 +480,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     letter-spacing: 0.04em;
     text-align: center;
     margin: 0 0 0.5rem;
+    transition: color 0.2s ease;
 }
 
 .zoo-card-meta {
@@ -495,6 +513,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     line-height: 1.5;
     text-align: center;
     margin: 0.75rem 0 0;
+    transition: color 0.2s ease;
 }
 
 /* Square Desmos graph — explicit size so calculators render reliably */
@@ -509,6 +528,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     background: #261616;
     pointer-events: none;
     position: relative;
+    transition: border-color 0.2s ease;
 }
 
 .zoo-graph-wrap .desmos-graph {
@@ -943,6 +963,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     line-height: 1.55;
     text-align: center;
     margin: 0 0 1rem;
+    transition: color 0.2s ease;
 }
 
 .visualizer-card-preview {
@@ -956,6 +977,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     background: #261616;
     pointer-events: none;
     position: relative;
+    transition: border-color 0.2s ease;
 }
 
 .visualizer-card-embed {
