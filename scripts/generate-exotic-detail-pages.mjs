@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { EXOTIC_FUNCTIONS } from './exotic-detail-data.mjs';
+import { EXOTIC_FUNCTIONS, desmosEmbedUrl } from './exotic-detail-data.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -41,13 +41,7 @@ const SIDEBAR = `    <div class="page-layout flex">
         <main class="main-content flex-1 p-8">`;
 
 function renderPage(fn) {
-  const graphConfig = {
-    headerKatex: fn.headerKatex,
-    graphExpression: fn.graphExpression,
-    bounds: fn.bounds || { left: -5, right: 5, bottom: -5, top: 5 },
-    points: fn.points || [],
-    expressions: fn.expressions || [],
-  };
+  const embedSrc = desmosEmbedUrl(fn.desmosEmbedId);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -58,7 +52,6 @@ function renderPage(fn) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -76,7 +69,13 @@ ${SIDEBAR}
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan</p>
                         <div class="exotic-page-graph-wrap">
-                            <div id="exotic-graph" class="desmos-explorer"></div>
+                            <iframe
+                                class="exotic-desmos-embed"
+                                src="${embedSrc}"
+                                title="Interactive graph: ${fn.pageTitle}"
+                                allowfullscreen
+                                loading="lazy"
+                            ></iframe>
                         </div>
                     </div>
                 </section>
@@ -92,9 +91,13 @@ ${SIDEBAR}
     </div>
 
     <script src="js/site.js"></script>
-    <script src="js/exotic-detail.js"></script>
     <script>
-        ExoticDetail.init(${JSON.stringify(graphConfig)});
+        document.addEventListener('DOMContentLoaded', function () {
+            var header = document.getElementById('header-expr');
+            if (header && typeof katex !== 'undefined') {
+                katex.render(${JSON.stringify(fn.headerKatex)}, header, { throwOnError: false, displayMode: true });
+            }
+        });
     </script>
 </body>
 </html>`;
@@ -103,7 +106,7 @@ ${SIDEBAR}
 for (const fn of EXOTIC_FUNCTIONS) {
   const path = join(DOCS, `function-${fn.id}.html`);
   writeFileSync(path, renderPage(fn), 'utf8');
-  console.log('Wrote', path);
+  console.log('Wrote', path, '→', desmosEmbedUrl(fn.desmosEmbedId));
 }
 
 console.log(`Generated ${EXOTIC_FUNCTIONS.length} exotic detail pages.`);

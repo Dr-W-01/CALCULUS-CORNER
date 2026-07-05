@@ -6,7 +6,6 @@
     <title>Taylor Polynomial Approximations • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/site.css">
-    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 </head>
 <body>
     <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
@@ -46,18 +45,30 @@
                 <header class="text-center">
                     <a href="visualizers.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Visualizers</a>
                     <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">TAYLOR POLYNOMIAL APPROXIMATIONS</h1>
-                    <p class="visualizer-page-intro">Taylor polynomials approximate a smooth function near a point using derivatives. Here sin(x) is matched by polynomials T₁, T₂, … built from successive derivatives at x = a. Move a and compare the curves: each additional term captures more local behavior, and the approximation tightens near the center of expansion.</p>
                 </header>
 
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
                         <div class="visualizer-page-graph-wrap">
-                            <div id="visualizer-graph" class="desmos-explorer"></div>
+                            <iframe
+                                class="exotic-desmos-embed"
+                                src="https://www.desmos.com/calculator/561294d70a?embed"
+                                title="Interactive graph: Taylor Polynomial Approximations"
+                                allowfullscreen
+                                loading="lazy"
+                            ></iframe>
                         </div>
                         <p class="visualizer-source text-center mt-3">
-                            <a href="https://www.desmos.com/calculator/561294d70a" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open original on Desmos</a>
+                            <a href="https://www.desmos.com/calculator/561294d70a" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open on Desmos</a>
                         </p>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Description</h2></div>
+                    <div class="section-body">
+                        <p class="exotic-description">Taylor polynomials approximate a smooth function near a point using derivatives. Here sin(x) is matched by polynomials T₁, T₂, … built from successive derivatives at x = a. Move a and compare the curves: each additional term captures more local behavior, and the approximation tightens near the center of expansion.</p>
                     </div>
                 </section>
             </div>
@@ -65,9 +76,5 @@
     </div>
 
     <script src="js/site.js"></script>
-    <script src="js/visualizer-detail.js"></script>
-    <script>
-        VisualizerDetail.init({"stateFile":"data/visualizer-states/taylor-polynomials.json","desmosUrl":"https://www.desmos.com/calculator/561294d70a"});
-    </script>
 </body>
 </html>

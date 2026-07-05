@@ -41,27 +41,24 @@
         </aside>
 
         <main class="main-content flex-1 p-8">
-            <div class="w-full max-w-7xl mx-auto space-y-8">
+            <div class="w-full max-w-7xl mx-auto">
 
-                <header class="page-hero content-card">
+                <header class="page-hero content-card mb-10">
                     <div class="section-header">
                         <h1 class="section-heading text-2xl">Visualizers</h1>
                     </div>
                     <div class="section-body">
-                        <p>Interactive graphing tools that bring calculus concepts to life. Open any explorer below to zoom, pan, and adjust parameters in real time.</p>
+                        <p>Interactive graphing tools that bring calculus concepts to life. Open any explorer below for the full interactive experience — zoom, pan, and adjust sliders in real time.</p>
                     </div>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header">
-                        <h2 class="section-heading text-xl">Interactive Visual Explorers</h2>
+                <section class="zoo-page-section">
+                    <h2 class="zoo-section-header">Interactive Visual Explorers</h2>
+                    <p class="zoo-section-subtitle">Click a card to open the full explorer. Previews below link to your live Desmos graphs.</p>
+                    <div id="visualizers-grid" class="visualizers-grid" aria-label="Visualizer cards">
+                        <p class="visualizers-grid-status">Loading visualizers…</p>
                     </div>
-                    <div class="section-body">
-                        <div id="visualizers-grid" class="visualizers-grid" aria-label="Visualizer cards">
-                            <p class="visualizers-grid-status">Loading visualizers…</p>
-                        </div>
-                        <p class="visualizers-future-note">More interactive explorers will be added throughout the course — check back as new topics are covered.</p>
-                    </div>
+                    <p class="visualizers-future-note">More interactive explorers will be added throughout the course — check back as new topics are covered.</p>
                 </section>
 
             </div>

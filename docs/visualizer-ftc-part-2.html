@@ -6,7 +6,6 @@
     <title>Fundamental Theorem of Calculus, Part 2 • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/site.css">
-    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 </head>
 <body>
     <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
@@ -46,18 +45,30 @@
                 <header class="text-center">
                     <a href="visualizers.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Visualizers</a>
                     <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">FUNDAMENTAL THEOREM OF CALCULUS, PART 2</h1>
-                    <p class="visualizer-page-intro">Part 2 of the Fundamental Theorem says: if F(x) = ∫ₐˣ f(t) dt, then F′(x) = f(x). With f(x) = 2x, sweep the upper limit with the slider c and watch the shaded area accumulate. The area function F(x) is an antiderivative — differentiating it recovers the original integrand, linking integration and differentiation as inverse processes.</p>
                 </header>
 
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
                         <div class="visualizer-page-graph-wrap">
-                            <div id="visualizer-graph" class="desmos-explorer"></div>
+                            <iframe
+                                class="exotic-desmos-embed"
+                                src="https://www.desmos.com/calculator/snkp74u6bt?embed"
+                                title="Interactive graph: Fundamental Theorem of Calculus, Part 2"
+                                allowfullscreen
+                                loading="lazy"
+                            ></iframe>
                         </div>
                         <p class="visualizer-source text-center mt-3">
-                            <a href="https://www.desmos.com/calculator/snkp74u6bt" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open original on Desmos</a>
+                            <a href="https://www.desmos.com/calculator/snkp74u6bt" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open on Desmos</a>
                         </p>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Description</h2></div>
+                    <div class="section-body">
+                        <p class="exotic-description">Part 2 of the Fundamental Theorem says: if F(x) = ∫ₐˣ f(t) dt, then F′(x) = f(x). With f(x) = 2x, sweep the upper limit with the slider c and watch the shaded area accumulate. The area function F(x) is an antiderivative — differentiating it recovers the original integrand, linking integration and differentiation as inverse processes.</p>
                     </div>
                 </section>
             </div>
@@ -65,9 +76,5 @@
     </div>
 
     <script src="js/site.js"></script>
-    <script src="js/visualizer-detail.js"></script>
-    <script>
-        VisualizerDetail.init({"stateFile":"data/visualizer-states/ftc-part-2.json","desmosUrl":"https://www.desmos.com/calculator/snkp74u6bt"});
-    </script>
 </body>
 </html>

@@ -2,6 +2,7 @@ import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { VISUALIZERS } from './visualizer-detail-data.mjs';
+import { desmosEmbedUrl } from './desmos-embed.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -41,7 +42,8 @@ const SIDEBAR = `    <div class="page-layout flex">
         <main class="main-content flex-1 p-8">`;
 
 function renderPage(v) {
-  const config = { stateFile: v.stateFile, desmosUrl: v.desmosUrl };
+  const embedSrc = desmosEmbedUrl(v.desmosEmbedId);
+  const editorUrl = `https://www.desmos.com/calculator/${v.desmosEmbedId}`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -51,7 +53,6 @@ function renderPage(v) {
     <title>${v.pageTitle} • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/site.css">
-    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 </head>
 <body>
 ${TOP_BAR}
@@ -61,18 +62,30 @@ ${SIDEBAR}
                 <header class="text-center">
                     <a href="visualizers.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Visualizers</a>
                     <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">${v.heading}</h1>
-                    <p class="visualizer-page-intro">${v.intro}</p>
                 </header>
 
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
                         <div class="visualizer-page-graph-wrap">
-                            <div id="visualizer-graph" class="desmos-explorer"></div>
+                            <iframe
+                                class="exotic-desmos-embed"
+                                src="${embedSrc}"
+                                title="Interactive graph: ${v.pageTitle}"
+                                allowfullscreen
+                                loading="lazy"
+                            ></iframe>
                         </div>
                         <p class="visualizer-source text-center mt-3">
-                            <a href="${v.desmosUrl}" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open original on Desmos</a>
+                            <a href="${editorUrl}" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open on Desmos</a>
                         </p>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Description</h2></div>
+                    <div class="section-body">
+                        <p class="exotic-description">${v.description}</p>
                     </div>
                 </section>
             </div>
@@ -80,10 +93,6 @@ ${SIDEBAR}
     </div>
 
     <script src="js/site.js"></script>
-    <script src="js/visualizer-detail.js"></script>
-    <script>
-        VisualizerDetail.init(${JSON.stringify(config)});
-    </script>
 </body>
 </html>`;
 }
@@ -91,7 +100,7 @@ ${SIDEBAR}
 for (const v of VISUALIZERS) {
   const path = join(DOCS, `visualizer-${v.id}.html`);
   writeFileSync(path, renderPage(v), 'utf8');
-  console.log('Wrote', path);
+  console.log('Wrote', path, '→', desmosEmbedUrl(v.desmosEmbedId));
 }
 
 console.log(`Generated ${VISUALIZERS.length} visualizer detail pages.`);

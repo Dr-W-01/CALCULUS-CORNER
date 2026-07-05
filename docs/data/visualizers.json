@@ -1,38 +1,30 @@
 [
   {
     "id": "riemann-sums",
+    "desmosEmbedId": "6930d99975",
     "title": "Riemann Sum Explorer",
     "description": "Adjust the interval, number of rectangles, and sample point to see how Riemann sums approximate the area under a curve.",
-    "page": "visualizer-riemann-sums.html",
-    "thumbUrl": "https://www.desmos.com/calc_thumbs/production/version/6930d99975/dfd74830-780a-11f1-9db5-7b4cc34b251e.png",
-    "desmosUrl": "https://www.desmos.com/calculator/6930d99975",
-    "stateFile": "data/visualizer-states/riemann-sums.json"
+    "page": "visualizer-riemann-sums.html"
   },
   {
     "id": "secant-line",
+    "desmosEmbedId": "qmw6rh0if7",
     "title": "Secant to Tangent",
     "description": "Slide the second point along the curve and watch the secant line approach the tangent — the geometric heart of the derivative.",
-    "page": "visualizer-secant-line.html",
-    "thumbUrl": "https://www.desmos.com/calc_thumbs/production/version/qmw6rh0if7/150a0e70-780b-11f1-9fae-79c6ea503101.png",
-    "desmosUrl": "https://www.desmos.com/calculator/qmw6rh0if7",
-    "stateFile": "data/visualizer-states/secant-line.json"
+    "page": "visualizer-secant-line.html"
   },
   {
     "id": "taylor-polynomials",
+    "desmosEmbedId": "561294d70a",
     "title": "Taylor Polynomial Approximations",
     "description": "Build Taylor polynomials of increasing degree around a point and see how each added term improves the fit to sin(x).",
-    "page": "visualizer-taylor-polynomials.html",
-    "thumbUrl": "https://www.desmos.com/calc_thumbs/production/version/561294d70a/7d863b80-6e30-11f0-a6d8-23d0cd6c235f.png",
-    "desmosUrl": "https://www.desmos.com/calculator/561294d70a",
-    "stateFile": "data/visualizer-states/taylor-polynomials.json"
+    "page": "visualizer-taylor-polynomials.html"
   },
   {
     "id": "ftc-part-2",
+    "desmosEmbedId": "snkp74u6bt",
     "title": "Fundamental Theorem of Calculus, Part 2",
     "description": "Trace the area function F(x) = ∫ₐˣ f(t) dt and discover why its derivative recovers the integrand — FTC Part 2 in motion.",
-    "page": "visualizer-ftc-part-2.html",
-    "thumbUrl": "https://www.desmos.com/calc_thumbs/production/version/snkp74u6bt/7855ce10-b8c6-11f0-8b9e-793b4f80442e.png",
-    "desmosUrl": "https://www.desmos.com/calculator/snkp74u6bt",
-    "stateFile": "data/visualizer-states/ftc-part-2.json"
+    "page": "visualizer-ftc-part-2.html"
   }
 ]

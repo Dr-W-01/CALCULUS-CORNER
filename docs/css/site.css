@@ -640,10 +640,14 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     background-color: #111111;
 }
 
-.exotic-page-graph-wrap .desmos-explorer {
+.exotic-page-graph-wrap .desmos-explorer,
+.exotic-desmos-embed {
     width: 100%;
     height: 100%;
     min-height: 28rem;
+    border: 0;
+    display: block;
+    background-color: #111111;
 }
 
 .exotic-description {
@@ -660,7 +664,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 23rem), 1fr));
     gap: 1.75rem;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .visualizers-grid-status {
@@ -675,27 +679,21 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 }
 
 .visualizer-card {
-    background-color: var(--cc-body-bg);
-    border: 1px solid var(--cc-content-border);
-    border-radius: 1rem;
     padding: 1.5rem;
-    display: block;
     text-decoration: none;
     color: inherit;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.visualizer-card:hover {
-    background-color: var(--cc-content-hover-bg);
-    border-color: var(--cc-content-hover-border);
-    transform: translateY(-2px);
-}
-
+.visualizer-card .zoo-card-title,
 .visualizer-card-title {
-    color: #c45050;
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: 0.04em;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+.visualizer-card-desc {
+    color: #d4d4d8;
+    font-size: 0.95rem;
+    line-height: 1.55;
     text-align: center;
     margin: 0 0 1rem;
 }
@@ -708,22 +706,18 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     overflow: hidden;
     border-radius: 0.75rem;
     border: 1px solid var(--cc-content-border);
-    background-color: #111111;
+    background: #261616;
+    pointer-events: none;
+    position: relative;
 }
 
-.visualizer-card-thumb {
+.visualizer-card-embed {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    min-height: 16.5rem;
+    border: 0;
     display: block;
-}
-
-.visualizer-card-desc {
-    color: #d4d4d8;
-    font-size: 0.95rem;
-    line-height: 1.55;
-    text-align: center;
-    margin: 1rem 0 0;
+    background-color: #111111;
 }
 
 .visualizers-future-note {
@@ -731,21 +725,10 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     color: #71717a;
     font-size: 0.9rem;
     font-style: italic;
-    margin: 0;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--cc-content-border);
+    margin: 1.5rem 0 0;
 }
 
 /* Visualizer detail pages */
-.visualizer-page-intro {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: #d4d4d8;
-    max-width: 42rem;
-    margin: 0 auto;
-    text-align: center;
-}
-
 .visualizer-page-graph-wrap {
     min-height: 32rem;
     border: 1px solid var(--cc-content-border);
@@ -754,9 +737,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     background-color: #111111;
 }
 
-.visualizer-page-graph-wrap .desmos-explorer {
-    width: 100%;
-    height: 100%;
+.visualizer-page-graph-wrap .exotic-desmos-embed {
     min-height: 32rem;
 }
 
