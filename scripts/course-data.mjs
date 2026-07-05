@@ -49,7 +49,7 @@ export const COURSES = [
     title: 'Precalculus',
     visualClass: 'course-card-visual--precalculus',
     portrait: {
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/440px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg',
+      src: 'images/descartes.jpg',
       alt: 'Portrait of René Descartes by Frans Hals',
       position: 'center 20%',
     },
@@ -88,7 +88,7 @@ export const COURSES = [
     title: 'Calculus I',
     visualClass: 'course-card-visual--calculus1',
     portrait: {
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Bernhard_Riemann.jpg/440px-Bernhard_Riemann.jpg',
+      src: 'images/riemann.jpg',
       alt: 'Portrait of Bernhard Riemann',
       position: 'center 15%',
     },
@@ -123,7 +123,7 @@ export const COURSES = [
     title: 'Calculus II',
     visualClass: 'course-card-visual--calculus2',
     portrait: {
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Leonhard_Euler_-_Jakob_Emanuel_Handmann.jpg/440px-Leonhard_Euler_-_Jakob_Emanuel_Handmann.jpg',
+      src: 'images/euler.jpg',
       alt: 'Portrait of Leonhard Euler by Jakob Emanuel Handmann',
       position: 'center 12%',
     },
