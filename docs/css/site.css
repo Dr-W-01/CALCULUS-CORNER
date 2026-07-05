@@ -218,6 +218,112 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     color: #f87171;
 }
 
+/* Courses section */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: 1.5rem;
+}
+
+.course-card {
+    text-decoration: none;
+    color: inherit;
+    padding: 1.5rem;
+}
+
+.course-card-title {
+    color: #c45050;
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-align: center;
+    margin: 0 0 0.75rem;
+}
+
+.course-card-desc {
+    color: #d4d4d8;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    text-align: center;
+    margin: 0 0 1.25rem;
+}
+
+.course-card-enter {
+    display: block;
+    text-align: center;
+    color: #d4a853;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.course-card:hover .course-card-enter {
+    color: #e8c068;
+}
+
+.course-topic-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.course-topic-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--cc-content-border);
+}
+
+.course-topic-item:first-child {
+    padding-top: 0;
+}
+
+.course-topic-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.course-topic-name {
+    color: #f4f4f5;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.course-topic-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.course-topic-link {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid #52525b;
+    color: #e5e5e5;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.course-topic-link:hover {
+    border-color: #b91c1c;
+    color: #f87171;
+}
+
+.course-topic-link--gold {
+    border-color: #6b5a2e;
+    color: #d4a853;
+}
+
+.course-topic-link--gold:hover {
+    border-color: #d4a853;
+    color: #e8c068;
+    background-color: rgb(212 168 83 / 0.08);
+}
+
 /* Hub pages: full-width content area (Courses, Profile, Zoo, Visualizers) */
 .page-content-full {
     width: 100%;

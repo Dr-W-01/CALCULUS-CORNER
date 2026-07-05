@@ -49,7 +49,7 @@ export function renderPageTitle(iconKey, titleText) {
 /** Which nav href should be active for a given docs HTML filename. */
 export function activeNavHref(filename) {
   if (filename === 'index.html') return 'index.html';
-  if (filename === 'courses.html') return 'courses.html';
+  if (filename === 'courses.html' || filename.startsWith('course-')) return 'courses.html';
   if (filename === 'zoo.html' || filename.startsWith('function-')) return 'zoo.html';
   if (filename === 'visualizers.html' || filename.startsWith('visualizer-')) return 'visualizers.html';
   if (filename === 'profile.html') return 'profile.html';
