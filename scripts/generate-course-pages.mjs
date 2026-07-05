@@ -161,30 +161,28 @@ ${tiles}
   });
 }
 
-function renderDefinitionTopicBox(topic) {
-  if (topic.placeholder) {
-    return `                <section class="content-card" id="definitions-${topic.id}">
-                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">${topic.title}</h2></div>
-                    <div class="section-body">
-                        <p class="course-topic-placeholder">${topic.placeholder}</p>
-                    </div>
-                </section>`;
-  }
-
-  const items = topic.definitions
+function renderDefinitionAccordionItems(items) {
+  return items
     .map(
-      (katex) => `                            <li class="course-definition-item">
-                                <div class="course-definition-text" data-katex="${escapeHtmlAttr(katex)}"></div>
-                            </li>`,
+      (item) => `                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">${item.term}</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="${escapeHtmlAttr(item.katex)}"></div>
+                            </div>
+                        </details>`,
     )
     .join('\n');
+}
+
+function renderDefinitionTopicBox(topic) {
+  const accordion = renderDefinitionAccordionItems(topic.items);
 
   return `                <section class="content-card" id="definitions-${topic.id}">
-                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">${topic.title}</h2></div>
+                    <div class="section-header"><h2 class="section-heading text-xl">${topic.title}</h2></div>
                     <div class="section-body">
-                        <ol class="course-definitions-list" start="1">
-${items}
-                        </ol>
+                        <div class="course-accordion">
+${accordion}
+                        </div>
                     </div>
                 </section>`;
 }
@@ -202,7 +200,7 @@ function renderCalculus1DefinitionsPage(course) {
                         <h1 class="section-heading text-xl">${course.title.toUpperCase()} — DEFINITIONS</h1>
                     </div>
                     <div class="section-body">
-                        <p>Formal definitions from the course reference sheet, organized by topic. Each entry uses the exact wording from the Key Definitions section.</p>
+                        <p>Reference definitions and theorems organized by topic. Click a term to expand its formal statement.</p>
                     </div>
                 </header>
 
@@ -216,6 +214,7 @@ ${topicBoxes}
     assetPrefix: '../',
     navPrefix: '../',
     includeKatex: true,
+    extraScripts: '\n    <script src="../js/course-accordion.js"></script>',
   });
 }
 

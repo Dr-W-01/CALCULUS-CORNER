@@ -53,59 +53,195 @@
                         <h1 class="section-heading text-xl">CALCULUS I — DEFINITIONS</h1>
                     </div>
                     <div class="section-body">
-                        <p>Formal definitions from the course reference sheet, organized by topic. Each entry uses the exact wording from the Key Definitions section.</p>
+                        <p>Reference definitions and theorems organized by topic. Click a term to expand its formal statement.</p>
                     </div>
                 </header>
 
                 <section class="content-card" id="definitions-limits">
-                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">Limits</h2></div>
+                    <div class="section-header"><h2 class="section-heading text-xl">Limits</h2></div>
                     <div class="section-body">
-                        <p class="course-topic-placeholder">More definitions will be added here soon.</p>
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Limit</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="L=\lim_{x\to a} f(x)\text{ means that for every }\varepsilon &gt; 0\text{ there exists a }\delta &gt; 0\text{ such that if }0 &lt; |x-a| &lt; \delta\text{ then }|f(x)-L| &lt; \varepsilon."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Left-Hand Limit</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="L=\lim_{x\to a^-} f(x)\text{ means that }f(x)\text{ approaches }L\text{ as }x\text{ approaches }a\text{ from values less than }a."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Right-Hand Limit</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="L=\lim_{x\to a^+} f(x)\text{ means that }f(x)\text{ approaches }L\text{ as }x\text{ approaches }a\text{ from values greater than }a."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Continuity at a Point</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\text{A function }f\text{ is continuous at a number }a\text{ if }\lim_{x\to a} f(x) = f(a)."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Removable Discontinuity</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\text{A function }f\text{ has a removable discontinuity at }a\text{ if }\lim_{x\to a} f(x)\text{ exists but either }f(a)\text{ is not defined or }f(a) \neq \lim_{x\to a} f(x)."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Jump Discontinuity</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\text{A function }f\text{ has a jump discontinuity at }a\text{ if both one-sided limits }\lim_{x\to a^-} f(x)\text{ and }\lim_{x\to a^+} f(x)\text{ exist but are not equal.}"></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Infinite Discontinuity</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\text{A function }f\text{ has an infinite discontinuity at }a\text{ if at least one of the one-sided limits is }\pm\infty."></div>
+                            </div>
+                        </details>
+                        </div>
                     </div>
                 </section>
 
                 <section class="content-card" id="definitions-derivatives">
-                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">Derivatives</h2></div>
+                    <div class="section-header"><h2 class="section-heading text-xl">Derivatives</h2></div>
                     <div class="section-body">
-                        <ol class="course-definitions-list" start="1">
-                            <li class="course-definition-item">
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Critical Point</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that the number }c\text{ is a }\underline{\text{critical point of }f}\text{ if }c\text{ is in the domain of }f\text{ and either }f'(c)=0\text{ or }f'(c)\text{ does not exist.}"></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Absolute Maximum</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ has an }\underline{\text{absolute maximum}}\text{ at }c\text{ if }f(c)\ge f(x)\text{ for all }x\text{ in the domain of }f."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Absolute Minimum</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ has an }\underline{\text{absolute minimum}}\text{ at }c\text{ if }f(c)\le f(x)\text{ for all }x\text{ in the domain of }f."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Local Maximum</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f(c)\text{ is a }\underline{\text{local maximum of }f}\text{ at }x=c\text{ if there exists an interval }(a,b)\text{ containing }c\text{ such that for all }x\text{ with }a &lt; x &lt; b\text{ and }x\text{ in the domain of }f,\ f(c)\ge f(x)."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Local Minimum</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f(c)\text{ is a }\underline{\text{local minimum of }f}\text{ at }x=c\text{ if there exists an interval }(a,b)\text{ containing }c\text{ such that for all }x\text{ with }a &lt; x &lt; b\text{ and }x\text{ in the domain of }f,\ f(c)\le f(x)."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Increasing on an Interval</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ is }\underline{\text{increasing on an interval }(a,b)}\text{ if }f(x_1)&lt;f(x_2)\text{ whenever }a&lt;x_1&lt;x_2&lt;b."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Decreasing on an Interval</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }f\text{ is }\underline{\text{decreasing on an interval }(a,b)}\text{ if }f(x_1)&gt;f(x_2)\text{ whenever }a&lt;x_1&lt;x_2&lt;b."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Concave Up</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that the graph of }f\text{ is }\underline{\text{concave up on }(a,b)}\text{ if the graph of }f(x)\text{ lies above all its tangent lines on }(a,b)."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Concave Down</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that the graph of }f\text{ is }\underline{\text{concave down on }(a,b)}\text{ if the graph of }f(x)\text{ lies below all its tangent lines on }(a,b)."></div>
-                            </li>
-                            <li class="course-definition-item">
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Point of Inflection</summary>
+                            <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Definition.}\ \text{We say that }(c,f(c))\text{ is a }\underline{\text{point of inflection of }f}\text{ if the concavity of }f\text{ changes at }x=c."></div>
-                            </li>
-                        </ol>
+                            </div>
+                        </details>
+                        </div>
                     </div>
                 </section>
 
                 <section class="content-card" id="definitions-integrals">
-                    <div class="section-header"><h2 class="section-heading text-xl course-topic-heading">Integrals</h2></div>
+                    <div class="section-header"><h2 class="section-heading text-xl">Integrals</h2></div>
                     <div class="section-body">
-                        <p class="course-topic-placeholder">More definitions will be added here soon.</p>
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Antiderivative</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="F\text{ is an antiderivative of }f\text{ on an interval if }F'(x)=f(x)\text{ for all }x\text{ in that interval.}"></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Indefinite Integral</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\int f(x)\,dx = F(x)+C\text{ denotes the family of all antiderivatives of }f."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Definite Integral</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\int_a^b f(x)\,dx\text{ represents the signed area under the curve }y=f(x)\text{ from }x=a\text{ to }x=b."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Riemann Sum</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\sum_{i=1}^{n} f(x_i^*)\,\Delta x\text{ approximates the area under }f\text{ by summing areas of rectangles on }[a,b]."></div>
+                            </div>
+                        </details>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-card" id="definitions-theorems">
+                    <div class="section-header"><h2 class="section-heading text-xl">Theorems</h2></div>
+                    <div class="section-body">
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Intermediate Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Squeeze Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Mean Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Extreme Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on a closed interval }[a,b]\text{, then }f\text{ attains an absolute maximum and an absolute minimum on }[a,b]."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Rolle's Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0."></div>
+                            </div>
+                        </details>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -139,5 +275,6 @@
         </main>
     </div>
     <script src="../js/site.js"></script>
+    <script src="../js/course-accordion.js"></script>
 </body>
 </html>
