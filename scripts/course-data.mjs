@@ -38,6 +38,11 @@ export const COURSES = [
     id: 'precalculus',
     title: 'Precalculus',
     visualClass: 'course-card-visual--precalculus',
+    portrait: {
+      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/440px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg',
+      alt: 'Portrait of René Descartes by Frans Hals',
+      position: 'center 20%',
+    },
     landingDescription:
       'Functions, trigonometry, and algebraic tools that prepare you for limits and derivatives.',
     courseDescription:
@@ -67,6 +72,11 @@ export const COURSES = [
     id: 'calculus1',
     title: 'Calculus I',
     visualClass: 'course-card-visual--calculus1',
+    portrait: {
+      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Bernhard_Riemann.jpg/440px-Bernhard_Riemann.jpg',
+      alt: 'Portrait of Bernhard Riemann',
+      position: 'center 15%',
+    },
     landingDescription:
       'Limits, continuity, derivatives, and their applications — the core of first-semester calculus.',
     courseDescription:
@@ -96,6 +106,11 @@ export const COURSES = [
     id: 'calculus2',
     title: 'Calculus II',
     visualClass: 'course-card-visual--calculus2',
+    portrait: {
+      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Leonhard_Euler_-_Jakob_Emanuel_Handmann.jpg/440px-Leonhard_Euler_-_Jakob_Emanuel_Handmann.jpg',
+      alt: 'Portrait of Leonhard Euler by Jakob Emanuel Handmann',
+      position: 'center 12%',
+    },
     landingDescription:
       'Integration techniques, applications of integrals, and an introduction to sequences and series.',
     courseDescription:

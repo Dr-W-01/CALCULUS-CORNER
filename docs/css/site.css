@@ -240,32 +240,45 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 .course-card {
     text-decoration: none;
     color: inherit;
-    padding: 0;
-    overflow: hidden;
+    padding: 1.5rem;
+    text-align: center;
 }
 
-.course-card-visual {
-    height: 9rem;
-    border-bottom: 1px solid var(--cc-content-border);
-    background-size: cover;
-    background-position: center;
+.course-card-portrait-wrap {
+    width: 11rem;
+    height: 13rem;
+    max-width: 100%;
+    margin: 0 auto 1.25rem;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid var(--cc-content-border);
+    background: #261616;
     transition: border-color 0.2s ease;
 }
 
-.course-card-visual--precalculus {
-    background: linear-gradient(135deg, #1a2e28 0%, #2d4a3e 45%, #1a1010 100%);
+.course-card-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    transition: transform 0.25s ease;
 }
 
-.course-card-visual--calculus1 {
-    background: linear-gradient(135deg, #3a1a1a 0%, #5c3030 50%, #1a1010 100%);
+.zoo-card:hover .course-card-portrait {
+    transform: scale(1.04);
 }
 
-.course-card-visual--calculus2 {
-    background: linear-gradient(135deg, #3a2e14 0%, #5c4a22 50%, #1a1010 100%);
+.course-card-visual--precalculus .course-card-portrait {
+    object-position: center 20%;
 }
 
-.course-card-body {
-    padding: 1.25rem 1.5rem 1.5rem;
+.course-card-visual--calculus1 .course-card-portrait {
+    object-position: center 15%;
+}
+
+.course-card-visual--calculus2 .course-card-portrait {
+    object-position: center 12%;
 }
 
 .course-card-title {
@@ -274,6 +287,10 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 }
 
 .course-card-desc {
+    color: #d4d4d8;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    text-align: center;
     margin: 0;
     transition: color 0.2s ease;
 }
@@ -480,9 +497,9 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     border-color: var(--cc-card-hover-inner-border);
 }
 
-.zoo-card:hover .course-card-visual,
+.zoo-card:hover .course-card-portrait-wrap,
 .zoo-card:hover .course-tile-visual {
-    border-bottom-color: var(--cc-card-hover-inner-border);
+    border-color: var(--cc-card-hover-inner-border);
 }
 
 .zoo-card-title {

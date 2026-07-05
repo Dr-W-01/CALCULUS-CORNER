@@ -87,14 +87,24 @@ function renderAccordionItems(items) {
     .join('\n');
 }
 
+function renderCourseCardPortrait(course) {
+  if (!course.portrait) return '';
+
+  const positionAttr = course.portrait.position
+    ? ` style="object-position: ${course.portrait.position}"`
+    : '';
+
+  return `<img class="course-card-portrait" src="${course.portrait.src}" alt="${escapeHtmlAttr(course.portrait.alt)}" loading="lazy" decoding="async"${positionAttr}>`;
+}
+
 function renderCoursesLanding() {
   const cards = COURSES.map(
     (c) => `                    <a href="course-${c.id}.html" class="course-card zoo-card block">
-                        <div class="course-card-visual ${c.visualClass}" aria-hidden="true"></div>
-                        <div class="course-card-body">
-                            <h2 class="course-card-title zoo-card-title">${c.title.toUpperCase()}</h2>
-                            <p class="course-card-desc zoo-card-desc">${c.landingDescription}</p>
+                        <div class="course-card-portrait-wrap ${c.visualClass}">
+                            ${renderCourseCardPortrait(c)}
                         </div>
+                        <h2 class="course-card-title zoo-card-title">${c.title.toUpperCase()}</h2>
+                        <p class="course-card-desc zoo-card-desc">${c.landingDescription}</p>
                     </a>`,
   ).join('\n');
 
