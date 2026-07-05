@@ -2,7 +2,7 @@ import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { COURSES, SECTION_TILES } from './course-data.mjs';
-import { CALCULUS1_DEFINITION_TOPICS, CALCULUS1_THEOREMS } from './calculus1-definitions.mjs';
+import { CALCULUS1_DEFINITION_TOPICS, CALCULUS1_THEOREM_TOPICS } from './calculus1-definitions.mjs';
 import { loadSiteFooter, renderSidebarShell, renderPageTitle, navPrefixForPath } from './site-layout.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -171,23 +171,27 @@ ${tiles}
   });
 }
 
-function renderDefinitionAccordionItems(items) {
+function renderKatexAccordionItems(items) {
   return items
-    .map(
-      (item) => `                        <details class="course-accordion-item">
+    .map((item) => {
+      const note = item.note
+        ? `\n                                <p class="course-theorem-note">${item.note}</p>`
+        : '';
+
+      return `                        <details class="course-accordion-item">
                             <summary class="course-accordion-trigger">${item.term}</summary>
                             <div class="course-accordion-panel">
-                                <div class="course-definition-text" data-katex="${escapeHtmlAttr(item.katex)}"></div>
+                                <div class="course-definition-text" data-katex="${escapeHtmlAttr(item.katex)}"></div>${note}
                             </div>
-                        </details>`,
-    )
+                        </details>`;
+    })
     .join('\n');
 }
 
-function renderDefinitionTopicBox(topic) {
-  const accordion = renderDefinitionAccordionItems(topic.items);
+function renderTopicBox(topic, sectionPrefix) {
+  const accordion = renderKatexAccordionItems(topic.items);
 
-  return `                <section class="content-card" id="definitions-${topic.id}">
+  return `                <section class="content-card" id="${sectionPrefix}-${topic.id}">
                     <div class="section-header"><h2 class="section-heading text-xl">${topic.title}</h2></div>
                     <div class="section-body">
                         <div class="course-accordion">
@@ -198,7 +202,7 @@ ${accordion}
 }
 
 function renderCalculus1DefinitionsPage(course) {
-  const topicBoxes = CALCULUS1_DEFINITION_TOPICS.map(renderDefinitionTopicBox).join('\n\n');
+  const topicBoxes = CALCULUS1_DEFINITION_TOPICS.map((topic) => renderTopicBox(topic, 'definitions')).join('\n\n');
 
   const main = `            <div class="page-content-full space-y-8">
                 <p class="text-center mb-0">
@@ -229,7 +233,7 @@ ${topicBoxes}
 }
 
 function renderCalculus1TheoremsPage(course) {
-  const accordion = renderDefinitionAccordionItems(CALCULUS1_THEOREMS);
+  const topicBoxes = CALCULUS1_THEOREM_TOPICS.map((topic) => renderTopicBox(topic, 'theorems')).join('\n\n');
 
   const main = `            <div class="page-content-full space-y-8">
                 <p class="text-center mb-0">
@@ -241,18 +245,11 @@ function renderCalculus1TheoremsPage(course) {
                         <h1 class="section-heading text-xl">${course.title.toUpperCase()} — THEOREMS</h1>
                     </div>
                     <div class="section-body">
-                        <p>Important calculus results with formal statements. Click a theorem to expand it.</p>
+                        <p>Important results organized by topic. Click a theorem name to expand its formal statement.</p>
                     </div>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Theorems</h2></div>
-                    <div class="section-body">
-                        <div class="course-accordion">
-${accordion}
-                        </div>
-                    </div>
-                </section>
+${topicBoxes}
             </div>`;
 
   return pageShell({

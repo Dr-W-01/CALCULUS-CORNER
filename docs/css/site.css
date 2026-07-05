@@ -426,6 +426,14 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     margin: 0.85rem 0 0;
 }
 
+.course-theorem-note {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0.75rem 0 0;
+}
+
 .course-definition-text .katex {
     font-size: 1.02em;
 }

@@ -105,26 +105,76 @@ export const CALCULUS1_DEFINITION_TOPICS = [
   },
 ];
 
-/** Calculus I theorems — dedicated theorems subsection page. */
-export const CALCULUS1_THEOREMS = [
+/** Calculus I theorems — topic sections for the theorems subsection page. */
+export const CALCULUS1_THEOREM_TOPICS = [
   {
-    term: 'Intermediate Value Theorem',
-    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N.`,
+    id: 'limit-theorems',
+    title: 'Limit Theorems',
+    items: [
+      {
+        term: 'Squeeze Theorem',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L.`,
+        note: 'Also called the Sandwich Theorem or Pinching Theorem.',
+      },
+      {
+        term: 'Intermediate Value Theorem',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N.`,
+        note: 'Guarantees that a continuous function takes every value between its endpoint values.',
+      },
+      {
+        term: 'Extreme Value Theorem',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on a closed interval }[a,b]\text{, then }f\text{ attains an absolute maximum and an absolute minimum on }[a,b].`,
+      },
+      {
+        term: 'Limit of a Composition',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }\lim_{x\to a}g(x)=b\text{ and }f\text{ is continuous at }b\text{, then }\lim_{x\to a}f(g(x))=f(b).`,
+        note: 'Placeholder — formal hypotheses and alternate forms will be added later.',
+      },
+    ],
   },
   {
-    term: 'Squeeze Theorem',
-    katex: String.raw`\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L.`,
+    id: 'derivative-theorems',
+    title: 'Derivative Theorems',
+    items: [
+      {
+        term: 'Mean Value Theorem',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}.`,
+        note: 'There is some point on the curve where the instantaneous rate of change equals the average rate of change.',
+      },
+      {
+        term: "Rolle's Theorem",
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0.`,
+        note: 'A special case of the Mean Value Theorem.',
+      },
+      {
+        term: "Fermat's Theorem on Local Extrema",
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ has a local maximum or minimum at }c\text{ and }f'(c)\text{ exists, then }f'(c)=0.`,
+      },
+      {
+        term: 'Differentiability Implies Continuity',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is differentiable at }a\text{, then }f\text{ is continuous at }a.`,
+        note: 'The converse is false: continuity does not guarantee differentiability.',
+      },
+    ],
   },
   {
-    term: 'Mean Value Theorem',
-    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}.`,
-  },
-  {
-    term: 'Extreme Value Theorem',
-    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on a closed interval }[a,b]\text{, then }f\text{ attains an absolute maximum and an absolute minimum on }[a,b].`,
-  },
-  {
-    term: "Rolle's Theorem",
-    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0.`,
+    id: 'integral-theorems',
+    title: 'Integral Theorems',
+    items: [
+      {
+        term: 'Fundamental Theorem of Calculus, Part I',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }F(x)=\int_a^x f(t)\,dt\text{, then }F'(x)=f(x)\text{ on }(a,b).`,
+        note: 'Differentiating an accumulation function recovers the original integrand.',
+      },
+      {
+        term: 'Fundamental Theorem of Calculus, Part II',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }F\text{ is any antiderivative of }f\text{, then }\int_a^b f(x)\,dx = F(b)-F(a).`,
+      },
+      {
+        term: 'Mean Value Theorem for Integrals',
+        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, then there exists }c\in[a,b]\text{ such that }\int_a^b f(x)\,dx = f(c)(b-a).`,
+        note: 'The average value of f on [a, b] is attained at some point in the interval.',
+      },
+    ],
   },
 ];

@@ -53,30 +53,26 @@
                         <h1 class="section-heading text-xl">CALCULUS I — THEOREMS</h1>
                     </div>
                     <div class="section-body">
-                        <p>Important calculus results with formal statements. Click a theorem to expand it.</p>
+                        <p>Important results organized by topic. Click a theorem name to expand its formal statement.</p>
                     </div>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Theorems</h2></div>
+                <section class="content-card" id="theorems-limit-theorems">
+                    <div class="section-header"><h2 class="section-heading text-xl">Limit Theorems</h2></div>
                     <div class="section-body">
                         <div class="course-accordion">
-                        <details class="course-accordion-item">
-                            <summary class="course-accordion-trigger">Intermediate Value Theorem</summary>
-                            <div class="course-accordion-panel">
-                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N."></div>
-                            </div>
-                        </details>
                         <details class="course-accordion-item">
                             <summary class="course-accordion-trigger">Squeeze Theorem</summary>
                             <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L."></div>
+                                <p class="course-theorem-note">Also called the Sandwich Theorem or Pinching Theorem.</p>
                             </div>
                         </details>
                         <details class="course-accordion-item">
-                            <summary class="course-accordion-trigger">Mean Value Theorem</summary>
+                            <summary class="course-accordion-trigger">Intermediate Value Theorem</summary>
                             <div class="course-accordion-panel">
-                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}."></div>
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N."></div>
+                                <p class="course-theorem-note">Guarantees that a continuous function takes every value between its endpoint values.</p>
                             </div>
                         </details>
                         <details class="course-accordion-item">
@@ -86,9 +82,73 @@
                             </div>
                         </details>
                         <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Limit of a Composition</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }\lim_{x\to a}g(x)=b\text{ and }f\text{ is continuous at }b\text{, then }\lim_{x\to a}f(g(x))=f(b)."></div>
+                                <p class="course-theorem-note">Placeholder — formal hypotheses and alternate forms will be added later.</p>
+                            </div>
+                        </details>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-card" id="theorems-derivative-theorems">
+                    <div class="section-header"><h2 class="section-heading text-xl">Derivative Theorems</h2></div>
+                    <div class="section-body">
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Mean Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}."></div>
+                                <p class="course-theorem-note">There is some point on the curve where the instantaneous rate of change equals the average rate of change.</p>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
                             <summary class="course-accordion-trigger">Rolle's Theorem</summary>
                             <div class="course-accordion-panel">
                                 <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0."></div>
+                                <p class="course-theorem-note">A special case of the Mean Value Theorem.</p>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Fermat's Theorem on Local Extrema</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ has a local maximum or minimum at }c\text{ and }f'(c)\text{ exists, then }f'(c)=0."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Differentiability Implies Continuity</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is differentiable at }a\text{, then }f\text{ is continuous at }a."></div>
+                                <p class="course-theorem-note">The converse is false: continuity does not guarantee differentiability.</p>
+                            </div>
+                        </details>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-card" id="theorems-integral-theorems">
+                    <div class="section-header"><h2 class="section-heading text-xl">Integral Theorems</h2></div>
+                    <div class="section-body">
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Fundamental Theorem of Calculus, Part I</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }F(x)=\int_a^x f(t)\,dt\text{, then }F'(x)=f(x)\text{ on }(a,b)."></div>
+                                <p class="course-theorem-note">Differentiating an accumulation function recovers the original integrand.</p>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Fundamental Theorem of Calculus, Part II</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }F\text{ is any antiderivative of }f\text{, then }\int_a^b f(x)\,dx = F(b)-F(a)."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Mean Value Theorem for Integrals</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, then there exists }c\in[a,b]\text{ such that }\int_a^b f(x)\,dx = f(c)(b-a)."></div>
+                                <p class="course-theorem-note">The average value of f on [a, b] is attained at some point in the interval.</p>
                             </div>
                         </details>
                         </div>
