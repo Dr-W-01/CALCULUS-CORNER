@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizers • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -52,14 +53,11 @@
                     </div>
                 </header>
 
-                <section class="zoo-page-section">
-                    <h2 class="zoo-section-header">Interactive Visual Explorers</h2>
-                    <p class="zoo-section-subtitle">Click a card to open the full explorer. Previews below link to your live Desmos graphs.</p>
-                    <div id="visualizers-grid" class="visualizers-grid" aria-label="Visualizer cards">
-                        <p class="visualizers-grid-status">Loading visualizers…</p>
-                    </div>
-                    <p class="visualizers-future-note">More interactive explorers will be added throughout the course — check back as new topics are covered.</p>
-                </section>
+                <div id="visualizers-sections" aria-label="Visualizer sections">
+                    <p class="visualizers-grid-status">Loading visualizers…</p>
+                </div>
+
+                <p class="visualizers-future-note">More interactive explorers will be added throughout the course — check back as new topics are covered.</p>
 
             </div>
         </main>

@@ -1,10 +1,13 @@
 const VisualizerDetail = (function () {
-    async function initGraph(stateFile) {
+    const DEFAULT_BOUNDS = { left: -5, right: 5, bottom: -5, top: 5 };
+
+    async function initGraph(config) {
         const elt = document.getElementById('visualizer-graph');
         if (!elt || typeof Desmos === 'undefined') return null;
 
         const calculator = Desmos.GraphingCalculator(elt, {
-            expressions: false,
+            expressions: true,
+            expressionsCollapsed: true,
             settingsMenu: false,
             zoomButtons: true,
             keypad: false,
@@ -17,7 +20,7 @@ const VisualizerDetail = (function () {
         });
 
         try {
-            const res = await fetch(stateFile);
+            const res = await fetch(config.stateFile);
             if (!res.ok) throw new Error('Failed to load graph state');
             const state = await res.json();
             calculator.setState(state);
@@ -25,13 +28,14 @@ const VisualizerDetail = (function () {
             console.error('Visualizer state load error:', err);
         }
 
+        calculator.setMathBounds(config.bounds || DEFAULT_BOUNDS);
         requestAnimationFrame(() => calculator.resize());
         return calculator;
     }
 
     function init(config) {
         document.addEventListener('DOMContentLoaded', () => {
-            initGraph(config.stateFile);
+            initGraph(config);
         });
     }
 

@@ -1,30 +1,56 @@
-[
-  {
-    "id": "riemann-sums",
-    "desmosEmbedId": "6930d99975",
-    "title": "Riemann Sum Explorer",
-    "description": "Adjust the interval, number of rectangles, and sample point to see how Riemann sums approximate the area under a curve.",
-    "page": "visualizer-riemann-sums.html"
-  },
-  {
-    "id": "secant-line",
-    "desmosEmbedId": "qmw6rh0if7",
-    "title": "Secant to Tangent",
-    "description": "Slide the second point along the curve and watch the secant line approach the tangent — the geometric heart of the derivative.",
-    "page": "visualizer-secant-line.html"
-  },
-  {
-    "id": "taylor-polynomials",
-    "desmosEmbedId": "561294d70a",
-    "title": "Taylor Polynomial Approximations",
-    "description": "Build Taylor polynomials of increasing degree around a point and see how each added term improves the fit to sin(x).",
-    "page": "visualizer-taylor-polynomials.html"
-  },
-  {
-    "id": "ftc-part-2",
-    "desmosEmbedId": "snkp74u6bt",
-    "title": "Fundamental Theorem of Calculus, Part 2",
-    "description": "Trace the area function F(x) = ∫ₐˣ f(t) dt and discover why its derivative recovers the integrand — FTC Part 2 in motion.",
-    "page": "visualizer-ftc-part-2.html"
-  }
-]
+{
+  "sections": [
+    {
+      "id": "limit",
+      "title": "Limit Visualizers",
+      "subtitle": "Interactive tools for limits and continuity — more coming soon.",
+      "visualizers": []
+    },
+    {
+      "id": "derivative",
+      "title": "Derivative Visualizers",
+      "subtitle": "See rates of change, secant lines, and Taylor approximations in motion.",
+      "visualizers": [
+        {
+          "id": "secant-line",
+          "stateFile": "data/visualizer-states/secant-line.json",
+          "title": "Secant to Tangent",
+          "description": "Slide the second point along the curve and watch the secant line approach the tangent — the geometric heart of the derivative.",
+          "page": "visualizer-secant-line.html",
+          "bounds": { "left": -5, "right": 5, "bottom": -5, "top": 5 }
+        },
+        {
+          "id": "taylor-polynomials",
+          "stateFile": "data/visualizer-states/taylor-polynomials.json",
+          "title": "Taylor Polynomial Approximations",
+          "description": "Build Taylor polynomials of increasing degree around a point and see how each added term improves the fit to sin(x).",
+          "page": "visualizer-taylor-polynomials.html",
+          "bounds": { "left": -5, "right": 5, "bottom": -5, "top": 5 }
+        }
+      ]
+    },
+    {
+      "id": "integral",
+      "title": "Integral Visualizers",
+      "subtitle": "Explore Riemann sums, area functions, and the Fundamental Theorem.",
+      "visualizers": [
+        {
+          "id": "riemann-sums",
+          "stateFile": "data/visualizer-states/riemann-sums.json",
+          "title": "Riemann Sum Explorer",
+          "description": "Adjust the interval, number of rectangles, and sample point to see how Riemann sums approximate the area under a curve.",
+          "page": "visualizer-riemann-sums.html",
+          "bounds": { "left": -5, "right": 5, "bottom": -5, "top": 5 }
+        },
+        {
+          "id": "ftc-part-2",
+          "stateFile": "data/visualizer-states/ftc-part-2.json",
+          "title": "Fundamental Theorem of Calculus, Part 2",
+          "description": "Trace the area function F(x) = ∫ₐˣ f(t) dt and discover why its derivative recovers the integrand — FTC Part 2 in motion.",
+          "page": "visualizer-ftc-part-2.html",
+          "bounds": { "left": -5, "right": 5, "bottom": -5, "top": 5 }
+        }
+      ]
+    }
+  ]
+}

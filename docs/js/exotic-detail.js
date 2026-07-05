@@ -35,6 +35,15 @@ const ExoticDetail = (function () {
             });
         }
 
+        if (config.point) {
+            calculator.setExpression({
+                id: config.point.id || 'point-main',
+                latex: config.point.latex,
+                pointStyle: config.point.pointStyle,
+                color: config.point.color || POINT_COLOR
+            });
+        }
+
         (config.points || []).forEach((point, i) => {
             calculator.setExpression({
                 id: point.id || `point-${i}`,

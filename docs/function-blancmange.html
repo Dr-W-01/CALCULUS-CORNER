@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -54,13 +55,7 @@
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan</p>
                         <div class="exotic-page-graph-wrap">
-                            <iframe
-                                class="exotic-desmos-embed"
-                                src="https://www.desmos.com/calculator/nrqwgqonmw?embed"
-                                title="Interactive graph: Blancmange Function"
-                                allowfullscreen
-                                loading="lazy"
-                            ></iframe>
+                            <div id="exotic-graph" class="desmos-explorer"></div>
                         </div>
                     </div>
                 </section>
@@ -74,6 +69,7 @@
             </div>
         </main>
     </div>
+
     <footer class="site-footer" id="site-footer">
         <div class="site-footer-inner">
             <section class="content-card site-footer-feedback">
@@ -107,15 +103,10 @@
         </div>
     </footer>
 
-
     <script src="js/site.js"></script>
+    <script src="js/exotic-detail.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var header = document.getElementById('header-expr');
-            if (header && typeof katex !== 'undefined') {
-                katex.render("f(x)=\\sum_{n=0}^{\\infty}\\frac{1-\\cos(2^{n} x)}{2^{n}}", header, { throwOnError: false, displayMode: true });
-            }
-        });
+        ExoticDetail.init({"headerKatex":"f(x)=\\sum_{n=0}^{\\infty}\\frac{1-\\cos(2^{n} x)}{2^{n}}","graphExpression":"y = \\sum_{n=0}^{100}\\frac{1-\\cos(2^{n} x)}{2^{n}}","bounds":{"left":-5,"right":5,"bottom":-5,"top":5}});
     </script>
 </body>
 </html>

@@ -2,10 +2,10 @@ import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { VISUALIZERS } from './visualizer-detail-data.mjs';
-import { desmosEmbedUrl } from './desmos-embed.mjs';
 import { loadSiteFooter } from './site-layout.mjs';
 
 const SITE_FOOTER = loadSiteFooter();
+const DESMOS_API = '    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -45,8 +45,10 @@ const SIDEBAR = `    <div class="page-layout flex">
         <main class="main-content flex-1 p-8">`;
 
 function renderPage(v) {
-  const embedSrc = desmosEmbedUrl(v.desmosEmbedId);
-  const editorUrl = `https://www.desmos.com/calculator/${v.desmosEmbedId}`;
+  const initConfig = JSON.stringify({
+    stateFile: v.stateFile,
+    bounds: v.bounds,
+  });
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -55,6 +57,7 @@ function renderPage(v) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${v.pageTitle} • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
+${DESMOS_API}
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -71,17 +74,8 @@ ${SIDEBAR}
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
                         <div class="visualizer-page-graph-wrap">
-                            <iframe
-                                class="exotic-desmos-embed"
-                                src="${embedSrc}"
-                                title="Interactive graph: ${v.pageTitle}"
-                                allowfullscreen
-                                loading="lazy"
-                            ></iframe>
+                            <div id="visualizer-graph" class="desmos-explorer"></div>
                         </div>
-                        <p class="visualizer-source text-center mt-3">
-                            <a href="${editorUrl}" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open on Desmos</a>
-                        </p>
                     </div>
                 </section>
 
@@ -98,6 +92,10 @@ ${SIDEBAR}
 ${SITE_FOOTER}
 
     <script src="js/site.js"></script>
+    <script src="js/visualizer-detail.js"></script>
+    <script>
+        VisualizerDetail.init(${initConfig});
+    </script>
 </body>
 </html>`;
 }
@@ -105,7 +103,7 @@ ${SITE_FOOTER}
 for (const v of VISUALIZERS) {
   const path = join(DOCS, `visualizer-${v.id}.html`);
   writeFileSync(path, renderPage(v), 'utf8');
-  console.log('Wrote', path, '→', desmosEmbedUrl(v.desmosEmbedId));
+  console.log('Wrote', path, '→ Desmos API +', v.stateFile);
 }
 
 console.log(`Generated ${VISUALIZERS.length} visualizer detail pages.`);

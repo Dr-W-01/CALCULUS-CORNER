@@ -1,10 +1,11 @@
 import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { EXOTIC_FUNCTIONS, desmosEmbedUrl } from './exotic-detail-data.mjs';
+import { EXOTIC_FUNCTIONS } from './exotic-detail-data.mjs';
 import { loadSiteFooter } from './site-layout.mjs';
 
 const SITE_FOOTER = loadSiteFooter();
+const DESMOS_API = '    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -43,9 +44,18 @@ const SIDEBAR = `    <div class="page-layout flex">
 
         <main class="main-content flex-1 p-8">`;
 
-function renderPage(fn) {
-  const embedSrc = desmosEmbedUrl(fn.desmosEmbedId);
+function graphConfig(fn) {
+  const config = {
+    headerKatex: fn.headerKatex,
+    graphExpression: fn.graphExpression,
+    bounds: fn.bounds,
+  };
+  if (fn.points) config.points = fn.points;
+  if (fn.point) config.point = fn.point;
+  return JSON.stringify(config);
+}
 
+function renderPage(fn) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,6 +65,7 @@ function renderPage(fn) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+${DESMOS_API}
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -72,13 +83,7 @@ ${SIDEBAR}
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan</p>
                         <div class="exotic-page-graph-wrap">
-                            <iframe
-                                class="exotic-desmos-embed"
-                                src="${embedSrc}"
-                                title="Interactive graph: ${fn.pageTitle}"
-                                allowfullscreen
-                                loading="lazy"
-                            ></iframe>
+                            <div id="exotic-graph" class="desmos-explorer"></div>
                         </div>
                     </div>
                 </section>
@@ -96,13 +101,9 @@ ${SIDEBAR}
 ${SITE_FOOTER}
 
     <script src="js/site.js"></script>
+    <script src="js/exotic-detail.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var header = document.getElementById('header-expr');
-            if (header && typeof katex !== 'undefined') {
-                katex.render(${JSON.stringify(fn.headerKatex)}, header, { throwOnError: false, displayMode: true });
-            }
-        });
+        ExoticDetail.init(${graphConfig(fn)});
     </script>
 </body>
 </html>`;
@@ -111,7 +112,7 @@ ${SITE_FOOTER}
 for (const fn of EXOTIC_FUNCTIONS) {
   const path = join(DOCS, `function-${fn.id}.html`);
   writeFileSync(path, renderPage(fn), 'utf8');
-  console.log('Wrote', path, '→', desmosEmbedUrl(fn.desmosEmbedId));
+  console.log('Wrote', path, '→ Desmos API:', fn.graphExpression);
 }
 
 console.log(`Generated ${EXOTIC_FUNCTIONS.length} exotic detail pages.`);

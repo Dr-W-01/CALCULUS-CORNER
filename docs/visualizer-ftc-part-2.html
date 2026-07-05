@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundamental Theorem of Calculus, Part 2 • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -51,17 +52,8 @@
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
                         <div class="visualizer-page-graph-wrap">
-                            <iframe
-                                class="exotic-desmos-embed"
-                                src="https://www.desmos.com/calculator/snkp74u6bt?embed"
-                                title="Interactive graph: Fundamental Theorem of Calculus, Part 2"
-                                allowfullscreen
-                                loading="lazy"
-                            ></iframe>
+                            <div id="visualizer-graph" class="desmos-explorer"></div>
                         </div>
-                        <p class="visualizer-source text-center mt-3">
-                            <a href="https://www.desmos.com/calculator/snkp74u6bt" class="text-sm text-zinc-500 hover:text-red-400" target="_blank" rel="noopener noreferrer">Open on Desmos</a>
-                        </p>
                     </div>
                 </section>
 
@@ -74,6 +66,7 @@
             </div>
         </main>
     </div>
+
     <footer class="site-footer" id="site-footer">
         <div class="site-footer-inner">
             <section class="content-card site-footer-feedback">
@@ -107,7 +100,10 @@
         </div>
     </footer>
 
-
     <script src="js/site.js"></script>
+    <script src="js/visualizer-detail.js"></script>
+    <script>
+        VisualizerDetail.init({"stateFile":"data/visualizer-states/ftc-part-2.json","bounds":{"left":-5,"right":5,"bottom":-5,"top":5}});
+    </script>
 </body>
 </html>
