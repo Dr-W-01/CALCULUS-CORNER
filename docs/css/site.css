@@ -1005,6 +1005,187 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     user-select: none;
 }
 
+/* Fake Proof: π = 4 visualizer */
+.fake-pi-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.fake-pi-stat {
+    text-align: center;
+}
+
+.fake-pi-stat-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+}
+
+.fake-pi-stat-swatch {
+    height: 4px;
+    width: 1.5rem;
+    border-radius: 9999px;
+}
+
+.fake-pi-stat-swatch--stair {
+    background: #d4a853;
+}
+
+.fake-pi-stat-swatch--circle {
+    background: #5b9a7a;
+}
+
+.fake-pi-stat-label--stair {
+    color: #d4a853;
+}
+
+.fake-pi-stat-label--circle {
+    color: #5b9a7a;
+}
+
+.fake-pi-stat-value {
+    font-family: ui-monospace, 'Cascadia Code', monospace;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.fake-pi-stat-value--stair {
+    color: #d4a853;
+}
+
+.fake-pi-stat-value--circle {
+    color: #5b9a7a;
+}
+
+.fake-pi-level-row {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.fake-pi-level-label {
+    color: #a1a1aa;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+}
+
+.fake-pi-level-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-left: 0.75rem;
+    color: #f4f4f5;
+}
+
+.fake-pi-milestone {
+    background: linear-gradient(to right, #b8860b, #d4a853);
+    color: #1a1010;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgb(212 168 83 / 0.25);
+}
+
+.fake-pi-canvas-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.fake-pi-canvas {
+    border-radius: 0.75rem;
+    border: 1px solid var(--cc-content-border);
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.fake-pi-controls {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.fake-pi-btn {
+    flex: 1;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.fake-pi-btn-primary {
+    background-color: #b91c1c;
+    color: #fff;
+    border: 1px solid #991b1b;
+}
+
+.fake-pi-btn-primary:hover {
+    background-color: #991b1b;
+}
+
+.fake-pi-btn-secondary {
+    border: 1px solid #52525b;
+    background: transparent;
+    color: #e5e5e5;
+}
+
+.fake-pi-btn-secondary:hover:not(:disabled) {
+    border-color: #d4a853;
+    color: #d4a853;
+}
+
+.fake-pi-btn-secondary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.fake-pi-reset-row {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.fake-pi-btn-reset {
+    font-size: 0.8rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #52525b;
+    background: transparent;
+    border-radius: 9999px;
+    color: #a1a1aa;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.fake-pi-btn-reset:hover {
+    border-color: #d4a853;
+    color: #d4a853;
+}
+
+.fake-pi-hint {
+    text-align: center;
+    margin-top: 1rem;
+    color: #71717a;
+    font-size: 0.75rem;
+}
+
+.visualizer-card-preview-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
 @media (max-width: 640px) {
     .typo-form-row {
         flex-direction: column;

@@ -32,25 +32,34 @@
         requestAnimationFrame(() => calculator.resize());
     }
 
+    function initCanvasPreview(v, containerId) {
+        const canvas = document.getElementById(containerId);
+        if (!canvas || typeof FakePiProof === 'undefined') return;
+        FakePiProof.drawPreview(canvas, v.previewLevel != null ? v.previewLevel : 4);
+    }
+
     function createCard(v) {
         const card = document.createElement('a');
         card.href = v.page;
         card.className = 'visualizer-card zoo-card';
 
         const previewId = 'visualizer-preview-' + v.id;
+        const isCanvas = v.previewType === 'canvas';
 
         card.innerHTML = `
             <h3 class="visualizer-card-title zoo-card-title"></h3>
             <p class="visualizer-card-desc"></p>
             <div class="visualizer-card-preview">
-                <div id="${previewId}" class="desmos-graph"></div>
+                ${isCanvas
+                    ? `<canvas id="${previewId}" class="visualizer-card-preview-canvas" width="340" height="340" aria-hidden="true"></canvas>`
+                    : `<div id="${previewId}" class="desmos-graph"></div>`}
             </div>
         `;
 
         card.querySelector('.visualizer-card-title').textContent = v.title.toUpperCase();
         card.querySelector('.visualizer-card-desc').textContent = v.description;
 
-        return { card, previewId, visualizer: v };
+        return { card, previewId, visualizer: v, isCanvas: isCanvas };
     }
 
     function renderSection(section) {
@@ -79,14 +88,18 @@
         }
 
         section.visualizers.forEach(function (v) {
-            const { card, previewId, visualizer } = createCard(v);
+            const { card, previewId, visualizer, isCanvas } = createCard(v);
             grid.appendChild(card);
-            previews.push({ previewId, visualizer });
+            previews.push({ previewId, visualizer, isCanvas: isCanvas });
         });
 
         requestAnimationFrame(function () {
             previews.forEach(function (item) {
-                initPreviewGraph(item.visualizer, item.previewId);
+                if (item.isCanvas) {
+                    initCanvasPreview(item.visualizer, item.previewId);
+                } else {
+                    initPreviewGraph(item.visualizer, item.previewId);
+                }
             });
         });
 

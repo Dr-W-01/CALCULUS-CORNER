@@ -4,7 +4,16 @@
       "id": "limit",
       "title": "Limit Visualizers",
       "subtitle": "Interactive tools for limits and continuity — more coming soon.",
-      "visualizers": []
+      "visualizers": [
+        {
+          "id": "fake-pi-proof",
+          "title": "Fake Proof: π = 4",
+          "description": "Refine a staircase around a circle and watch the shape converge — while the perimeter stubbornly stays at 4. A classic limits cautionary tale.",
+          "page": "visualizer-fake-pi-proof.html",
+          "previewType": "canvas",
+          "previewLevel": 5
+        }
+      ]
     },
     {
       "id": "derivative",
