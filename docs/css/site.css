@@ -682,6 +682,15 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     pointer-events: none;
 }
 
+.graph-wrap-interactive {
+    pointer-events: auto;
+    cursor: grab;
+}
+
+.graph-wrap-interactive:active {
+    cursor: grabbing;
+}
+
 .desmos-graph {
     width: 100%;
     height: 100%;

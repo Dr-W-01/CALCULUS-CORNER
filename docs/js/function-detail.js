@@ -2,18 +2,18 @@ const FunctionDetail = (function () {
     const GRAPH_COLOR = '#b91c1c';
     const POINT_COLOR = '#f87171';
 
-    function initGraph(elementId, graphDef, bounds) {
+    function initGraph(elementId, graphDef, bounds, interactive = false) {
         const elt = document.getElementById(elementId);
         if (!elt || typeof Desmos === 'undefined') return;
 
         const calculator = Desmos.GraphingCalculator(elt, {
             expressions: false,
             settingsMenu: false,
-            zoomButtons: false,
+            zoomButtons: interactive,
             keypad: false,
             expressionsTopbar: false,
             border: false,
-            lockViewport: true,
+            lockViewport: !interactive,
             showGrid: true,
             showXAxis: true,
             showYAxis: true
@@ -69,7 +69,10 @@ const FunctionDetail = (function () {
                 ['graph-fpp', 2]
             ];
             mapping.forEach(([id, index]) => {
-                if (graphs[index] !== undefined) initGraph(id, graphs[index], bounds);
+                if (graphs[index] !== undefined) {
+                    const interactive = config.interactive === true && id === 'graph-f-main';
+                    initGraph(id, graphs[index], bounds, interactive);
+                }
             });
         });
     }

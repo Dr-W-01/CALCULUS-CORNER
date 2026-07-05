@@ -196,7 +196,7 @@ ${SIDEBAR}
                     <div class="section-header"><h2 class="section-heading text-xl">Overview</h2></div>
                     <div class="section-body graph-facts-row">
                         <div class="w-full md:w-1/2 shrink-0">
-                            <div class="graph-wrap-sm max-w-[22rem] mx-auto overflow-hidden rounded-xl border border-[#5c3838]">
+                            <div class="graph-wrap-sm${fn.interactive ? ' graph-wrap-interactive' : ''} max-w-[22rem] mx-auto overflow-hidden rounded-xl border border-[#5c3838]">
                                 <div id="graph-f-main" class="desmos-graph w-full h-full min-h-[12rem]"></div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@ ${SITE_FOOTER}
         FunctionDetail.init({
             headerKatex: ${JSON.stringify(fn.headerKatex)},
             graphs: ${JSON.stringify(fn.graphs)},
-            bounds: ${JSON.stringify(fn.bounds || { left: -5, right: 5, bottom: -5, top: 5 })}
+            bounds: ${JSON.stringify(fn.bounds || { left: -5, right: 5, bottom: -5, top: 5 })}${fn.interactive ? ',\n            interactive: true' : ''}
         });
     </script>
 </body>

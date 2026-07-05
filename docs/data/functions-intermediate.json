@@ -107,8 +107,7 @@
     "domain": "(-\\infty, \\infty)",
     "description": "Odd function defined by (e^x - e^{-x})/2. Grows exponentially as x approaches ±∞.",
     "graph_expression": "y = \\sinh(x)",
-    "bounds": { "left": -3, "right": 3, "bottom": -10, "top": 10 },
-    "interactive": true
+    "bounds": { "left": -3, "right": 3, "bottom": -10, "top": 10 }
   },
   {
     "id": "cosh-x",
@@ -118,8 +117,7 @@
     "domain": "(-\\infty, \\infty)",
     "description": "Even function defined by (e^x + e^{-x})/2. Always at least 1, with a minimum at x = 0.",
     "graph_expression": "y = \\cosh(x)",
-    "bounds": { "left": -3, "right": 3, "bottom": -1, "top": 10 },
-    "interactive": true
+    "bounds": { "left": -3, "right": 3, "bottom": -1, "top": 10 }
   },
   {
     "id": "tanh-x",
@@ -129,8 +127,7 @@
     "domain": "(-\\infty, \\infty)",
     "description": "Odd function with horizontal asymptotes at y = ±1. The ratio sinh(x)/cosh(x).",
     "graph_expression": "y = \\tanh(x)",
-    "bounds": { "left": -5, "right": 5, "bottom": -2, "top": 2 },
-    "interactive": true
+    "bounds": { "left": -5, "right": 5, "bottom": -2, "top": 2 }
   },
   {
     "id": "coth-x",
@@ -140,8 +137,7 @@
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Reciprocal of tanh(x) with a vertical asymptote at x = 0 and horizontal asymptotes at y = ±1.",
     "graph_expression": "y = \\coth(x)",
-    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 },
-    "interactive": true
+    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 }
   },
   {
     "id": "sech-x",
@@ -151,8 +147,7 @@
     "domain": "(-\\infty, \\infty)",
     "description": "Reciprocal of cosh(x), always positive with maximum value 1 at x = 0.",
     "graph_expression": "y = \\sech(x)",
-    "bounds": { "left": -5, "right": 5, "bottom": -0.5, "top": 1.5 },
-    "interactive": true
+    "bounds": { "left": -5, "right": 5, "bottom": -0.5, "top": 1.5 }
   },
   {
     "id": "csch-x",
@@ -162,7 +157,6 @@
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Reciprocal of sinh(x) with a vertical asymptote at x = 0 and exponential decay toward zero.",
     "graph_expression": "y = \\csch(x)",
-    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 },
-    "interactive": true
+    "bounds": { "left": -4, "right": 4, "bottom": -4, "top": 4 }
   }
 ]
