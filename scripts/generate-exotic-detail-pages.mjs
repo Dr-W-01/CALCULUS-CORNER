@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Function with All Features • Dr. W's Calculus Corner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <link rel="stylesheet" href="css/site.css">
-</head>
-<body>
-    <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
+import { writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { EXOTIC_FUNCTIONS } from './exotic-detail-data.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DOCS = join(__dirname, '..', 'docs');
+
+const TOP_BAR = `    <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
         <a href="index.html" class="site-title-link flex items-center gap-x-3 no-underline text-inherit hover:opacity-90 transition-opacity">
             <div class="w-9 h-9 bg-[#b91c1c] rounded-2xl flex items-center justify-center">
                 <span class="font-bold text-white text-2xl tracking-tighter">CC</span>
@@ -22,9 +17,9 @@
             <input type="text" placeholder="Search..." class="bg-[#111111] border border-zinc-800 rounded-3xl px-5 py-2 text-sm w-80 focus:outline-none focus:border-zinc-600">
             <div class="w-9 h-9 bg-zinc-800 rounded-full flex items-center justify-center text-sm font-medium">EW</div>
         </div>
-    </div>
+    </div>`;
 
-    <div class="page-layout flex">
+const SIDEBAR = `    <div class="page-layout flex">
         <div class="sidebar-toggle-float" aria-hidden="false">
             <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -43,11 +38,37 @@
             </nav>
         </aside>
 
-        <main class="main-content flex-1 p-8">
+        <main class="main-content flex-1 p-8">`;
+
+function renderPage(fn) {
+  const graphConfig = {
+    headerKatex: fn.headerKatex,
+    graphExpression: fn.graphExpression,
+    bounds: fn.bounds || { left: -5, right: 5, bottom: -5, top: 5 },
+    points: fn.points || [],
+    expressions: fn.expressions || [],
+  };
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${fn.pageTitle} • Dr. W's Calculus Corner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+${TOP_BAR}
+
+${SIDEBAR}
             <div class="w-full max-w-4xl mx-auto space-y-8">
                 <header class="text-center">
                     <a href="zoo.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Function Zoo</a>
-                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">FUNCTION WITH ALL FEATURES</h1>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">${fn.heading}</h1>
                     <div id="header-expr" class="text-3xl text-white"></div>
                 </header>
 
@@ -63,7 +84,7 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Description</h2></div>
                     <div class="section-body">
-                        <p class="exotic-description">This custom graph — from Dr. W's Desmos calculator — multiplies six Basic Zoo building blocks into one expression: x/x contributes a removable discontinuity (hole) at x = 0; √(10 + x) creates a domain endpoint at x = −10; −1/(x + 4) plants a vertical asymptote at x = −4; |x + 1|/(x + 1) inserts a sign-function jump at x = −1; (x − 1)^(1/3) brings a vertical tangent at x = 1; and (x − 2)^(2/3) adds a cusp at x = 2. It is less a function you would analyze with a single global derivative chart, and more a deliberate field guide to the discontinuities, corners, and asymptotes that every calculus student must learn to spot. Zoom and pan through the graph above to hunt each feature in the wild.</p>
+                        <p class="exotic-description">${fn.description}</p>
                     </div>
                 </section>
             </div>
@@ -73,7 +94,16 @@
     <script src="js/site.js"></script>
     <script src="js/exotic-detail.js"></script>
     <script>
-        ExoticDetail.init({"headerKatex":"g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}","graphExpression":"g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}","bounds":{"left":-10,"right":10,"bottom":-8.5,"top":8.5},"points":[{"id":"hole","latex":"(0,1.254951)","pointStyle":"OPEN","color":"#f87171"}],"expressions":[]});
+        ExoticDetail.init(${JSON.stringify(graphConfig)});
     </script>
 </body>
-</html>
+</html>`;
+}
+
+for (const fn of EXOTIC_FUNCTIONS) {
+  const path = join(DOCS, `function-${fn.id}.html`);
+  writeFileSync(path, renderPage(fn), 'utf8');
+  console.log('Wrote', path);
+}
+
+console.log(`Generated ${EXOTIC_FUNCTIONS.length} exotic detail pages.`);
