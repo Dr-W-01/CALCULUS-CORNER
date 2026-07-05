@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, unlinkSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { COURSES } from './course-data.mjs';
@@ -48,10 +48,12 @@ ${SITE_FOOTER}
 
 function renderCoursesLanding() {
   const cards = COURSES.map(
-    (c) => `                    <a href="course-${c.id}.html" class="course-card dashboard-card block">
-                        <h2 class="course-card-title">${c.title}</h2>
-                        <p class="course-card-desc">${c.landingDescription}</p>
-                        <span class="course-card-enter">Enter course →</span>
+    (c) => `                    <a href="course-${c.id}.html" class="course-card zoo-card block">
+                        <div class="course-card-visual ${c.visualClass}" aria-hidden="true"></div>
+                        <div class="course-card-body">
+                            <h2 class="course-card-title zoo-card-title">${c.title.toUpperCase()}</h2>
+                            <p class="course-card-desc zoo-card-desc">${c.landingDescription}</p>
+                        </div>
                     </a>`,
   ).join('\n');
 
@@ -65,9 +67,11 @@ function renderCoursesLanding() {
                     </div>
                 </header>
 
-                <div class="courses-grid">
+                <section class="courses-page-section" aria-label="Course catalog">
+                    <div class="courses-grid">
 ${cards}
-                </div>
+                    </div>
+                </section>
             </div>`;
 
   return pageShell({
@@ -80,70 +84,55 @@ ${cards}
 function renderCoursePage(course) {
   const topics = course.topics
     .map(
-      (name) => `                        <li class="course-topic-item">
-                            <span class="course-topic-name">${name}</span>
-                            <div class="course-topic-actions">
-                                <a href="course-${course.id}-definitions.html" class="course-topic-link">Definitions</a>
-                                <a href="course-${course.id}-problems.html" class="course-topic-link course-topic-link--gold">Problems</a>
-                            </div>
-                        </li>`,
+      (topic) => `                            <li class="course-toc-item">
+                                <a href="${topic.href}" class="course-toc-link">${topic.name}</a>
+                            </li>`,
     )
     .join('\n');
 
-  const main = `            <div class="w-full max-w-5xl mx-auto space-y-8">
-                <header class="text-center">
-                    <a href="courses.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Courses</a>
-                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">${course.title.toUpperCase()}</h1>
-                </header>
+  const main = `            <div class="page-content-full space-y-8">
+                <p class="text-center mb-0">
+                    <a href="courses.html" class="text-sm text-zinc-500 hover:text-red-400 inline-block">&larr; Back to Courses</a>
+                </p>
 
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">About This Course</h2></div>
-                    <div class="section-body">
-                        <p class="exotic-description">${course.courseDescription}</p>
+                <header class="page-hero content-card">
+                    <div class="section-header">
+                        <h1 class="section-heading text-xl">${course.title.toUpperCase()}</h1>
                     </div>
-                </section>
+                    <div class="section-body">
+                        <p>${course.courseDescription}</p>
+                    </div>
+                </header>
 
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Topics</h2></div>
                     <div class="section-body">
-                        <ul class="course-topic-list">
+                        <p class="course-section-intro">Table of contents — topic pages coming soon.</p>
+                        <ul class="course-toc-list">
 ${topics}
                         </ul>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Definitions</h2></div>
+                    <div class="section-body course-placeholder-body">
+                        <p class="course-placeholder-title">Coming Soon</p>
+                        <p class="course-placeholder-text">Key definitions and reference sheets for this course will appear here.</p>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Problems</h2></div>
+                    <div class="section-body course-placeholder-body">
+                        <p class="course-placeholder-title">Coming Soon</p>
+                        <p class="course-placeholder-text">Practice problems and worked examples for this course will appear here.</p>
                     </div>
                 </section>
             </div>`;
 
   return pageShell({
     title: course.title,
-    activeHref: 'courses.html',
-    mainContent: main,
-  });
-}
-
-function renderPlaceholder(course, kind) {
-  const isDefinitions = kind === 'definitions';
-  const label = isDefinitions ? 'Definitions' : 'Problems';
-  const blurb = isDefinitions
-    ? 'Topic definitions and reference sheets will appear here.'
-    : 'Practice problems and worked examples will appear here.';
-
-  const main = `            <div class="w-full max-w-3xl mx-auto space-y-8">
-                <header class="text-center">
-                    <a href="course-${course.id}.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to ${course.title}</a>
-                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">${course.title.toUpperCase()} — ${label.toUpperCase()}</h1>
-                </header>
-
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Coming Soon</h2></div>
-                    <div class="section-body text-center">
-                        <p class="text-xl font-semibold text-white mb-3">Coming Soon</p>
-                        <p class="text-zinc-400 text-sm leading-relaxed">${blurb}</p>
-                    </div>
-                </section>
-            </div>`;
-
-  return pageShell({
-    title: `${course.title} — ${label}`,
     activeHref: 'courses.html',
     mainContent: main,
   });
@@ -156,19 +145,13 @@ for (const course of COURSES) {
   writeFileSync(join(DOCS, `course-${course.id}.html`), renderCoursePage(course), 'utf8');
   console.log('Wrote', `course-${course.id}.html`);
 
-  writeFileSync(
-    join(DOCS, `course-${course.id}-definitions.html`),
-    renderPlaceholder(course, 'definitions'),
-    'utf8',
-  );
-  console.log('Wrote', `course-${course.id}-definitions.html`);
-
-  writeFileSync(
-    join(DOCS, `course-${course.id}-problems.html`),
-    renderPlaceholder(course, 'problems'),
-    'utf8',
-  );
-  console.log('Wrote', `course-${course.id}-problems.html`);
+  for (const suffix of ['definitions', 'problems']) {
+    const legacy = join(DOCS, `course-${course.id}-${suffix}.html`);
+    if (existsSync(legacy)) {
+      unlinkSync(legacy);
+      console.log('Removed legacy', `course-${course.id}-${suffix}.html`);
+    }
+  }
 }
 
-console.log(`Generated Courses section (${1 + COURSES.length * 3} pages).`);
+console.log(`Generated Courses section (${1 + COURSES.length} pages).`);
