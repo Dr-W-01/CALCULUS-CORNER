@@ -4,10 +4,10 @@ import { fileURLToPath } from 'url';
 
 const BASE_PATH = join(dirname(fileURLToPath(import.meta.url)), '..', 'layouts', 'base.html');
 
-/** Function Zoo bird — shared across sidebar nav and home dashboard card. */
+/** Function Zoo fingerprint — shared across sidebar nav and home dashboard card. */
 export function zooIconSvg({ size = 18, strokeWidth = 2, className = '' } = {}) {
   const classAttr = className ? ` class="${className}"` : '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round"${classAttr}><path d="M16 7h.01"/><path d="M3 7h3l3-4h4l2 3h3"/><path d="M4 7v9"/><path d="M20 7v9"/><path d="M7 16v5"/><path d="M17 16v5"/></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round"${classAttr}><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5c.5-2.5 1.5-4.5 4-6"/><path d="M8.5 16c0-3 1-5.5 2.5-7.5"/><path d="M15 5.5c1 1 2 2.5 2 4.5"/></svg>`;
 }
 
 export const ZOO_ICON_DASHBOARD = zooIconSvg({ className: 'w-5 h-5 text-red-400' });
@@ -30,20 +30,20 @@ export const NAV_LINKS = [
 
 /** Hub page main titles — icon key matches NAV_ICONS, synced into page-hero h1 headings. */
 export const PAGE_TITLES = {
-  'index.html': { iconKey: 'home', title: 'Welcome back', sizeClass: 'text-2xl' },
-  'courses.html': { iconKey: 'courses', title: 'Courses', sizeClass: 'text-xl' },
-  'zoo.html': { iconKey: 'zoo', title: 'Function Zoo', sizeClass: 'text-2xl' },
-  'visualizers.html': { iconKey: 'visualizers', title: 'Visualizers', sizeClass: 'text-2xl' },
-  'profile.html': { iconKey: 'profile', title: 'My Profile', sizeClass: 'text-xl' },
+  'index.html': { iconKey: 'home', title: 'Welcome back' },
+  'courses.html': { iconKey: 'courses', title: 'Courses' },
+  'zoo.html': { iconKey: 'zoo', title: 'Function Zoo' },
+  'visualizers.html': { iconKey: 'visualizers', title: 'Visualizers' },
+  'profile.html': { iconKey: 'profile', title: 'My Profile' },
 };
 
 /** Main page title with the same icon used in the sidebar nav. */
-export function renderPageTitle(iconKey, titleText, sizeClass = 'text-2xl') {
+export function renderPageTitle(iconKey, titleText) {
   const icon = NAV_ICONS[iconKey];
   if (!icon) {
     throw new Error(`Unknown nav icon key: ${iconKey}`);
   }
-  return `<h1 class="section-heading page-title-heading ${sizeClass}"><span class="page-title-icon nav-icon" aria-hidden="true">${icon}</span>${titleText}</h1>`;
+  return `<h1 class="section-heading page-title-heading"><span class="page-title-icon nav-icon" aria-hidden="true">${icon}</span>${titleText}</h1>`;
 }
 
 /** Which nav href should be active for a given docs HTML filename. */

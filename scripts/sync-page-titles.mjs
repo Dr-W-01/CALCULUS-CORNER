@@ -8,11 +8,11 @@ const TITLE_REGEX = /<h1 class="section-heading[^"]*">[\s\S]*?<\/h1>/;
 
 let patched = 0;
 
-for (const [filename, { iconKey, title, sizeClass }] of Object.entries(PAGE_TITLES)) {
+for (const [filename, { iconKey, title }] of Object.entries(PAGE_TITLES)) {
   const path = join(DOCS, filename);
   let html = readFileSync(path, 'utf8');
   const original = html;
-  const replacement = renderPageTitle(iconKey, title, sizeClass);
+  const replacement = renderPageTitle(iconKey, title);
 
   if (!TITLE_REGEX.test(html)) {
     console.warn('Skipped', filename, '(no page title h1 found)');
