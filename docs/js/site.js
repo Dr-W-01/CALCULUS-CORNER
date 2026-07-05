@@ -27,8 +27,59 @@
         });
     }
 
+    function initTypoReportForm() {
+        const form = document.getElementById('typo-report-form');
+        if (!form) return;
+
+        const pageUrlInput = document.getElementById('typo-page-url');
+        if (pageUrlInput) {
+            pageUrlInput.value = window.location.href;
+        }
+
+        const successEl = document.getElementById('typo-form-success');
+        const errorEl = document.getElementById('typo-form-error');
+        const submitBtn = form.querySelector('.typo-form-submit');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (successEl) successEl.hidden = true;
+            if (errorEl) errorEl.hidden = true;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending…';
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { Accept: 'application/json' },
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    if (pageUrlInput) {
+                        pageUrlInput.value = window.location.href;
+                    }
+                    if (successEl) successEl.hidden = false;
+                } else if (errorEl) {
+                    errorEl.hidden = false;
+                }
+            } catch (err) {
+                if (errorEl) errorEl.hidden = false;
+                console.error('Typo report submit error:', err);
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                }
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         initSidebar();
         renderKatex();
+        initTypoReportForm();
     });
 })();

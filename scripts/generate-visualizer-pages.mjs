@@ -3,6 +3,9 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { VISUALIZERS } from './visualizer-detail-data.mjs';
 import { desmosEmbedUrl } from './desmos-embed.mjs';
+import { loadSiteFooter } from './site-layout.mjs';
+
+const SITE_FOOTER = loadSiteFooter();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -91,6 +94,8 @@ ${SIDEBAR}
             </div>
         </main>
     </div>
+
+${SITE_FOOTER}
 
     <script src="js/site.js"></script>
 </body>

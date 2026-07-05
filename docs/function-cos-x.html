@@ -199,6 +199,39 @@
             </div>
         </main>
     </div>
+    <footer class="site-footer" id="site-footer">
+        <div class="site-footer-inner">
+            <section class="content-card site-footer-feedback">
+                <div class="section-header">
+                    <h2 class="section-heading text-xl">Report a Typo or Mistake</h2>
+                </div>
+                <div class="section-body">
+                    <p class="site-footer-form-intro">Found an error? Let us know and we&rsquo;ll fix it.</p>
+                    <form id="typo-report-form" class="typo-report-form" action="https://formspree.io/f/mbdvwjql" method="POST" novalidate>
+                        <input type="hidden" name="page_url" id="typo-page-url" value="">
+                        <div class="typo-form-field">
+                            <label for="typo-name" class="typo-form-label">Name <span class="typo-optional">(optional)</span></label>
+                            <input type="text" id="typo-name" name="name" class="typo-form-input" autocomplete="name">
+                        </div>
+                        <div class="typo-form-field">
+                            <label for="typo-message" class="typo-form-label">Describe the issue <span class="typo-required" aria-hidden="true">*</span></label>
+                            <textarea id="typo-message" name="message" class="typo-form-textarea" required rows="4" placeholder="What did you notice? Include the section or equation if you can."></textarea>
+                        </div>
+                        <button type="submit" class="typo-form-submit">Submit</button>
+                        <p id="typo-form-success" class="typo-form-success" hidden role="status">Thank you — your report was sent successfully. We appreciate the help!</p>
+                        <p id="typo-form-error" class="typo-form-error" hidden role="alert">Something went wrong. Please try again in a moment.</p>
+                    </form>
+                </div>
+            </section>
+
+            <nav class="site-footer-links" aria-label="External links">
+                <a href="https://www.youtube.com/@Dr.W.Mathematics" class="site-footer-link" target="_blank" rel="noopener noreferrer">Dr. W on YouTube</a>
+                <span class="site-footer-link-sep" aria-hidden="true">&middot;</span>
+                <a href="https://courses.modernmathacademy.com" class="site-footer-link" target="_blank" rel="noopener noreferrer">Join the Modern Math Academy</a>
+            </nav>
+        </div>
+    </footer>
+
 
     <script src="js/site.js"></script>
     <script src="js/function-detail.js"></script>

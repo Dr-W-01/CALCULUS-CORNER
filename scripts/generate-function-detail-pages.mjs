@@ -2,6 +2,9 @@ import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FUNCTIONS } from './function-detail-data.mjs';
+import { loadSiteFooter } from './site-layout.mjs';
+
+const SITE_FOOTER = loadSiteFooter();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -283,6 +286,8 @@ ${integralsHtml}
             </div>
         </main>
     </div>
+
+${SITE_FOOTER}
 
     <script src="js/site.js"></script>
     <script src="js/function-detail.js"></script>
