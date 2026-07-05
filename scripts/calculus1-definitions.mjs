@@ -103,30 +103,28 @@ export const CALCULUS1_DEFINITION_TOPICS = [
       },
     ],
   },
+];
+
+/** Calculus I theorems — dedicated theorems subsection page. */
+export const CALCULUS1_THEOREMS = [
   {
-    id: 'theorems',
-    title: 'Theorems',
-    items: [
-      {
-        term: 'Intermediate Value Theorem',
-        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N.`,
-      },
-      {
-        term: 'Squeeze Theorem',
-        katex: String.raw`\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L.`,
-      },
-      {
-        term: 'Mean Value Theorem',
-        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}.`,
-      },
-      {
-        term: 'Extreme Value Theorem',
-        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on a closed interval }[a,b]\text{, then }f\text{ attains an absolute maximum and an absolute minimum on }[a,b].`,
-      },
-      {
-        term: "Rolle's Theorem",
-        katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0.`,
-      },
-    ],
+    term: 'Intermediate Value Theorem',
+    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N.`,
+  },
+  {
+    term: 'Squeeze Theorem',
+    katex: String.raw`\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L.`,
+  },
+  {
+    term: 'Mean Value Theorem',
+    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}.`,
+  },
+  {
+    term: 'Extreme Value Theorem',
+    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on a closed interval }[a,b]\text{, then }f\text{ attains an absolute maximum and an absolute minimum on }[a,b].`,
+  },
+  {
+    term: "Rolle's Theorem",
+    katex: String.raw`\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0.`,
   },
 ];

@@ -295,7 +295,7 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     transition: color 0.2s ease;
 }
 
-/* Course hub — three section tiles (Topics / Definitions / Problems) */
+/* Course hub — section tiles (Topics / Definitions / Theorems / Problems) */
 .course-section-tiles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
@@ -322,6 +322,10 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 
 .course-tile-visual--definitions {
     background: linear-gradient(135deg, #2a1f38 0%, #4a3558 50%, #1a1010 100%);
+}
+
+.course-tile-visual--theorems {
+    background: linear-gradient(135deg, #3a2e14 0%, #5c4a22 45%, #1a1010 100%);
 }
 
 .course-tile-visual--problems {

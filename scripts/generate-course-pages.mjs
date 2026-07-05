@@ -2,7 +2,7 @@ import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { COURSES, SECTION_TILES } from './course-data.mjs';
-import { CALCULUS1_DEFINITION_TOPICS } from './calculus1-definitions.mjs';
+import { CALCULUS1_DEFINITION_TOPICS, CALCULUS1_THEOREMS } from './calculus1-definitions.mjs';
 import { loadSiteFooter, renderSidebarShell, renderPageTitle, navPrefixForPath } from './site-layout.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -210,7 +210,7 @@ function renderCalculus1DefinitionsPage(course) {
                         <h1 class="section-heading text-xl">${course.title.toUpperCase()} — DEFINITIONS</h1>
                     </div>
                     <div class="section-body">
-                        <p>Reference definitions and theorems organized by topic. Click a term to expand its formal statement.</p>
+                        <p>Reference definitions organized by topic. Click a term to expand its formal statement.</p>
                     </div>
                 </header>
 
@@ -228,9 +228,51 @@ ${topicBoxes}
   });
 }
 
+function renderCalculus1TheoremsPage(course) {
+  const accordion = renderDefinitionAccordionItems(CALCULUS1_THEOREMS);
+
+  const main = `            <div class="page-content-full space-y-8">
+                <p class="text-center mb-0">
+                    <a href="../course-${course.id}.html" class="text-sm text-zinc-500 hover:text-red-400 inline-block">&larr; Back to ${course.title}</a>
+                </p>
+
+                <header class="page-hero content-card">
+                    <div class="section-header">
+                        <h1 class="section-heading text-xl">${course.title.toUpperCase()} — THEOREMS</h1>
+                    </div>
+                    <div class="section-body">
+                        <p>Important calculus results with formal statements. Click a theorem to expand it.</p>
+                    </div>
+                </header>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Theorems</h2></div>
+                    <div class="section-body">
+                        <div class="course-accordion">
+${accordion}
+                        </div>
+                    </div>
+                </section>
+            </div>`;
+
+  return pageShell({
+    title: `${course.title} — Theorems`,
+    activeHref: 'courses.html',
+    mainContent: main,
+    assetPrefix: '../',
+    navPrefix: '../',
+    includeKatex: true,
+    extraScripts: '\n    <script src="../js/course-accordion.js"></script>',
+  });
+}
+
 function renderSectionPage(course, sectionId) {
   if (course.id === 'calculus1' && sectionId === 'definitions') {
     return renderCalculus1DefinitionsPage(course);
+  }
+
+  if (course.id === 'calculus1' && sectionId === 'theorems') {
+    return renderCalculus1TheoremsPage(course);
   }
 
   const section = SECTION_TILES.find((s) => s.id === sectionId);
@@ -241,7 +283,9 @@ function renderSectionPage(course, sectionId) {
       ? 'Expand a unit below to preview lesson outlines. Full content coming soon.'
       : sectionId === 'definitions'
         ? 'Expand a term below to read a short reference definition. Full glossary coming soon.'
-        : 'Expand a problem set below to see what will be included. Full problem sets coming soon.';
+        : sectionId === 'theorems'
+          ? 'Expand a theorem below to read its statement. Full theorem reference coming soon.'
+          : 'Expand a problem set below to see what will be included. Full problem sets coming soon.';
 
   const main = `            <div class="page-content-full space-y-8">
                 <p class="text-center mb-0">

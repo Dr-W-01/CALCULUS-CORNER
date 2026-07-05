@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus I — Theorems • Dr. W's Calculus Corner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+    <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
+        <a href="../index.html" class="site-title-link flex items-center gap-x-3 no-underline text-inherit hover:opacity-90 transition-opacity">
+            <div class="w-9 h-9 bg-[#b91c1c] rounded-2xl flex items-center justify-center">
+                <span class="font-bold text-white text-2xl tracking-tighter">CC</span>
+            </div>
+            <span class="font-semibold text-3xl tracking-tighter">Dr. W's Calculus Corner</span>
+        </a>
+        <div class="flex items-center gap-x-4">
+            <input type="text" placeholder="Search..." class="bg-[#111111] border border-zinc-800 rounded-3xl px-5 py-2 text-sm w-80 focus:outline-none focus:border-zinc-600">
+            <div class="w-9 h-9 bg-zinc-800 rounded-full flex items-center justify-center text-sm font-medium">EW</div>
+        </div>
+    </div>
+
+    <div class="page-layout flex">
+        <div class="sidebar-toggle-float" aria-hidden="false">
+            <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <button type="button" id="sidebar-collapse" class="sidebar-toggle sidebar-collapse-btn" aria-label="Close navigation" title="Close navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+        </div>
+        <aside id="sidebar" class="sidebar">
+            <nav class="sidebar-nav space-y-1 text-sm">
+                <a href="../index.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Home</a>
+                <a href="../courses.html" class="nav-item nav-active flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>Courses</a>
+                <a href="../zoo.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5c.5-2.5 1.5-4.5 4-6"/><path d="M8.5 16c0-3 1-5.5 2.5-7.5"/><path d="M15 5.5c1 1 2 2.5 2 4.5"/></svg></span>Function Zoo</a>
+                <a href="../visualizers.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>Visualizers</a>
+                <a href="../profile.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>My Profile</a>
+            </nav>
+        </aside>
+
+        <main class="main-content flex-1 p-8">
+            <div class="page-content-full space-y-8">
+                <p class="text-center mb-0">
+                    <a href="../course-calculus1.html" class="text-sm text-zinc-500 hover:text-red-400 inline-block">&larr; Back to Calculus I</a>
+                </p>
+
+                <header class="page-hero content-card">
+                    <div class="section-header">
+                        <h1 class="section-heading text-xl">CALCULUS I — THEOREMS</h1>
+                    </div>
+                    <div class="section-body">
+                        <p>Important calculus results with formal statements. Click a theorem to expand it.</p>
+                    </div>
+                </header>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Theorems</h2></div>
+                    <div class="section-body">
+                        <div class="course-accordion">
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Intermediate Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and }N\text{ is any number between }f(a)\text{ and }f(b)\text{, then there exists }c\in(a,b)\text{ such that }f(c)=N."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Squeeze Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f(x)\le g(x)\le h(x)\text{ when }x\text{ is near }a\text{ (except possibly at }a\text{) and }\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L\text{, then }\lim_{x\to a}g(x)=L."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Mean Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=\dfrac{f(b)-f(a)}{b-a}."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Extreme Value Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on a closed interval }[a,b]\text{, then }f\text{ attains an absolute maximum and an absolute minimum on }[a,b]."></div>
+                            </div>
+                        </details>
+                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">Rolle's Theorem</summary>
+                            <div class="course-accordion-panel">
+                                <div class="course-definition-text" data-katex="\textbf{Theorem.}\ \text{If }f\text{ is continuous on }[a,b]\text{, differentiable on }(a,b)\text{, and }f(a)=f(b)\text{, then there exists }c\in(a,b)\text{ such that }f'(c)=0."></div>
+                            </div>
+                        </details>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="site-footer" id="site-footer">
+                <div class="site-footer-inner">
+                    <form id="typo-report-form" class="typo-report-form" action="https://formspree.io/f/mbdvwjql" method="POST" novalidate>
+                        <input type="hidden" name="page_url" id="typo-page-url" value="">
+                        <h2 class="site-footer-heading">
+                            <span class="site-footer-heading-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                            Report a typo or mistake
+                        </h2>
+                        <div class="typo-form-row">
+                            <label class="typo-sr-only" for="typo-name">Name (optional)</label>
+                            <input type="text" id="typo-name" name="name" class="typo-form-input" autocomplete="name" placeholder="Name (optional)">
+                            <label class="typo-sr-only" for="typo-message">Describe the issue (required)</label>
+                            <textarea id="typo-message" name="message" class="typo-form-textarea" required rows="2" placeholder="Describe the issue…"></textarea>
+                            <button type="submit" class="typo-form-submit">Submit</button>
+                        </div>
+                        <p id="typo-form-success" class="typo-form-status typo-form-success" hidden role="status">Thanks — your report was sent.</p>
+                        <p id="typo-form-error" class="typo-form-status typo-form-error" hidden role="alert">Could not send. Please try again.</p>
+                    </form>
+
+                    <nav class="site-footer-links" aria-label="External links">
+                        <a href="https://www.youtube.com/@Dr.W.Mathematics" class="site-footer-link" target="_blank" rel="noopener noreferrer">Dr. W on YouTube</a>
+                        <span class="site-footer-link-sep" aria-hidden="true">&middot;</span>
+                        <a href="https://courses.modernmathacademy.com" class="site-footer-link" target="_blank" rel="noopener noreferrer">Join the Modern Math Academy</a>
+                    </nav>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="../js/site.js"></script>
+    <script src="../js/course-accordion.js"></script>
+</body>
+</html>

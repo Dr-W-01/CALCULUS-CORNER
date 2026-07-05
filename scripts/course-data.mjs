@@ -14,6 +14,12 @@ export const SECTION_TILES = [
     visualClass: 'course-tile-visual--definitions',
   },
   {
+    id: 'theorems',
+    title: 'Theorems',
+    description: 'Important results, hypotheses, and formal statements.',
+    visualClass: 'course-tile-visual--theorems',
+  },
+  {
     id: 'problems',
     title: 'Problems',
     description: 'Practice sets and worked example problems.',
@@ -31,6 +37,10 @@ function definitionAccordion(term, body) {
 
 function problemAccordion(set, body) {
   return { title: set, summary: set, body };
+}
+
+function theoremAccordion(name, body) {
+  return { title: name, summary: name, body };
 }
 
 export const COURSES = [
@@ -60,6 +70,11 @@ export const COURSES = [
         definitionAccordion('Domain', 'The set of all inputs for which a function is defined.'),
         definitionAccordion('Range', 'The set of all possible outputs of a function.'),
         definitionAccordion('One-to-One Function', 'A function that never takes the same value twice.'),
+      ],
+      theorems: [
+        theoremAccordion('Pythagorean Identity', 'For any angle θ, sin²θ + cos²θ = 1.'),
+        theoremAccordion('Law of Sines', 'In any triangle, the ratio of each side to the sine of its opposite angle is constant.'),
+        theoremAccordion('Change of Base (Logarithms)', 'logₐ b = (log_c b) / (log_c a) for positive bases a, b, c with a ≠ 1 and c ≠ 1.'),
       ],
       problems: [
         problemAccordion('Warm-Up Set A', 'Evaluate expressions and identify domains of simple functions.'),
@@ -95,6 +110,7 @@ export const COURSES = [
         definitionAccordion('Continuous at a Point', 'f(a) is defined, the limit exists, and both agree.'),
         definitionAccordion('Critical Point', 'A point where f′ is zero or undefined.'),
       ],
+      theorems: [],
       problems: [
         problemAccordion('Limits Practice', 'Compute limits using algebra and one-sided reasoning.'),
         problemAccordion('Derivative Drills', 'Apply differentiation rules to polynomial and trig functions.'),
@@ -128,6 +144,11 @@ export const COURSES = [
         definitionAccordion('Improper Integral', 'An integral with an infinite limit of integration or a discontinuity.'),
         definitionAccordion('Convergent Series', 'A series whose partial sums approach a finite limit.'),
         definitionAccordion('Taylor Series', 'A power series representation of a function about a point.'),
+      ],
+      theorems: [
+        theoremAccordion('Fundamental Theorem of Calculus', 'If f is continuous on [a, b] and F is an antiderivative of f, then ∫ₐᵇ f(x) dx = F(b) − F(a).'),
+        theoremAccordion('Comparison Test', 'If 0 ≤ aₙ ≤ bₙ for n beyond some index and ∑ bₙ converges, then ∑ aₙ converges.'),
+        theoremAccordion('Integral Test', 'If f is positive, continuous, and decreasing on [1, ∞), then ∑ f(n) and ∫₁^∞ f(x) dx either both converge or both diverge.'),
       ],
       problems: [
         problemAccordion('Integration Set I', 'u-substitution and integration by parts.'),
