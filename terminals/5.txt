@@ -1,0 +1,7 @@
+---
+pid: 4208
+cwd: "C:\Users\einsn\Documents\CALCULUS-CORNER"
+command: "Set-Location \"C:\\Users\\einsn\\Documents\\CALCULUS-CORNER\"; npx playwright install chromium"
+started_at: 2026-07-05T03:51:53.886Z
+running_for_ms: 175004   
+---

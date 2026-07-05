@@ -55,8 +55,8 @@
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan</p>
-                        <div class="exotic-page-graph-wrap">
-                            <div id="exotic-graph" class="desmos-explorer"></div>
+                        <div class="exotic-page-graph-wrap graph-wrap-interactive">
+                            <div id="exotic-graph" class="desmos-graph w-full h-full min-h-[28rem]"></div>
                         </div>
                     </div>
                 </section>
@@ -101,7 +101,7 @@
     <script src="js/site.js"></script>
     <script src="js/exotic-detail.js"></script>
     <script>
-        ExoticDetail.init({"headerKatex":"f(x) = x\\sin\\left(\\frac{1}{x}\\right)","graphExpression":"y = x\\sin(1/x)","bounds":{"left":-5,"right":5,"bottom":-5,"top":5}});
+        ExoticDetail.init({"headerKatex":"f(x) = x\\sin\\left(\\frac{1}{x}\\right)","graphExpression":"y = x\\sin(1/x)","bounds":{"left":-0.5,"right":0.5,"bottom":-0.5,"top":0.5}});
     </script>
 </body>
 </html>

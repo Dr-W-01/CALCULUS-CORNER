@@ -1,0 +1,14 @@
+---
+pid: 11576
+cwd: "C:\Users\einsn\Documents\CALCULUS-CORNER"
+command: "cd \"C:\\Users\\einsn\\Documents\\CALCULUS-CORNER\\docs\" && npx --yes serve -l 3456 ."
+started_at: 2026-07-05T03:47:31.907Z
+running_for_ms: 450001   
+---
+At line:1 char:52
++ cd "C:\Users\einsn\Documents\CALCULUS-CORNER\docs" && npx --yes serve ...
++                                                    ~~
+The token '&&' is not a valid statement separator in this version.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+ 

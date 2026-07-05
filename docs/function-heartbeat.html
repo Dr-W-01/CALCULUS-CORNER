@@ -55,8 +55,8 @@
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan</p>
-                        <div class="exotic-page-graph-wrap">
-                            <div id="exotic-graph" class="desmos-explorer"></div>
+                        <div class="exotic-page-graph-wrap graph-wrap-interactive">
+                            <div id="exotic-graph" class="desmos-graph w-full h-full min-h-[28rem]"></div>
                         </div>
                     </div>
                 </section>
@@ -101,7 +101,7 @@
     <script src="js/site.js"></script>
     <script src="js/exotic-detail.js"></script>
     <script>
-        ExoticDetail.init({"headerKatex":"f(x)=\\sqrt{|x|}+\\sin(\\pi^{3}x)\\sqrt{\\frac{e^{2}-x^{2}}{2}}","graphExpression":"y = \\sqrt{\\sqrt{x^2}} + \\sin(\\pi^3 x) \\sqrt{(e^2 - x^2)/2}","bounds":{"left":-5,"right":5,"bottom":-5,"top":5},"points":[{"id":"point-heart-0","latex":"(-e, \\sqrt{e})","pointStyle":"POINT","color":"#f87171"},{"id":"point-heart-1","latex":"(e, \\sqrt{e})","pointStyle":"POINT","color":"#f87171"}]});
+        ExoticDetail.init({"headerKatex":"f(x)=\\sqrt{|x|}+\\sin(\\pi^{3}x)\\sqrt{\\frac{e^{2}-x^{2}}{2}}","graphExpression":"y = \\sqrt{\\sqrt{x^2}} + \\sin(\\pi^3 x) \\sqrt{(e^2 - x^2)/2}","bounds":{"left":-3,"right":3,"bottom":-0.5,"top":3},"points":[{"id":"point-heart-0","latex":"(-e, \\sqrt{e})","pointStyle":"POINT","color":"#f87171"},{"id":"point-heart-1","latex":"(e, \\sqrt{e})","pointStyle":"POINT","color":"#f87171"}]});
     </script>
 </body>
 </html>

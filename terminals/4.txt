@@ -1,0 +1,38 @@
+---
+pid: 38608
+cwd: "C:\Users\einsn\Documents\CALCULUS-CORNER"
+command: "Set-Location \"C:\\Users\\einsn\\Documents\\CALCULUS-CORNER\"; npx --yes playwright@1.49.0 install chromium"
+started_at: 2026-07-05T03:48:06.532Z
+running_for_ms: 400001   
+---
+Removing unused browser at C:\Users\einsn\AppData\Local\ms-playwright\chromium-1169
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ WARNING: It looks like you are running 'npx playwright install' without first ║
+║ installing your project's dependencies.                                       ║
+║                                                                               ║
+║ To avoid unexpected behavior, please install your dependencies first, and     ║
+║ then run Playwright's install command:                                        ║
+║                                                                               ║
+║     npm install                                                               ║
+║     npx playwright install                                                    ║
+║                                                                               ║
+║ If your project does not yet depend on Playwright, first install the          ║
+║ applicable npm package (most commonly @playwright/test), and                  ║
+║ then run Playwright's install command to download the browsers:               ║
+║                                                                               ║
+║     npm install @playwright/test                                              ║
+║     npx playwright install                                                    ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+Downloading Chromium 131.0.6778.33 (playwright build v1148) from https://playwright.azureedge.net/builds/chromium/1148/chromium-win64.zip
+|                                                                                |   0% of 136.9 MiB
+|■■■■■■■■                                                                        |  10% of 136.9 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 136.9 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 136.9 MiB

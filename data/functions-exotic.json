@@ -7,7 +7,8 @@
     "category": "Exotic",
     "domain": "(-\\infty, \\infty)",
     "description": "A continuous everywhere, differentiable almost nowhere function with a fractal-like graph.",
-    "graph_expression": "y = \\sum_{n=0}^{100}\\frac{1-\\cos(2^{n} x)}{2^{n}}"
+    "graph_expression": "y = \\sum_{n=0}^{100}\\frac{1-\\cos(2^{n} x)}{2^{n}}",
+    "bounds": { "left": -3, "right": 3, "bottom": -0.5, "top": 2.5 }
   },
   {
     "id": "topologist-sine",
@@ -17,7 +18,8 @@
     "category": "Exotic",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Oscillates increasingly rapidly as x approaches zero, creating a dramatic singularity.",
-    "graph_expression": "y = \\sin(1/x)"
+    "graph_expression": "y = \\sin(1/x)",
+    "bounds": { "left": -0.15, "right": 0.15, "bottom": -1.2, "top": 1.2 }
   },
   {
     "id": "shrinking-topologist-sine",
@@ -27,7 +29,8 @@
     "category": "Exotic",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "The Topologist's Sine Curve damped by x, approaching zero as x approaches zero.",
-    "graph_expression": "y = x\\sin(1/x)"
+    "graph_expression": "y = x\\sin(1/x)",
+    "bounds": { "left": -0.5, "right": 0.5, "bottom": -0.5, "top": 0.5 }
   },
   {
     "id": "heartbeat",
@@ -38,6 +41,7 @@
     "domain": "[-e, e]",
     "description": "A striking combination of roots and oscillation that resembles a heartbeat on the graph.",
     "graph_expression": "y = \\sqrt{\\sqrt{x^2}} + \\sin(\\pi^3 x) \\sqrt{(e^2 - x^2)/2}",
+    "bounds": { "left": -3, "right": 3, "bottom": -0.5, "top": 3 },
     "points": [
       { "id": "point-heart-0", "latex": "(-e, \\sqrt{e})", "pointStyle": "POINT", "color": "#f87171" },
       { "id": "point-heart-1", "latex": "(e, \\sqrt{e})", "pointStyle": "POINT", "color": "#f87171" }

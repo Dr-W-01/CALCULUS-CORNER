@@ -5,7 +5,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const DATA = JSON.parse(
-  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'data', 'functions-exotic.json'), 'utf8')
+  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'docs', 'data', 'functions-exotic.json'), 'utf8')
 );
 
 const DESCRIPTIONS = {

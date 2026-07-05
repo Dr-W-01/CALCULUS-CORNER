@@ -1,6 +1,7 @@
 const ExoticDetail = (function () {
     const GRAPH_COLOR = '#b91c1c';
     const POINT_COLOR = '#f87171';
+    const DEFAULT_BOUNDS = { left: -5, right: 5, bottom: -5, top: 5 };
 
     function initGraph(config) {
         const elt = document.getElementById('exotic-graph');
@@ -9,7 +10,7 @@ const ExoticDetail = (function () {
         const calculator = Desmos.GraphingCalculator(elt, {
             expressions: false,
             settingsMenu: false,
-            zoomButtons: true,
+            zoomButtons: false,
             keypad: false,
             expressionsTopbar: false,
             border: false,
@@ -53,25 +54,32 @@ const ExoticDetail = (function () {
             });
         });
 
-        calculator.setMathBounds(config.bounds || { left: -5, right: 5, bottom: -5, top: 5 });
+        calculator.setMathBounds(config.bounds || DEFAULT_BOUNDS);
         requestAnimationFrame(() => calculator.resize());
+        window.addEventListener('resize', () => calculator.resize());
         return calculator;
     }
 
     function init(config) {
-        document.addEventListener('DOMContentLoaded', () => {
+        function run() {
             if (config.headerKatex) {
                 const header = document.getElementById('header-expr');
-                if (header && typeof katex !== 'undefined') {
+                if (header) {
                     if (window.CCKatex) {
                         window.CCKatex.render(header, config.headerKatex, { displayMode: true });
-                    } else {
+                    } else if (typeof katex !== 'undefined') {
                         katex.render(config.headerKatex, header, { throwOnError: false, displayMode: true });
                     }
                 }
             }
             initGraph(config);
-        });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', run);
+        } else {
+            run();
+        }
     }
 
     return { init };

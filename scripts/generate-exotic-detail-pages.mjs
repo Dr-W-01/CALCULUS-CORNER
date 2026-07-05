@@ -64,8 +64,8 @@ ${SIDEBAR}
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan</p>
-                        <div class="exotic-page-graph-wrap">
-                            <div id="exotic-graph" class="desmos-explorer"></div>
+                        <div class="exotic-page-graph-wrap graph-wrap-interactive">
+                            <div id="exotic-graph" class="desmos-graph w-full h-full min-h-[28rem]"></div>
                         </div>
                     </div>
                 </section>
