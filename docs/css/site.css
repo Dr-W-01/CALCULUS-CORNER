@@ -531,6 +531,94 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     }
 }
 
+/* Interactive visualizers */
+.visualizer-title {
+    color: var(--cc-section-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 0 0 0.75rem;
+}
+
+.visualizer-layout {
+    display: grid;
+    grid-template-columns: minmax(12rem, 16rem) 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+    .visualizer-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.visualizer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1rem;
+    background-color: var(--cc-content-hover-bg);
+    border: 1px solid var(--cc-content-border);
+    border-radius: 0.75rem;
+}
+
+.visualizer-control-label {
+    display: block;
+    color: #d4a853;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
+
+.visualizer-control-name {
+    color: #a8a29e;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.visualizer-control-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.visualizer-slider {
+    flex: 1;
+    accent-color: #b91c1c;
+    cursor: pointer;
+}
+
+.visualizer-value {
+    min-width: 2.5rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: #e4e4e7;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.visualizer-graph-wrap {
+    min-height: 20rem;
+    border: 1px solid var(--cc-content-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: #111111;
+}
+
+.desmos-explorer {
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+}
+
+.visualizer-expr {
+    color: #fafafa;
+}
+
 .limit-subheading {
     color: #d4a853;
     font-size: 0.95rem;

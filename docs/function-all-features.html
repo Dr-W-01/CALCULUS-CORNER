@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>g(x) — Function with All Features • Dr. W's Calculus Corner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+    <div class="top-bar px-8 py-5 flex items-center justify-between sticky top-0 z-50">
+        <a href="index.html" class="site-title-link flex items-center gap-x-3 no-underline text-inherit hover:opacity-90 transition-opacity">
+            <div class="w-9 h-9 bg-[#b91c1c] rounded-2xl flex items-center justify-center">
+                <span class="font-bold text-white text-2xl tracking-tighter">CC</span>
+            </div>
+            <span class="font-semibold text-3xl tracking-tighter">Dr. W's Calculus Corner</span>
+        </a>
+        <div class="flex items-center gap-x-4">
+            <input type="text" placeholder="Search..." class="bg-[#111111] border border-zinc-800 rounded-3xl px-5 py-2 text-sm w-80 focus:outline-none focus:border-zinc-600">
+            <div class="w-9 h-9 bg-zinc-800 rounded-full flex items-center justify-center text-sm font-medium">EW</div>
+        </div>
+    </div>
+
+    <div class="page-layout flex">
+        <div class="sidebar-toggle-float" aria-hidden="false">
+            <button type="button" id="sidebar-expand" class="sidebar-toggle sidebar-expand-btn" aria-label="Open navigation" title="Open navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <button type="button" id="sidebar-collapse" class="sidebar-toggle sidebar-collapse-btn" aria-label="Close navigation" title="Close navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+        </div>
+        <aside id="sidebar" class="sidebar">
+            <nav class="sidebar-nav space-y-1 text-sm">
+                <a href="index.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Home</a>
+                <a href="courses.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Courses</a>
+                <a href="zoo.html" class="nav-item nav-active flex items-center gap-x-3 px-4 py-3 rounded-2xl">Function Zoo</a>
+                <a href="visualizers.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">Visualizers</a>
+                <a href="profile.html" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl">My Profile</a>
+            </nav>
+        </aside>
+
+        <main class="main-content flex-1 p-8">
+            <div class="w-full max-w-4xl mx-auto space-y-8">
+                <header class="text-center">
+                    <a href="zoo.html" class="text-sm text-zinc-500 hover:text-red-400 mb-4 inline-block">&larr; Back to Function Zoo</a>
+                    <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">FUNCTION WITH ALL FEATURES</h1>
+                    <div id="header-expr" class="text-3xl text-white"></div>
+                </header>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Overview</h2></div>
+                    <div class="section-body graph-facts-row">
+                        <div class="w-full md:w-1/2 shrink-0">
+                            <div class="graph-wrap-sm max-w-[22rem] mx-auto overflow-hidden rounded-xl border border-[#5c3838]">
+                                <div id="graph-f-main" class="desmos-graph w-full h-full min-h-[12rem]"></div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 flex-1">
+                            <div class="fact-pair">
+                                <div><p class="fact-label">Domain</p><div class="fact-value" data-katex="[-10, \infty) \setminus \{-4, -1, 0\}"></div></div>
+                                <div><p class="fact-label">Range</p><div class="fact-value" data-katex="(-\infty, \infty)"></div></div>
+                                <div><p class="fact-label">x-intercepts</p><div class="fact-value">Multiple (see graph)</div></div>
+                                <div><p class="fact-label">y-intercepts</p><div class="fact-value">Undefined at x = 0 (hole)</div></div>
+                                <div><p class="fact-label">Vertical Asymptotes</p><div class="fact-value" data-katex="x = -4"></div></div>
+                                <div><p class="fact-label">Horizontal Asymptotes</p><div class="fact-value">None</div></div>
+                                <div><p class="fact-label">Continuity</p><div class="fact-value">Multiple discontinuities</div></div>
+                                <div><p class="fact-label">Differentiability</p><div class="fact-value">Non-differentiable at several points</div></div>
+                                <div class="symmetry-fact" style="grid-column: 1 / -1;"><p class="fact-label">SYMMETRY</p><div class="symmetry-value"><span class="symmetry-type">None</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Description &amp; Behavior</h2></div>
+                    <div class="section-body">
+                        <p class="behavior-intro mb-6">This custom composite — from Dr. W's Desmos graph — stitches together six Basic Zoo building blocks into one wild creature. Each factor contributes a distinct calculus feature: a hole, an endpoint, a vertical asymptote, a jump, a vertical tangent, and a cusp. View the original on <a href="https://www.desmos.com/calculator/60fe4037a5" class="text-red-400 hover:text-red-300" target="_blank" rel="noopener noreferrer">Desmos</a>.</p>
+                        <div class="behavior-grid text-sm text-zinc-300">
+                            <div><span class="meta-label">Discontinuities</span><br>Hole at x = 0; jump at x = -1; infinite at x = -4; endpoint at x = -10</div>
+                            <div><span class="meta-label">Non-differentiability</span><br>Vertical tangent at x = 1; cusp at x = 2; jump at x = -1</div>
+                            <div><span class="meta-label">Absolute Maximum</span><br>None (unbounded above near x = -4)</div>
+                            <div><span class="meta-label">Absolute Minimum</span><br>None</div>
+                            <div><span class="meta-label">Relative Maximum</span><br>Varies by branch</div>
+                            <div><span class="meta-label">Relative Minimum</span><br>Varies by branch</div>
+                            <div><span class="meta-label">Increasing</span><br>Varies by interval</div>
+                            <div><span class="meta-label">Decreasing</span><br>Varies by interval</div>
+                            <div><span class="meta-label">Concave Up</span><br>Varies by interval</div>
+                            <div><span class="meta-label">Concave Down</span><br>Varies by interval</div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Feature: Hole</span><br><span data-katex="\frac{x}{x}"></span> — removable discontinuity at (0, 1.255)</div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Feature: Endpoint</span><br><span data-katex="\sqrt{10+x}"></span> — domain starts at x = -10</div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Feature: Asymptote</span><br><span data-katex="\frac{-1}{x+4}"></span> — vertical asymptote at x = -4</div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Feature: Jump</span><br><span data-katex="\frac{|x+1|}{x+1}"></span> — sign function jump at x = -1</div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Feature: Vert. Tangent</span><br><span data-katex="(x-1)^{1/3}"></span> — vertical tangent at x = 1</div>
+                            <div style="grid-column: 1 / -1;"><span class="meta-label">Feature: Cusp</span><br><span data-katex="(x-2)^{2/3}"></span> — cusp at x = 2</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Limits and Continuity</h2></div>
+                    <div class="section-body space-y-4">
+                        <div>
+                            <p class="limit-subheading">End Behaviours</p>
+                            <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
+                                <span data-katex="\lim_{x \to \infty} g(x) \text{ depends on branch}"></span>
+                                <span data-katex="\lim_{x \to -10^+} g(x) = 0"></span>
+                            </div>
+                            <p class="limit-blurb mt-3 text-center">Near x = -4 the reciprocal factor dominates and the function blows up. At the left endpoint x = -10 the square root factor forces g(x) → 0.</p>
+                        </div>                        <div>
+                            <p class="limit-subheading">Limit at a Point</p>
+                            <div class="space-y-2 text-center text-lg text-zinc-200">
+                                <div data-katex="\lim_{x \to 0} g(x) \approx 1.255 \text{ (hole)}"></div>
+                                <div data-katex="g(0) \text{ undefined}"></div>
+                                <div data-katex="\lim_{x \to -1^-} g(x) \neq \lim_{x \to -1^+} g(x) \text{ (jump)}"></div>
+                                <div data-katex="\lim_{x \to -4} g(x) = \pm\infty"></div>
+                            </div>
+                            <p class="limit-blurb mt-3 text-center">The hole at x = 0 has a finite two-sided limit but no function value. The jump at x = -1 and the asymptote at x = -4 are the other headline limit behaviors.</p>
+                        </div>                        <p class="continuity-statement text-center mt-4">This function is continuous on each interval of its domain but has a removable discontinuity at x = 0, a jump at x = -1, an infinite discontinuity at x = -4, and an endpoint at x = -10.</p>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Derivatives</h2></div>
+                    <div class="section-body">
+                        <div class="graph-trio">
+                            <div class="deriv-col">
+                                <div class="deriv-title" data-katex="g(x)"></div>
+                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                    <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
+                                </div>
+                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>
+<div class="chart-analysis"><p>f(x) is not defined at x = <span data-katex="-4"></span></p><p>f(x) is not defined at x = <span data-katex="-1"></span></p><p>f(x) is not defined at x = <span data-katex="0"></span></p></div>
+                            </div>
+                            <div class="deriv-col">
+                                <div class="deriv-title" data-katex="g'(x) \text{ (piecewise)}"></div>
+                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                    <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
+                                </div>
+                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>
+<div class="chart-analysis">
+                                    <p><strong>Critical points:</strong> x = 1 (vertical tangent), x = 2 (cusp), and others on branches</p>
+                                    <p><strong>Intervals of increase:</strong> Varies by interval</p>
+                                    <p><strong>Intervals of decrease:</strong> Varies by interval</p>
+                                </div>
+                            </div>
+                            <div class="deriv-col">
+                                <div class="deriv-title" data-katex="g''(x) \text{ (piecewise)}"></div>
+                                <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
+                                    <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
+                                </div>
+                                <p class="chart-analysis text-zinc-500">Sign chart not applicable.</p>
+<div class="chart-analysis">
+                                    <p><strong>Concave up:</strong> Varies by interval</p>
+                                    <p><strong>Concave down:</strong> Varies by interval</p>
+                                    <p><strong>Inflection points:</strong> Multiple candidates — see graph</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="derivatives-summary">
+                            <h3 class="derivatives-summary-heading">What the Derivatives Tell Us</h3>
+                            <p class="derivatives-summary-text">This composite is far too piecewise for a single global sign chart. Instead, study each factor's contribution locally: the cube root gives a vertical tangent at x = 1, the cusp factor at x = 2, and the rational and sign factors create asymptotes and jumps that dominate the derivative behavior nearby.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Integrals</h2></div>
+                    <div class="section-body space-y-4 text-lg text-zinc-200 text-center">
+                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int g(x)\,dx \text{ has no elementary closed form}"></div></div>
+                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\text{Definite integrals require branch-by-branch analysis}"></div></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/site.js"></script>
+    <script src="js/function-detail.js"></script>
+    <script>
+        FunctionDetail.init({
+            headerKatex: "g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}",
+            graphs: [{"latex":"g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}","points":[{"id":"hole","latex":"(0,1.254951)","pointStyle":"OPEN","color":"#f87171"}]},"g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}","g(x)=\\frac{x}{x}\\sqrt{10+x}\\left(\\frac{-1}{x+4}\\right)\\left(\\frac{\\left|x+1\\right|}{x+1}\\right)\\left(x-1\\right)^{\\frac{1}{3}}\\left(x-2\\right)^{\\frac{2}{3}}"],
+            bounds: {"left":-10,"right":10,"bottom":-8.5,"top":8.5}
+        });
+    </script>
+</body>
+</html>

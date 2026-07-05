@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizers • Calculus Corner</title>
+    <title>Visualizers • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -43,20 +44,80 @@
         </aside>
 
         <main class="main-content flex-1 p-8">
-            <div class="max-w-3xl">
-                <div class="content-card rounded-2xl">
+            <div class="w-full max-w-5xl mx-auto space-y-8">
+
+                <header class="page-hero content-card">
                     <div class="section-header">
-                        <h1 class="section-heading text-xl">Visualizers</h1>
+                        <h1 class="section-heading text-2xl">Visualizers</h1>
                     </div>
-                    <div class="section-body text-center">
-                        <p class="text-3xl font-semibold text-white mb-3">Coming Soon</p>
-                        <p class="text-zinc-400 text-sm leading-relaxed">Interactive calculus visualizations are in development. Explore concepts through dynamic graphs and animations.</p>
+                    <div class="section-body">
+                        <p>Explore calculus concepts through live, interactive graphs. Adjust parameters with the sliders and watch the math change in real time.</p>
                     </div>
-                </div>
+                </header>
+
+                <section class="content-card">
+                    <div class="section-header">
+                        <h2 class="section-heading text-xl">Interactive Visual Explorers</h2>
+                    </div>
+                    <div class="section-body space-y-10">
+
+                        <article class="visualizer-panel">
+                            <h3 class="visualizer-title">Sine Wave Transformations</h3>
+                            <p class="behavior-intro mb-6">Drag the sliders to transform <span data-katex="f(x)=A\sin(B(x-C))+D"></span>. The grey curve shows the parent function <span data-katex="y=\sin(x)"></span> for comparison. Amplitude stretches vertically, frequency compresses or expands the period, phase shift slides the graph horizontally, and vertical shift moves it up or down.</p>
+
+                            <div class="visualizer-layout">
+                                <div class="visualizer-controls" aria-label="Transformation sliders">
+                                    <div class="visualizer-control">
+                                        <label class="visualizer-control-label" for="slider-amplitude">Amplitude <span class="visualizer-control-name">(A)</span></label>
+                                        <div class="visualizer-control-row">
+                                            <input type="range" id="slider-amplitude" class="visualizer-slider" min="0.5" max="4" step="0.1" value="1">
+                                            <output id="label-amplitude" class="visualizer-value" for="slider-amplitude">1</output>
+                                        </div>
+                                    </div>
+                                    <div class="visualizer-control">
+                                        <label class="visualizer-control-label" for="slider-frequency">Frequency <span class="visualizer-control-name">(B)</span></label>
+                                        <div class="visualizer-control-row">
+                                            <input type="range" id="slider-frequency" class="visualizer-slider" min="0.5" max="3" step="0.1" value="1">
+                                            <output id="label-frequency" class="visualizer-value" for="slider-frequency">1</output>
+                                        </div>
+                                    </div>
+                                    <div class="visualizer-control">
+                                        <label class="visualizer-control-label" for="slider-phase">Phase Shift <span class="visualizer-control-name">(C)</span></label>
+                                        <div class="visualizer-control-row">
+                                            <input type="range" id="slider-phase" class="visualizer-slider" min="-3.14" max="3.14" step="0.1" value="0">
+                                            <output id="label-phase" class="visualizer-value" for="slider-phase">0</output>
+                                        </div>
+                                    </div>
+                                    <div class="visualizer-control">
+                                        <label class="visualizer-control-label" for="slider-vertical">Vertical Shift <span class="visualizer-control-name">(D)</span></label>
+                                        <div class="visualizer-control-row">
+                                            <input type="range" id="slider-vertical" class="visualizer-slider" min="-3" max="3" step="0.1" value="0">
+                                            <output id="label-vertical" class="visualizer-value" for="slider-vertical">0</output>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="visualizer-graph-wrap">
+                                    <div id="explorer-sine" class="desmos-explorer"></div>
+                                </div>
+                            </div>
+
+                            <div id="explorer-sine-expr" class="visualizer-expr text-center mt-6"></div>
+                        </article>
+
+                    </div>
+                </section>
+
             </div>
         </main>
     </div>
 
     <script src="js/site.js"></script>
+    <script src="js/visualizers.js"></script>
+    <script>
+        document.querySelectorAll('[data-katex]').forEach(el => {
+            katex.render(el.getAttribute('data-katex'), el, { throwOnError: false, displayMode: false });
+        });
+    </script>
 </body>
 </html>
