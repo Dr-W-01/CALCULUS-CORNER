@@ -16,8 +16,12 @@
         return `function-${id}.html`;
     }
 
-    function initDesmosGraph(fn) {
-        const elt = document.getElementById(`calculator-${fn.id}`);
+    function calculatorElementId(gridId, fnId) {
+        return `calculator-${gridId}-${fnId}`;
+    }
+
+    function initDesmosGraph(gridId, fn) {
+        const elt = document.getElementById(calculatorElementId(gridId, fn.id));
         if (!elt || typeof Desmos === 'undefined') return null;
 
         const interactive = fn.interactive === true;
@@ -75,10 +79,11 @@
         return calculator;
     }
 
-    function createFunctionCard(fn) {
+    function createFunctionCard(gridId, fn) {
         const card = document.createElement('a');
         card.href = detailPageUrl(fn.id);
         card.className = 'zoo-card';
+        const graphId = calculatorElementId(gridId, fn.id);
 
         card.innerHTML = `
             <h3 class="zoo-card-title"></h3>
@@ -90,7 +95,7 @@
                 </div>
             </div>
             <div class="zoo-graph-wrap">
-                <div id="calculator-${fn.id}" class="desmos-graph"></div>
+                <div id="${graphId}" class="desmos-graph"></div>
             </div>
             <p class="zoo-card-desc"></p>
         `;
@@ -123,13 +128,13 @@
         const calculators = [];
 
         functions.forEach(fn => {
-            const card = createFunctionCard(fn);
+            const card = createFunctionCard(gridId, fn);
             grid.appendChild(card);
             calculators.push({ fn, card });
         });
 
         requestAnimationFrame(() => {
-            calculators.forEach(({ fn }) => initDesmosGraph(fn));
+            calculators.forEach(({ fn }) => initDesmosGraph(gridId, fn));
         });
     }
 

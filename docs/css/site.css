@@ -24,6 +24,10 @@
     --cc-top-bar-height: 81px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: system-ui, -apple-system, sans-serif;
     background-color: #0a0a0a;
@@ -466,6 +470,63 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
 
 .zoo-page-section {
     margin-bottom: 2.5rem;
+    scroll-margin-top: 5.5rem;
+}
+
+#zoo-nav {
+    scroll-margin-top: 5.5rem;
+}
+
+.zoo-section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.65rem;
+    padding: 0.85rem 1rem;
+}
+
+.zoo-section-nav-link {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid var(--cc-content-border);
+    background: #261616;
+    color: #d4d4d8;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zoo-section-nav-link:hover,
+.zoo-section-nav-link:focus-visible {
+    color: var(--cc-card-hover-title);
+    border-color: var(--cc-card-hover-border);
+    background-color: var(--cc-card-hover-bg);
+    box-shadow: var(--cc-card-hover-shadow);
+    outline: none;
+}
+
+.zoo-back-to-top {
+    margin: 1.25rem 0 0;
+    text-align: center;
+}
+
+.zoo-back-to-top-link {
+    display: inline-block;
+    color: #a1a1aa;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.zoo-back-to-top-link:hover,
+.zoo-back-to-top-link:focus-visible {
+    color: var(--cc-card-hover-title);
+    outline: none;
 }
 
 /* Interactive cards/tiles — shared gold hover (zoo, visualizers, courses, dashboard) */
