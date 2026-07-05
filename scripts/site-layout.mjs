@@ -49,7 +49,9 @@ export function renderPageTitle(iconKey, titleText) {
 /** Which nav href should be active for a given docs HTML filename. */
 export function activeNavHref(filename) {
   if (filename === 'index.html') return 'index.html';
-  if (filename === 'courses.html' || filename.startsWith('course-')) return 'courses.html';
+  if (filename === 'courses.html' || filename.startsWith('course-') || filename.includes('/course-')) {
+    return 'courses.html';
+  }
   if (filename === 'zoo.html' || filename.startsWith('function-')) return 'zoo.html';
   if (filename === 'visualizers.html' || filename.startsWith('visualizer-')) return 'visualizers.html';
   if (filename === 'profile.html') return 'profile.html';
@@ -65,22 +67,28 @@ const SIDEBAR_TOGGLE = `        <div class="sidebar-toggle-float" aria-hidden="f
             </button>
         </div>`;
 
+/** Relative path prefix for sidebar links (e.g. "../" for docs/course-calculus1/topics.html). */
+export function navPrefixForPath(relativePath) {
+  const depth = (relativePath.match(/\//g) || []).length;
+  return depth ? '../'.repeat(depth) : '';
+}
+
 /** Page layout opening through <main>, with sidebar nav icons and active state. */
-export function renderSidebarShell(activeHref) {
+export function renderSidebarShell(activeHref, navPrefix = '') {
   return `    <div class="page-layout flex">
 ${SIDEBAR_TOGGLE}
         <aside id="sidebar" class="sidebar">
-${renderSidebarNav(activeHref)}
+${renderSidebarNav(activeHref, navPrefix)}
         </aside>
 
         <main class="main-content flex-1 p-8">`;
 }
 
 /** Full <nav class="sidebar-nav">…</nav> block with the correct active link. */
-export function renderSidebarNav(activeHref) {
+export function renderSidebarNav(activeHref, navPrefix = '') {
   const links = NAV_LINKS.map((link) => {
     const active = link.href === activeHref ? ' nav-active' : '';
-    return `                <a href="${link.href}" class="nav-item${active} flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true">${link.icon}</span>${link.label}</a>`;
+    return `                <a href="${navPrefix}${link.href}" class="nav-item${active} flex items-center gap-x-3 px-4 py-3 rounded-2xl"><span class="nav-icon" aria-hidden="true">${link.icon}</span>${link.label}</a>`;
   }).join('\n');
 
   return `            <nav class="sidebar-nav space-y-1 text-sm">\n${links}\n            </nav>`;

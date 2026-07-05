@@ -269,62 +269,143 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     margin: 0;
 }
 
-.course-section-intro {
-    color: #a1a1aa;
-    font-size: 0.875rem;
-    margin: 0 0 1rem;
-    text-align: center;
+/* Course hub — three section tiles (Topics / Definitions / Problems) */
+.course-section-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.75rem;
+    width: 100%;
 }
 
-.course-toc-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.course-toc-item {
-    border-bottom: 1px solid var(--cc-content-border);
-}
-
-.course-toc-item:first-child {
-    border-top: 1px solid var(--cc-content-border);
-}
-
-.course-toc-link {
-    display: block;
-    padding: 0.875rem 0.5rem;
-    color: #f4f4f5;
-    font-weight: 600;
-    font-size: 0.95rem;
+.course-section-tile {
     text-decoration: none;
-    transition: color 0.15s ease, background-color 0.15s ease;
-    border-radius: 0.375rem;
+    color: inherit;
+    padding: 0;
+    overflow: hidden;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.course-toc-link:hover {
+.course-section-tile:hover {
+    background-color: rgb(212 168 83 / 0.08);
+    border-color: #d4a853;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgb(212 168 83 / 0.12);
+}
+
+.course-section-tile:hover .course-tile-title {
     color: #d4a853;
+}
+
+.course-section-tile:hover .course-tile-desc {
+    color: #e4e4e7;
+}
+
+.course-tile-visual {
+    height: 10rem;
+    border-bottom: 1px solid var(--cc-content-border);
+    transition: border-color 0.2s ease;
+}
+
+.course-section-tile:hover .course-tile-visual {
+    border-bottom-color: rgb(212 168 83 / 0.45);
+}
+
+.course-tile-visual--topics {
+    background: linear-gradient(135deg, #1a2838 0%, #2d3f5c 50%, #1a1010 100%);
+}
+
+.course-tile-visual--definitions {
+    background: linear-gradient(135deg, #2a1f38 0%, #4a3558 50%, #1a1010 100%);
+}
+
+.course-tile-visual--problems {
+    background: linear-gradient(135deg, #3a2e14 0%, #5c4a22 50%, #1a1010 100%);
+}
+
+.course-tile-body {
+    padding: 1.35rem 1.5rem 1.6rem;
+}
+
+.course-tile-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.65rem;
+    transition: color 0.2s ease;
+}
+
+.course-tile-desc {
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+/* Course section accordions */
+.course-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.course-accordion-item {
+    border: 1px solid var(--cc-content-border);
+    border-radius: 0.75rem;
+    background-color: rgb(0 0 0 / 0.12);
+    overflow: hidden;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.course-accordion-item[open],
+.course-accordion-item.is-open {
+    border-color: #7a6530;
     background-color: rgb(212 168 83 / 0.06);
 }
 
-.course-placeholder-body {
-    text-align: center;
-}
-
-.course-placeholder-title {
+.course-accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
     color: #f4f4f5;
-    font-size: 1.125rem;
     font-weight: 600;
-    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    list-style: none;
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.course-placeholder-text {
-    color: #a1a1aa;
+.course-accordion-trigger::-webkit-details-marker {
+    display: none;
+}
+
+.course-accordion-trigger::after {
+    content: '+';
+    flex-shrink: 0;
+    color: #d4a853;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.course-accordion-item[open] .course-accordion-trigger::after,
+.course-accordion-item.is-open .course-accordion-trigger::after {
+    content: '−';
+}
+
+.course-accordion-trigger:hover {
+    color: #d4a853;
+    background-color: rgb(212 168 83 / 0.05);
+}
+
+.course-accordion-panel {
+    padding: 0 1.1rem 1rem;
+    border-top: 1px solid var(--cc-content-border);
+}
+
+.course-accordion-panel p {
+    color: #d4d4d8;
     font-size: 0.9rem;
-    line-height: 1.6;
-    margin: 0;
-    max-width: 32rem;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.65;
+    margin: 0.85rem 0 0;
 }
 
 /* Hub pages: full-width content area (Courses, Profile, Zoo, Visualizers) */

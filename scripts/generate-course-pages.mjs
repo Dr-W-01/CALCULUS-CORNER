@@ -1,8 +1,8 @@
-import { writeFileSync, unlinkSync, existsSync } from 'fs';
+import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { COURSES } from './course-data.mjs';
-import { loadSiteFooter, renderSidebarShell, renderPageTitle } from './site-layout.mjs';
+import { COURSES, SECTION_TILES } from './course-data.mjs';
+import { loadSiteFooter, renderSidebarShell, renderPageTitle, navPrefixForPath } from './site-layout.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS = join(__dirname, '..', 'docs');
@@ -21,8 +21,14 @@ const TOP_BAR = `    <div class="top-bar px-8 py-5 flex items-center justify-bet
         </div>
     </div>`;
 
-function pageShell({ title, activeHref, mainContent }) {
-  const sidebar = renderSidebarShell(activeHref);
+function pageShell({ title, activeHref, mainContent, assetPrefix = '', extraScripts = '', navPrefix = '' }) {
+  const sidebar = renderSidebarShell(activeHref, navPrefix);
+  const cssHref = `${assetPrefix}css/site.css`;
+  const siteJs = `${assetPrefix}js/site.js`;
+  const indexHref = `${assetPrefix}index.html`;
+
+  const topBar = TOP_BAR.replace('href="index.html"', `href="${indexHref}"`);
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +36,10 @@ function pageShell({ title, activeHref, mainContent }) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="${cssHref}">
 </head>
 <body>
-${TOP_BAR}
+${topBar}
 
 ${sidebar}
 ${mainContent}
@@ -41,9 +47,22 @@ ${mainContent}
 ${SITE_FOOTER}
         </main>
     </div>
-    <script src="js/site.js"></script>
+    <script src="${siteJs}"></script>${extraScripts}
 </body>
 </html>`;
+}
+
+function renderAccordionItems(items) {
+  return items
+    .map(
+      (item) => `                        <details class="course-accordion-item">
+                            <summary class="course-accordion-trigger">${item.summary}</summary>
+                            <div class="course-accordion-panel">
+                                <p>${item.body}</p>
+                            </div>
+                        </details>`,
+    )
+    .join('\n');
 }
 
 function renderCoursesLanding() {
@@ -82,13 +101,15 @@ ${cards}
 }
 
 function renderCoursePage(course) {
-  const topics = course.topics
-    .map(
-      (topic) => `                            <li class="course-toc-item">
-                                <a href="${topic.href}" class="course-toc-link">${topic.name}</a>
-                            </li>`,
-    )
-    .join('\n');
+  const tiles = SECTION_TILES.map(
+    (section) => `                    <a href="course-${course.id}/${section.id}.html" class="course-section-tile zoo-card block">
+                        <div class="course-tile-visual ${section.visualClass}" aria-hidden="true"></div>
+                        <div class="course-tile-body">
+                            <h2 class="course-tile-title zoo-card-title">${section.title.toUpperCase()}</h2>
+                            <p class="course-tile-desc zoo-card-desc">${section.description}</p>
+                        </div>
+                    </a>`,
+  ).join('\n');
 
   const main = `            <div class="page-content-full space-y-8">
                 <p class="text-center mb-0">
@@ -104,29 +125,9 @@ function renderCoursePage(course) {
                     </div>
                 </header>
 
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Topics</h2></div>
-                    <div class="section-body">
-                        <p class="course-section-intro">Table of contents — topic pages coming soon.</p>
-                        <ul class="course-toc-list">
-${topics}
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Definitions</h2></div>
-                    <div class="section-body course-placeholder-body">
-                        <p class="course-placeholder-title">Coming Soon</p>
-                        <p class="course-placeholder-text">Key definitions and reference sheets for this course will appear here.</p>
-                    </div>
-                </section>
-
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Problems</h2></div>
-                    <div class="section-body course-placeholder-body">
-                        <p class="course-placeholder-title">Coming Soon</p>
-                        <p class="course-placeholder-text">Practice problems and worked examples for this course will appear here.</p>
+                <section class="courses-page-section" aria-label="Course sections">
+                    <div class="course-section-tiles-grid">
+${tiles}
                     </div>
                 </section>
             </div>`;
@@ -138,6 +139,53 @@ ${topics}
   });
 }
 
+function renderSectionPage(course, sectionId) {
+  const section = SECTION_TILES.find((s) => s.id === sectionId);
+  const items = course.accordion[sectionId];
+  const accordion = renderAccordionItems(items);
+  const intro =
+    sectionId === 'topics'
+      ? 'Expand a unit below to preview lesson outlines. Full content coming soon.'
+      : sectionId === 'definitions'
+        ? 'Expand a term below to read a short reference definition. Full glossary coming soon.'
+        : 'Expand a problem set below to see what will be included. Full problem sets coming soon.';
+
+  const main = `            <div class="page-content-full space-y-8">
+                <p class="text-center mb-0">
+                    <a href="../course-${course.id}.html" class="text-sm text-zinc-500 hover:text-red-400 inline-block">&larr; Back to ${course.title}</a>
+                </p>
+
+                <header class="page-hero content-card">
+                    <div class="section-header">
+                        <h1 class="section-heading text-xl">${course.title.toUpperCase()} — ${section.title.toUpperCase()}</h1>
+                    </div>
+                    <div class="section-body">
+                        <p>${intro}</p>
+                    </div>
+                </header>
+
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">${section.title}</h2></div>
+                    <div class="section-body">
+                        <div class="course-accordion">
+${accordion}
+                        </div>
+                    </div>
+                </section>
+            </div>`;
+
+  const extraScripts = '\n    <script src="../js/course-accordion.js"></script>';
+
+  return pageShell({
+    title: `${course.title} — ${section.title}`,
+    activeHref: 'courses.html',
+    mainContent: main,
+    assetPrefix: '../',
+    navPrefix: '../',
+    extraScripts,
+  });
+}
+
 writeFileSync(join(DOCS, 'courses.html'), renderCoursesLanding(), 'utf8');
 console.log('Wrote docs/courses.html');
 
@@ -145,13 +193,14 @@ for (const course of COURSES) {
   writeFileSync(join(DOCS, `course-${course.id}.html`), renderCoursePage(course), 'utf8');
   console.log('Wrote', `course-${course.id}.html`);
 
-  for (const suffix of ['definitions', 'problems']) {
-    const legacy = join(DOCS, `course-${course.id}-${suffix}.html`);
-    if (existsSync(legacy)) {
-      unlinkSync(legacy);
-      console.log('Removed legacy', `course-${course.id}-${suffix}.html`);
-    }
+  const courseDir = join(DOCS, `course-${course.id}`);
+  mkdirSync(courseDir, { recursive: true });
+
+  for (const section of SECTION_TILES) {
+    const path = join(courseDir, `${section.id}.html`);
+    writeFileSync(path, renderSectionPage(course, section.id), 'utf8');
+    console.log('Wrote', `course-${course.id}/${section.id}.html`);
   }
 }
 
-console.log(`Generated Courses section (${1 + COURSES.length} pages).`);
+console.log(`Generated Courses section (${1 + COURSES.length * (1 + SECTION_TILES.length)} pages).`);
