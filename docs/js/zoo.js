@@ -5,6 +5,10 @@
 
     function renderKatex(el, tex) {
         if (!el || typeof katex === 'undefined') return;
+        if (window.CCKatex) {
+            window.CCKatex.render(el, tex, { displayMode: false });
+            return;
+        }
         katex.render(tex, el, { throwOnError: false, displayMode: false });
     }
 

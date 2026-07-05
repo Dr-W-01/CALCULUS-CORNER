@@ -48,7 +48,8 @@ function pageShell({
   const katexHead = includeKatex
     ? `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>`
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="${assetPrefix}js/katex-config.js"></script>`
     : '';
 
   return `<!DOCTYPE html>

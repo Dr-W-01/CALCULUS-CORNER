@@ -58,7 +58,11 @@ const FunctionDetail = (function () {
             if (config.headerKatex) {
                 const header = document.getElementById('header-expr');
                 if (header) {
-                    katex.render(config.headerKatex, header, { throwOnError: false, displayMode: true });
+                    if (window.CCKatex) {
+                        window.CCKatex.render(header, config.headerKatex, { displayMode: true });
+                    } else {
+                        katex.render(config.headerKatex, header, { throwOnError: false, displayMode: true });
+                    }
                 }
             }
 

@@ -63,7 +63,11 @@ const ExoticDetail = (function () {
             if (config.headerKatex) {
                 const header = document.getElementById('header-expr');
                 if (header && typeof katex !== 'undefined') {
-                    katex.render(config.headerKatex, header, { throwOnError: false, displayMode: true });
+                    if (window.CCKatex) {
+                        window.CCKatex.render(header, config.headerKatex, { displayMode: true });
+                    } else {
+                        katex.render(config.headerKatex, header, { throwOnError: false, displayMode: true });
+                    }
                 }
             }
             initGraph(config);

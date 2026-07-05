@@ -22,8 +22,11 @@
 
     function renderKatex() {
         if (typeof katex === 'undefined') return;
+        const render = window.CCKatex ? window.CCKatex.render : (el, tex) => {
+            katex.render(tex, el, { throwOnError: false });
+        };
         document.querySelectorAll('[data-katex]').forEach(el => {
-            katex.render(el.getAttribute('data-katex'), el, { throwOnError: false });
+            render(el, el.getAttribute('data-katex'));
         });
     }
 

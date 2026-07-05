@@ -46,6 +46,7 @@ function renderPage(fn) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="js/katex-config.js"></script>
 ${DESMOS_API}
     <link rel="stylesheet" href="css/site.css">
 </head>

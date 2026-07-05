@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>f(x) = \arcsec(x) • Dr. W's Calculus Corner</title>
+    <title>f(x) = \operatorname{arcsec}(x) • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="js/katex-config.js"></script>
     <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
@@ -101,24 +102,24 @@
                         <div>
                             <p class="limit-subheading">End Behaviours</p>
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
-                                <span data-katex="\lim_{x \to \infty} \arcsec(x) = \frac{\pi}{2}"></span>
-                                <span data-katex="\lim_{x \to -\infty} \arcsec(x) = \frac{\pi}{2}"></span>
+                                <span data-katex="\lim_{x \to \infty} \operatorname{arcsec}(x) = \frac{\pi}{2}"></span>
+                                <span data-katex="\lim_{x \to -\infty} \operatorname{arcsec}(x) = \frac{\pi}{2}"></span>
                             </div>
                             <p class="limit-blurb mt-3 text-center">Both branches approach y = π/2 as |x| → ∞, though this value is not in the range.</p>
                         </div>                        <div>
                             <p class="limit-subheading">Limit at a Point</p>
                             <div class="space-y-2 text-center text-lg text-zinc-200">
-                                <div data-katex="\lim_{x \to 1^-} \arcsec(x) \text{ DNE}"></div>
-                                <div data-katex="\lim_{x \to 1^+} \arcsec(x) = 0"></div>
+                                <div data-katex="\lim_{x \to 1^-} \operatorname{arcsec}(x) \text{ DNE}"></div>
+                                <div data-katex="\lim_{x \to 1^+} \operatorname{arcsec}(x) = 0"></div>
                                 <div data-katex="f(1) = 0"></div>
-                                <div data-katex="\lim_{x \to -1^+} \arcsec(x) \text{ DNE}"></div>
-                                <div data-katex="\lim_{x \to -1^-} \arcsec(x) = \pi"></div>
+                                <div data-katex="\lim_{x \to -1^+} \operatorname{arcsec}(x) \text{ DNE}"></div>
+                                <div data-katex="\lim_{x \to -1^-} \operatorname{arcsec}(x) = \pi"></div>
                                 <div data-katex="f(-1) = \pi"></div>
                             </div>
                             <p class="limit-blurb mt-3 text-center">At x = ±1 the one-sided limits from within the domain equal f(±1), with vertical tangents at the endpoints.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
-                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \arcsec(x) = \arcsec(a) \text{ for } |a| > 1"></div>
+                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \operatorname{arcsec}(x) = \operatorname{arcsec}(a) \text{ for } |a| > 1"></div>
                         </div>                        <p class="continuity-statement text-center mt-4">This function is continuous on (-∞, -1] ∪ [1, ∞) with vertical tangents at x = ±1.</p>
                     </div>
                 </section>
@@ -128,7 +129,7 @@
                     <div class="section-body">
                         <div class="graph-trio">
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f(x) = \arcsec(x)"></div>
+                                <div class="deriv-title" data-katex="f(x) = \operatorname{arcsec}(x)"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
@@ -197,8 +198,8 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Integrals</h2></div>
                     <div class="section-body space-y-4 text-lg text-zinc-200 text-center">
-                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \arcsec(x) \, dx = x\arcsec(x) - \ln|x + \sqrt{x^2 - 1}| + C"></div></div>
-                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_1^2 \arcsec(x) \, dx = 2\arcsec(2) - \ln(2 + \sqrt{3})"></div></div>
+                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \operatorname{arcsec}(x) \, dx = x\operatorname{arcsec}(x) - \ln|x + \sqrt{x^2 - 1}| + C"></div></div>
+                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_1^2 \operatorname{arcsec}(x) \, dx = 2\operatorname{arcsec}(2) - \ln(2 + \sqrt{3})"></div></div>
                     </div>
                 </section>
             </div>
@@ -236,8 +237,8 @@
     <script src="js/function-detail.js"></script>
     <script>
         FunctionDetail.init({
-            headerKatex: "f(x) = \\arcsec(x)",
-            graphs: ["y = \\arcsec(x)","y = \\frac{1}{|x|\\sqrt{x^2 - 1}}","y = \\frac{-x}{|x|(x^2 - 1)^{3/2}}"],
+            headerKatex: "f(x) = \\operatorname{arcsec}(x)",
+            graphs: ["y = \\operatorname{arcsec}(x)","y = \\frac{1}{|x|\\sqrt{x^2 - 1}}","y = \\frac{-x}{|x|(x^2 - 1)^{3/2}}"],
             bounds: {"left":-5,"right":5,"bottom":-1,"top":4}
         });
     </script>

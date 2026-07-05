@@ -92,7 +92,7 @@
   {
     "id": "arcsec-x",
     "name": "Arcsecant Function",
-    "latex": "f(x) = \\arcsec(x)",
+    "latex": "f(x) = \\operatorname{arcsec}(x)",
     "category": "Inverse Trigonometric",
     "domain": "(-\\infty, -1] \\cup [1, \\infty)",
     "description": "Inverse of secant with two branches and a vertical asymptote at x = 0 in the derivative.",
@@ -142,7 +142,7 @@
   {
     "id": "sech-x",
     "name": "Hyperbolic Secant Function",
-    "latex": "f(x) = \\sech(x)",
+    "latex": "f(x) = \\operatorname{sech}(x)",
     "category": "Hyperbolic Trigonometric",
     "domain": "(-\\infty, \\infty)",
     "description": "Reciprocal of cosh(x), always positive with maximum value 1 at x = 0.",
@@ -152,7 +152,7 @@
   {
     "id": "csch-x",
     "name": "Hyperbolic Cosecant Function",
-    "latex": "f(x) = \\csch(x)",
+    "latex": "f(x) = \\operatorname{csch}(x)",
     "category": "Hyperbolic Trigonometric",
     "domain": "(-\\infty, 0) \\cup (0, \\infty)",
     "description": "Reciprocal of sinh(x) with a vertical asymptote at x = 0 and exponential decay toward zero.",

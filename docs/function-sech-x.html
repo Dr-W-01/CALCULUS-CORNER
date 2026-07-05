@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>f(x) = \sech(x) • Dr. W's Calculus Corner</title>
+    <title>f(x) = \operatorname{sech}(x) • Dr. W's Calculus Corner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="js/katex-config.js"></script>
     <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="css/site.css">
 </head>
@@ -101,13 +102,13 @@
                         <div>
                             <p class="limit-subheading">End Behaviours</p>
                             <div class="text-center text-lg text-zinc-200 flex flex-wrap justify-center gap-x-4 gap-y-2">
-                                <span data-katex="\lim_{x \to \infty} \sech(x) = 0"></span>
-                                <span data-katex="\lim_{x \to -\infty} \sech(x) = 0"></span>
+                                <span data-katex="\lim_{x \to \infty} \operatorname{sech}(x) = 0"></span>
+                                <span data-katex="\lim_{x \to -\infty} \operatorname{sech}(x) = 0"></span>
                             </div>
                             <p class="limit-blurb mt-3 text-center">The graph approaches the horizontal asymptote y = 0 as x → ±∞.</p>
                         </div>                        <div>
                             <p class="limit-subheading">General Limit</p>
-                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \sech(x) = \sech(a)"></div>
+                            <div class="text-center text-lg text-zinc-200" data-katex="\lim_{x \to a} \operatorname{sech}(x) = \operatorname{sech}(a)"></div>
                         </div>                        <p class="continuity-statement text-center mt-4">This function is continuous at all real numbers.</p>
                     </div>
                 </section>
@@ -117,7 +118,7 @@
                     <div class="section-body">
                         <div class="graph-trio">
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f(x) = \sech(x)"></div>
+                                <div class="deriv-title" data-katex="f(x) = \operatorname{sech}(x)"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-f" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
@@ -131,7 +132,7 @@
 <div class="chart-analysis"><p>f(x) is above the x-axis on the interval <span data-katex="(-\infty, \infty)"></span></p></div>
                             </div>
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f'(x) = -\sech(x)\tanh(x)"></div>
+                                <div class="deriv-title" data-katex="f'(x) = -\operatorname{sech}(x)\tanh(x)"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
@@ -150,7 +151,7 @@
                                 </div>
                             </div>
                             <div class="deriv-col">
-                                <div class="deriv-title" data-katex="f''(x) = \sech(x)(\tanh^2(x) - \operatorname{sech}^2(x))"></div>
+                                <div class="deriv-title" data-katex="f''(x) = \operatorname{sech}(x)(\tanh^2(x) - \operatorname{sech}^2(x))"></div>
                                 <div class="graph-wrap-sm overflow-hidden rounded-xl border border-[#5c3838]">
                                     <div id="graph-fpp" class="desmos-graph w-full h-full min-h-[8rem]"></div>
                                 </div>
@@ -180,8 +181,8 @@
                 <section class="content-card">
                     <div class="section-header"><h2 class="section-heading text-xl">Integrals</h2></div>
                     <div class="section-body space-y-4 text-lg text-zinc-200 text-center">
-                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \sech(x) \, dx = \arctan(\sinh(x)) + C"></div></div>
-                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_0^1 \sech(x) \, dx = \arctan(\sinh(1))"></div></div>
+                        <div><p class="meta-label mb-1">Indefinite Integral</p><div data-katex="\int \operatorname{sech}(x) \, dx = \arctan(\sinh(x)) + C"></div></div>
+                        <div><p class="meta-label mb-1">Definite Integral (example)</p><div data-katex="\int_0^1 \operatorname{sech}(x) \, dx = \arctan(\sinh(1))"></div></div>
                     </div>
                 </section>
             </div>
@@ -219,8 +220,8 @@
     <script src="js/function-detail.js"></script>
     <script>
         FunctionDetail.init({
-            headerKatex: "f(x) = \\sech(x)",
-            graphs: ["y = \\sech(x)","y = -\\sech(x)\\tanh(x)","y = \\sech(x)(\\tanh^2(x) - \\operatorname{sech}^2(x))"],
+            headerKatex: "f(x) = \\operatorname{sech}(x)",
+            graphs: ["y = \\operatorname{sech}(x)","y = -\\operatorname{sech}(x)\\tanh(x)","y = \\operatorname{sech}(x)(\\tanh^2(x) - \\operatorname{sech}^2(x))"],
             bounds: {"left":-5,"right":5,"bottom":-0.5,"top":1.5},
             interactive: true
         });
