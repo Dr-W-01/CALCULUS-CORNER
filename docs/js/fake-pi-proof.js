@@ -53,11 +53,7 @@
         ctx.restore();
     }
 
-    function drawFrame(ctx, level) {
-        ctx.clearRect(0, 0, SIZE, SIZE);
-        ctx.fillStyle = COLORS.canvasBg;
-        ctx.fillRect(0, 0, SIZE, SIZE);
-
+    function drawScene(ctx, level) {
         ctx.save();
         ctx.strokeStyle = COLORS.circle;
         ctx.lineWidth = 4.5;
@@ -82,6 +78,23 @@
         drawStaircase(ctx, level);
     }
 
+    function drawFrame(ctx, level, view) {
+        ctx.clearRect(0, 0, SIZE, SIZE);
+        ctx.fillStyle = COLORS.canvasBg;
+        ctx.fillRect(0, 0, SIZE, SIZE);
+
+        const scale = view ? view.scale : 1;
+        const panX = view ? view.panX : 0;
+        const panY = view ? view.panY : 0;
+
+        ctx.save();
+        ctx.translate(SIZE / 2 + panX, SIZE / 2 + panY);
+        ctx.scale(scale, scale);
+        ctx.translate(-SIZE / 2, -SIZE / 2);
+        drawScene(ctx, level);
+        ctx.restore();
+    }
+
     function drawPreview(canvas, level) {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -95,6 +108,7 @@
 
         const ctx = canvas.getContext('2d');
         let level = 0;
+        const view = { scale: 1, panX: 0, panY: 0 };
 
         const stairDisplay = document.getElementById('stair-display');
         const circleDisplay = document.getElementById('circle-display');
@@ -111,7 +125,7 @@
         }
 
         function redraw() {
-            drawFrame(ctx, level);
+            drawFrame(ctx, level, view);
             updateDisplay();
         }
 
@@ -129,6 +143,9 @@
 
         function resetToSquare() {
             level = 0;
+            view.scale = 1;
+            view.panX = 0;
+            view.panY = 0;
             redraw();
         }
 
@@ -141,6 +158,48 @@
             if (e.key.toLowerCase() === 'f') decreaseLevel();
         });
 
+        let dragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let panStartX = 0;
+        let panStartY = 0;
+
+        canvas.addEventListener('mousedown', function (e) {
+            dragging = true;
+            dragStartX = e.clientX;
+            dragStartY = e.clientY;
+            panStartX = view.panX;
+            panStartY = view.panY;
+            canvas.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mouseup', function () {
+            dragging = false;
+            canvas.style.cursor = 'grab';
+        });
+
+        window.addEventListener('mousemove', function (e) {
+            if (!dragging) return;
+            view.panX = panStartX + (e.clientX - dragStartX);
+            view.panY = panStartY + (e.clientY - dragStartY);
+            redraw();
+        });
+
+        canvas.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const mx = ((e.clientX - rect.left) / rect.width) * SIZE;
+            const my = ((e.clientY - rect.top) / rect.height) * SIZE;
+            const factor = e.deltaY < 0 ? 1.1 : 0.9;
+            const nextScale = Math.min(4, Math.max(0.5, view.scale * factor));
+            const ratio = nextScale / view.scale;
+            view.panX = mx - (mx - view.panX - SIZE / 2) * ratio - SIZE / 2;
+            view.panY = my - (my - view.panY - SIZE / 2) * ratio - SIZE / 2;
+            view.scale = nextScale;
+            redraw();
+        }, { passive: false });
+
+        canvas.style.cursor = 'grab';
         redraw();
     }
 

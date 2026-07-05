@@ -34,8 +34,16 @@
 
     function initCanvasPreview(v, containerId) {
         const canvas = document.getElementById(containerId);
-        if (!canvas || typeof FakePiProof === 'undefined') return;
-        FakePiProof.drawPreview(canvas, v.previewLevel != null ? v.previewLevel : 4);
+        if (!canvas) return;
+        const level = v.previewLevel != null ? v.previewLevel : 4;
+
+        if (v.previewRenderer === 'archimedes-pi' && typeof ArchimedesPi !== 'undefined') {
+            ArchimedesPi.drawPreview(canvas, level);
+            return;
+        }
+        if (typeof FakePiProof !== 'undefined') {
+            FakePiProof.drawPreview(canvas, level);
+        }
     }
 
     function createCard(v) {

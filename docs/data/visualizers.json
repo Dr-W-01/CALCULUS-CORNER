@@ -11,7 +11,17 @@
           "description": "Refine a staircase around a circle and watch the shape converge — while the perimeter stubbornly stays at 4. A classic limits cautionary tale.",
           "page": "visualizer-fake-pi-proof.html",
           "previewType": "canvas",
+          "previewRenderer": "fake-pi-proof",
           "previewLevel": 5
+        },
+        {
+          "id": "archimedes-pi",
+          "title": "Archimedes' Pi Approximation",
+          "description": "Double the sides of inscribed and circumscribed polygons to squeeze π from below and above — the classical limit that actually works.",
+          "page": "visualizer-archimedes-pi.html",
+          "previewType": "canvas",
+          "previewRenderer": "archimedes-pi",
+          "previewLevel": 12
         }
       ]
     },

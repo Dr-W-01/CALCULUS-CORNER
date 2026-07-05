@@ -1186,6 +1186,51 @@ body:not(.sidebar-collapsed) .sidebar-expand-btn {
     object-fit: contain;
 }
 
+.archimedes-pi-sides-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.archimedes-pi-sides-label {
+    color: #a1a1aa;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+}
+
+.archimedes-pi-sides-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #5b9a7a;
+}
+
+.fake-pi-stat-label--upper {
+    color: #d4a853;
+}
+
+.fake-pi-stat-swatch--upper {
+    background: #d4a853;
+}
+
+.fake-pi-stat-value--upper {
+    color: #d4a853;
+}
+
+.fake-pi-stat-label--lower {
+    color: #5b9a7a;
+}
+
+.fake-pi-stat-swatch--lower {
+    background: #5b9a7a;
+}
+
+.fake-pi-stat-value--lower {
+    color: #5b9a7a;
+}
+
 @media (max-width: 640px) {
     .typo-form-row {
         flex-direction: column;

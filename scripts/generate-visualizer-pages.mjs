@@ -51,19 +51,19 @@ ${SIDEBAR}
                     <h1 class="text-2xl font-bold tracking-wide text-[#c45050] mb-4">${v.heading}</h1>
                 </header>
 
+                <section class="content-card">
+                    <div class="section-header"><h2 class="section-heading text-xl">Description</h2></div>
+                    <div class="section-body">
+                        <p class="exotic-description">${v.description}</p>
+                    </div>
+                </section>
+
                 <section class="content-card exotic-graph-card">
                     <div class="section-body exotic-graph-body">
                         <p class="exotic-graph-hint">Scroll to zoom &middot; Drag to pan &middot; Use sliders to explore</p>
                         <div class="visualizer-page-graph-wrap">
                             <div id="visualizer-graph" class="desmos-explorer"></div>
                         </div>
-                    </div>
-                </section>
-
-                <section class="content-card">
-                    <div class="section-header"><h2 class="section-heading text-xl">Description</h2></div>
-                    <div class="section-body">
-                        <p class="exotic-description">${v.description}</p>
                     </div>
                 </section>
             </div>
